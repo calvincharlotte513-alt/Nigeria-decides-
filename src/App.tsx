@@ -39,8 +39,8 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  // Popups & Modals: isLeaderPopupOpen starts as TRUE so it pops up playfully on initial open!
-  const [isLeaderPopupOpen, setIsLeaderPopupOpen] = useState(true);
+  // Popups & Modals: starts as FALSE so it only opens when user explicitly clicks
+  const [isLeaderPopupOpen, setIsLeaderPopupOpen] = useState(false);
   const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);
   const [isUserDashboardOpen, setIsUserDashboardOpen] = useState(false);
   const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);

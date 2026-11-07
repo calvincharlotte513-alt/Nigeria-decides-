@@ -7,21 +7,22 @@ interface LiveTickerProps {
 
 export const LiveTicker: React.FC<LiveTickerProps> = ({ candidates = [] }) => {
   const defaultItems = [
-    { text: '🏆 Peter Obi (LP) leads with ₦67.1M in crowd backing', color: '#10b981' },
-    { text: '❤️ 100% of all proceeds donated to verified Nigerian orphanages', color: '#e040fb' },
-    { text: '🎮 149,800+ citizens have participated from all 36 states + FCT', color: '#f59e0b' },
-    { text: '⚡ NOT owned by Nigerian government · NOT INEC · Just a fun civic game!', color: '#8b2fc9' },
-    { text: '🇳🇬 Back your candidate from ₦1,000 · Every Naira funds children\u2019s homes', color: '#10b981' },
-    { text: '📊 Live board updated in real-time — South East + Lagos showing surge!', color: '#f59e0b' },
-    { text: '🌟 New: State-level standings now live for all 36 States & FCT!', color: '#e040fb' },
-    { text: '💚 OTP-verified deduplication — one genuine citizen, one ballot', color: '#10b981' },
+    { text: '🎮 Nigeria Decides 2027 is LIVE — The People\'s Choice Civic Decision Game', color: '#8b2fc9' },
+    { text: '❤️ 100% of all proceeds go directly to verified Nigerian orphanages & NGOs', color: '#e040fb' },
+    { text: '⚡ NOT owned by Nigerian government · NOT INEC · Pure community simulation', color: '#f59e0b' },
+    { text: '🇳🇬 Back your preferred candidate from ₦1,000 · Every Naira funds children\'s homes', color: '#10b981' },
+    { text: '🔒 OTP-verified deduplication — one genuine citizen, one tamper-proof ballot', color: '#8b2fc9' },
+    { text: '🗺️ 36 States + FCT live leaderboard — help Nigeria decide before election day!', color: '#0ea5e9' },
+    { text: '🌟 All candidates represented neutrally with equal manifesto access', color: '#f59e0b' },
+    { text: '💚 Public audit ledgers & CAC verification for all charity disbursements', color: '#10b981' },
   ];
 
-  // Add live candidate data if available
-  const tickerItems = candidates.length > 0
+  // Only include candidates who have received actual backing
+  const activeCandidates = candidates.filter(c => c.totalAmountNgn > 0);
+  const tickerItems = activeCandidates.length > 0
     ? [
-        ...candidates.map(c => ({
-          text: `${c.partyAcronym}: ${c.name} — ₦${(c.totalAmountNgn / 1_000_000).toFixed(1)}M backed`,
+        ...activeCandidates.map(c => ({
+          text: `⚡ ${c.partyAcronym}: ${c.name} — ₦${(c.totalAmountNgn / 1_000_000).toFixed(1)}M backed`,
           color: c.partyColor
         })),
         ...defaultItems

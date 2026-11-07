@@ -108,20 +108,21 @@ const CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://statehouse.gov.ng',
     verifiedStatus: true,
-    votes: 38420,
-    totalAmountNgn: 59200000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'obi-peter',
     name: 'Peter Gregory Obi',
-    party: 'Labour Party',
-    partyAcronym: 'LP',
-    partyColor: '#10b981', // Emerald green
+    party: 'Nigeria Democratic Congress (NDC) / Opposition Coalition',
+    partyAcronym: 'NDC',
+    partyColor: '#059669', // Emerald / Teal
     age: 65,
-    runningMate: 'Datti Baba-Ahmed',
+    runningMate: 'Rabiu Musa Kwankwaso (Coalition Partner)',
     photoUrl: '/images/candidate_obi_1794056621634.jpg',
-    biography: 'Former two-term Governor of Anambra State (2006–2014) and 2023 Presidential Candidate. Known for fiscal prudence, grassroots youth movement leadership, and education funding reforms.',
+    biography: 'Former two-term Governor of Anambra State (2006–2014) and 2023 Presidential Candidate. Having exited the Labour Party following leadership divisions, Obi is the 2027 presidential standard-bearer of the Nigeria Democratic Congress (NDC) under a unified opposition coalition framework.',
     experience: [
+      '2027 Presidential Candidate, Nigeria Democratic Congress (NDC)',
       'Executive Governor of Anambra State (2006–2014)',
       'Former Chairman of Fidelity Bank Plc',
       'Member, Nigerian Economic Management Team',
@@ -134,8 +135,8 @@ const CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://peterobi.org',
     verifiedStatus: true,
-    votes: 42150,
-    totalAmountNgn: 64800000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'atiku-abubakar',
@@ -160,13 +161,13 @@ const CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://atiku.org',
     verifiedStatus: true,
-    votes: 29840,
-    totalAmountNgn: 44100000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'kwankwaso-rabiu',
     name: 'Engr. Rabiu Musa Kwankwaso',
-    party: 'New Nigeria Peoples Party',
+    party: 'New Nigeria Peoples Party (NNPP) / Coalition Partner',
     partyAcronym: 'NNPP',
     partyColor: '#f97316', // Orange
     age: 70,
@@ -186,8 +187,8 @@ const CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://kwankwasiyya.org',
     verifiedStatus: true,
-    votes: 18760,
-    totalAmountNgn: 26500000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'sowore-omoyele',
@@ -212,8 +213,8 @@ const CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://aacparty.org',
     verifiedStatus: true,
-    votes: 9420,
-    totalAmountNgn: 13800000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'undecided-reform',
@@ -236,8 +237,8 @@ const CANDIDATES: Candidate[] = [
       { title: 'Open Public Data Access', description: 'Mandatory real-time public accounting of all government contract awards and oil revenues.' }
     ],
     verifiedStatus: true,
-    votes: 11210,
-    totalAmountNgn: 16600000
+    votes: 0,
+    totalAmountNgn: 0
   }
 ];
 
@@ -282,93 +283,19 @@ const NIGERIAN_STATES = [
   { code: 'FC', name: 'Federal Capital Territory (Abuja)', zone: 'North Central', issue: 'Satellite Town Infrastructure & Civic Inclusivity' }
 ] as const;
 
-// Generate realistic distributed baseline state polling data
+// Real dynamic in-memory state polling data initialized clean
 const STATE_POLL_MAP = new Map<string, StatePollData>();
 
 NIGERIAN_STATES.forEach((s) => {
-  // Balanced realistic baseline distribution
-  let obiRatio = 0.25;
-  let tinubuRatio = 0.30;
-  let atikuRatio = 0.20;
-  let kwankwasoRatio = 0.12;
-  let soworeRatio = 0.07;
-  let undecidedRatio = 0.06;
-
-  if (s.zone === 'South East') {
-    obiRatio = 0.65;
-    tinubuRatio = 0.12;
-    atikuRatio = 0.14;
-    kwankwasoRatio = 0.02;
-    soworeRatio = 0.04;
-    undecidedRatio = 0.03;
-  } else if (s.zone === 'South West') {
-    tinubuRatio = 0.48;
-    obiRatio = 0.32;
-    atikuRatio = 0.10;
-    kwankwasoRatio = 0.02;
-    soworeRatio = 0.05;
-    undecidedRatio = 0.03;
-  } else if (s.zone === 'North West') {
-    if (s.code === 'KN' || s.code === 'JI') {
-      kwankwasoRatio = 0.46;
-      tinubuRatio = 0.24;
-      atikuRatio = 0.18;
-      obiRatio = 0.07;
-    } else {
-      tinubuRatio = 0.38;
-      atikuRatio = 0.30;
-      kwankwasoRatio = 0.18;
-      obiRatio = 0.08;
-    }
-  } else if (s.zone === 'North East') {
-    atikuRatio = 0.46;
-    tinubuRatio = 0.28;
-    obiRatio = 0.12;
-    kwankwasoRatio = 0.09;
-  } else if (s.zone === 'South South') {
-    obiRatio = 0.42;
-    tinubuRatio = 0.28;
-    atikuRatio = 0.21;
-  } else if (s.code === 'FC') {
-    obiRatio = 0.48;
-    tinubuRatio = 0.27;
-    atikuRatio = 0.14;
-    kwankwasoRatio = 0.04;
-  }
-
-  const baseStatePop = s.code === 'LA' ? 18400 : s.code === 'KN' ? 14200 : s.code === 'FC' ? 9800 : s.code === 'RI' ? 7600 : 3200;
-  const cVotes: Record<string, number> = {
-    'obi-peter': Math.round(baseStatePop * obiRatio),
-    'tinubu-bola': Math.round(baseStatePop * tinubuRatio),
-    'atiku-abubakar': Math.round(baseStatePop * atikuRatio),
-    'kwankwaso-rabiu': Math.round(baseStatePop * kwankwasoRatio),
-    'sowore-omoyele': Math.round(baseStatePop * soworeRatio),
-    'undecided-reform': Math.round(baseStatePop * undecidedRatio)
-  };
-
-  const cAmounts: Record<string, number> = {
-    'obi-peter': Math.round(baseStatePop * obiRatio * 1540),
-    'tinubu-bola': Math.round(baseStatePop * tinubuRatio * 1540),
-    'atiku-abubakar': Math.round(baseStatePop * atikuRatio * 1480),
-    'kwankwaso-rabiu': Math.round(baseStatePop * kwankwasoRatio * 1410),
-    'sowore-omoyele': Math.round(baseStatePop * soworeRatio * 1460),
-    'undecided-reform': Math.round(baseStatePop * undecidedRatio * 1480)
-  };
-
-  const total = Object.values(cVotes).reduce((a, b) => a + b, 0);
-  const totalAmt = Object.values(cAmounts).reduce((a, b) => a + b, 0);
-  // Leader is calculated based on highest total contribution amount!
-  const leading = Object.entries(cAmounts).sort((a, b) => b[1] - a[1])[0][0];
-
   STATE_POLL_MAP.set(s.code, {
     stateCode: s.code,
     stateName: s.name,
     zone: s.zone,
-    participants: total,
-    totalAmountNgn: totalAmt,
-    candidateVotes: cVotes,
-    candidateAmounts: cAmounts,
-    leadingCandidateId: leading,
+    participants: 0,
+    totalAmountNgn: 0,
+    candidateVotes: {},
+    candidateAmounts: {},
+    leadingCandidateId: '',
     topCivicIssue: s.issue
   });
 });
@@ -509,8 +436,8 @@ const OTP_STORE = new Map<string, { code: string; expiresAt: number; verified: b
 const VOTES_SUBMITTED = new Map<string, VoteSubmission>();
 
 // Total financial stats
-let TOTAL_CHARITY_PROCEEDS_NGN = 18450000;
-let TOTAL_CHARITY_DISTRIBUTED_NGN = 14800000;
+let TOTAL_CHARITY_PROCEEDS_NGN = 0;
+let TOTAL_CHARITY_DISTRIBUTED_NGN = 0;
 
 async function startServer() {
   const app = express();
@@ -540,7 +467,7 @@ async function startServer() {
       totalStatesParticipating: participatingStatesCount,
       totalCandidates: CANDIDATES.length,
       totalPoolAmountNgn,
-      currentPollLeader: sortedCandidates[0],
+      currentPollLeader: totalPoolAmountNgn > 0 ? sortedCandidates[0] : null,
       totalCharityProceedsNgn: totalPoolAmountNgn, // 100% of proceeds go to charities & NGOs
       totalCharityDistributedNgn: TOTAL_CHARITY_DISTRIBUTED_NGN,
       undistributedFundsNgn: TOTAL_CHARITY_PROCEEDS_NGN - TOTAL_CHARITY_DISTRIBUTED_NGN,

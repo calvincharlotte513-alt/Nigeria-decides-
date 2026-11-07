@@ -15,10 +15,10 @@ export const Logo: React.FC<LogoProps> = ({
   const iconSize = size === 'sm' ? 36 : size === 'lg' ? 52 : 44;
 
   return (
-    <div className={`flex items-center gap-2 sm:gap-3 select-none ${className}`}>
+    <div className={`flex items-center gap-2.5 sm:gap-3 select-none ${className}`}>
       {/* World-Class Playful Icon Mark */}
       <div
-        className="relative shrink-0 flex items-center justify-center group w-9 h-9 sm:w-11 sm:h-11"
+        className="relative shrink-0 flex items-center justify-center group w-10 h-10 sm:w-12 sm:h-12"
       >
         {/* Soft outer glow */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#10b981] via-[#8b2fc9] to-[#f59e0b] blur-sm opacity-60 group-hover:opacity-90 transition-opacity" />
@@ -163,19 +163,19 @@ export const Logo: React.FC<LogoProps> = ({
       {/* Typography (for Full and Compact variants) */}
       {variant !== 'icon' && (
         <div className="flex flex-col min-w-0">
-          <div className="flex items-center gap-1.5 leading-none">
+          <div className="flex items-center gap-1.5 sm:gap-2 leading-none">
             <span
-              className={`font-black tracking-tight text-[#1e1035] font-heading truncate ${
-                size === 'sm' ? 'text-base sm:text-lg' : size === 'lg' ? 'text-xl sm:text-3xl' : 'text-base sm:text-2xl'
+              className={`font-black tracking-tight text-[#1e1035] font-heading ${
+                size === 'sm' ? 'text-lg sm:text-xl' : size === 'lg' ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-3xl'
               }`}
             >
               Nigeria<span className="text-[#10b981]">.</span>Decides
             </span>
 
             {/* 2027 Game Pill Badge */}
-            <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] text-white text-[9px] sm:text-[11px] font-mono font-black shadow-xs tracking-wider shrink-0">
+            <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] text-white text-[10px] sm:text-[11px] font-mono font-black shadow-xs tracking-wider shrink-0">
               <span>2027</span>
-              <span className="text-amber-300 text-[9px]">★</span>
+              <span className="text-amber-300 text-[10px]">★</span>
             </span>
           </div>
 

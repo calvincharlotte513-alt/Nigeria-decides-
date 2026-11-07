@@ -31,7 +31,40 @@ export const LeaderPopupModal: React.FC<LeaderPopupModalProps> = ({
   onCastVote,
   onExploreResults
 }) => {
-  if (!isOpen || !leader) return null;
+  if (!isOpen) return null;
+
+  if (!leader) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#1a0b2e]/60 backdrop-blur-md overflow-y-auto animate-in fade-in duration-300">
+        <div className="relative w-full max-w-md bg-white border border-[#eadcfa] rounded-[28px] p-6 text-center space-y-4 shadow-2xl">
+          <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto text-2xl shadow-xs">
+            👑
+          </div>
+          <h3 className="text-xl font-black text-[#1e1035] font-heading">The Board Is Open!</h3>
+          <p className="text-xs text-[#6b5887] leading-relaxed">
+            Voting is live! Be the very first citizen to back your candidate from ₦1,000 and propel them to the #1 spot on the national board.
+          </p>
+          <div className="flex gap-2.5 justify-center pt-2">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded-full border border-slate-200 text-xs font-bold text-slate-600 cursor-pointer hover:bg-slate-50 transition-colors"
+            >
+              Close
+            </button>
+            <button
+              onClick={() => {
+                onClose();
+                onCastVote();
+              }}
+              className="px-5 py-2 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] text-white text-xs font-black uppercase tracking-wider cursor-pointer shadow-md active:scale-95 transition-all"
+            >
+              Play &amp; Vote
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const percentage = totalPoolAmountNgn > 0
     ? Number(((leader.totalAmountNgn / totalPoolAmountNgn) * 100).toFixed(1))

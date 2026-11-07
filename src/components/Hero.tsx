@@ -65,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({
     return () => clearInterval(interval);
   }, [targetElectionDate]);
 
-  const leader = stats?.currentPollLeader || candidates[0];
+  const leader = stats?.currentPollLeader;
 
   return (
     <section className="relative overflow-hidden pt-4 pb-10 sm:pt-6 sm:pb-14 lg:pt-10 lg:pb-20">
@@ -251,7 +251,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <span className="text-[10px] font-mono font-black text-[#8b2fc9] group-hover:underline">POPUP &rarr;</span>
                 </div>
 
-                {leader && (
+                {leader ? (
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-2xl overflow-hidden shrink-0 border border-[#eadcfa] bg-[#faf5ff] shadow-xs">
                       <img
@@ -268,6 +268,16 @@ export const Hero: React.FC<HeroProps> = ({
                       <div className="text-[11px] font-mono font-bold text-[#8b2fc9]">
                         ₦{(leader.totalAmountNgn / 1000000).toFixed(1)}M Backed
                       </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2.5 py-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-amber-100 flex items-center justify-center text-amber-700 font-bold shrink-0 text-xs">
+                      🎮
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-xs font-bold text-[#1e1035] block leading-tight">Board is Live & Ready</span>
+                      <span className="text-[10px] text-[#8b2fc9] font-semibold">Vote from ₦1k to claim the #1 spot!</span>
                     </div>
                   </div>
                 )}
@@ -287,7 +297,7 @@ export const Hero: React.FC<HeroProps> = ({
               <span>Total Backing</span>
             </span>
             <div className="text-lg sm:text-3xl font-black text-[#1e1035] font-mono tracking-tight">
-              ₦{stats ? (stats.totalPoolAmountNgn / 1000000).toFixed(1) : '225.0'}M
+              ₦{stats && stats.totalPoolAmountNgn > 0 ? (stats.totalPoolAmountNgn / 1000000).toFixed(1) + 'M' : '0.00'}
             </div>
             <span className="text-[10px] sm:text-[11px] text-[#8b2fc9] font-bold block truncate">
               100% to Charities & NGOs
@@ -300,7 +310,7 @@ export const Hero: React.FC<HeroProps> = ({
               <span>Citizens</span>
             </span>
             <div className="text-lg sm:text-3xl font-black text-[#1e1035] font-mono tracking-tight">
-              {stats?.totalVerifiedParticipants.toLocaleString() || '149,800'}
+              {stats?.totalVerifiedParticipants?.toLocaleString() || '0'}
             </div>
             <span className="text-[10px] sm:text-[11px] text-emerald-600 font-bold block truncate">
               OTP Verified

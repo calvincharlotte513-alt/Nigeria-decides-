@@ -3,8 +3,6 @@ import { SupportedLanguage } from '../types';
 import { Logo } from './Logo';
 import {
   Globe,
-  Menu,
-  X,
   ChevronDown,
   CheckCircle2,
   ArrowRight,
@@ -38,7 +36,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAdminPortal,
   onOpenLeaderPopup
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   const navItems = [
@@ -192,73 +189,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Primary CTA: Play & Vote Gradient Pill */}
             <button
               onClick={onOpenVoteModal}
-              className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-black text-[11px] sm:text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(162,56,245,0.35)] active:scale-95 flex items-center gap-1.5 cursor-pointer font-heading"
+              className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-black text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(162,56,245,0.35)] active:scale-95 flex items-center gap-1.5 cursor-pointer font-heading shrink-0"
             >
               <Gamepad2 className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline sm:inline">Play & Vote</span>
-              <span className="xs:hidden sm:hidden">Vote</span>
+              <span>Play & Vote</span>
               <ArrowRight className="w-3.5 h-3.5 hidden sm:inline" />
             </button>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle navigation menu"
-              className="xl:hidden p-2 rounded-full bg-white/90 text-[#6b5887] hover:bg-slate-50 border border-[#eadcfa] cursor-pointer"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-
           </div>
         </div>
       </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="xl:hidden bg-white/95 backdrop-blur-xl border-b border-[#ebdffa] px-4 pt-3 pb-6 space-y-3 shadow-lg">
-          <div className="grid grid-cols-2 gap-2">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  onNavigate(item.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`text-left px-3.5 py-2.5 rounded-2xl text-xs font-semibold flex items-center gap-2 ${
-                  activeTab === item.id
-                    ? 'bg-[#f5ecff] text-[#8b2fc9] font-bold'
-                    : 'text-[#6b5887] hover:bg-[#faf5ff]'
-                }`}
-              >
-                <span>{item.emoji}</span>
-                <span>{item.label}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="pt-3 border-t border-[#f0e4fc] flex flex-col gap-2">
-            <button
-              onClick={() => {
-                onOpenUserDashboard();
-                setMobileMenuOpen(false);
-              }}
-              className="w-full py-2.5 rounded-full bg-slate-50 text-[#6b5887] text-xs font-semibold text-center border border-[#eadcfa] flex items-center justify-center gap-1.5"
-            >
-              <Search className="w-3.5 h-3.5 text-[#8b2fc9]" />
-              <span>Verify Voter Receipt</span>
-            </button>
-            <button
-              onClick={() => {
-                onOpenAdminPortal();
-                setMobileMenuOpen(false);
-              }}
-              className="w-full py-2 rounded-full text-[#8c7da3] text-[11px] text-center"
-            >
-              Charity & Auditor Verification Portal
-            </button>
-          </div>
-        </div>
-      )}
     </header>
   );
 };
