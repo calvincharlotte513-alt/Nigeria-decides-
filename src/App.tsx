@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Candidate, StatePollData, PollStats, CharityBeneficiary, SupportedLanguage } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { LeaderPopupModal } from './components/LeaderPopupModal';
 import { VotingModal } from './components/VotingModal';
 import { LiveResults } from './components/LiveResults';
 import { CivicGallery } from './components/CivicGallery';
@@ -17,14 +18,15 @@ import { UserDashboard } from './components/UserDashboard';
 import { AdminPortal } from './components/AdminPortal';
 import { LegalNoticeModal } from './components/LegalNoticeModal';
 import { Footer } from './components/Footer';
-import { ArrowRight, ShieldCheck, HeartHandshake, CheckCircle2, TrendingUp, Banknote } from 'lucide-react';
+import { ArrowRight, ShieldCheck, HeartHandshake, CheckCircle2, TrendingUp, Crown } from 'lucide-react';
 
 export default function App() {
   const [currentLang, setCurrentLang] = useState<SupportedLanguage>('en');
   const [activeTab, setActiveTab] = useState<string>('home');
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  // Modals
+  // Popups & Modals: isLeaderPopupOpen starts as TRUE so it pops up immediately on open!
+  const [isLeaderPopupOpen, setIsLeaderPopupOpen] = useState(true);
   const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);
   const [isUserDashboardOpen, setIsUserDashboardOpen] = useState(false);
   const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);
@@ -79,8 +81,10 @@ export default function App() {
     setIsLegalModalOpen(true);
   };
 
+  const pollLeader = stats?.currentPollLeader || candidates[0] || null;
+
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-orange-500/20 selection:text-orange-950">
+    <div className="min-h-screen bg-[#faf7fd] text-[#1e1035] flex flex-col font-sans selection:bg-[#a855f7]/20 selection:text-[#581c87]">
       
       {/* Top Navigation Bar */}
       <Navbar
@@ -96,6 +100,7 @@ export default function App() {
         onOpenVoteModal={() => setIsVoteModalOpen(true)}
         onOpenUserDashboard={() => setIsUserDashboardOpen(true)}
         onOpenAdminPortal={() => setIsAdminPortalOpen(true)}
+        onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
       />
 
       {/* Main View Container */}
@@ -117,20 +122,21 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               onOpenMethodology={() => handleOpenLegal('methodology')}
+              onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
             />
 
             {/* Main Interactive Callout Banner */}
-            <section className="py-12 bg-slate-50 border-b border-slate-200">
+            <section className="py-12 bg-white border-b border-[#ebdffa]">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="rounded-3xl bg-white border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div className="rounded-[32px] bg-gradient-to-br from-[#faf4ff] via-white to-[#fcf5ff] border border-[#eadcfa] p-8 sm:p-10 shadow-[0_12px_36px_rgba(162,56,245,0.08)] flex flex-col lg:flex-row items-center justify-between gap-8">
                   <div className="space-y-3 text-center lg:text-left max-w-2xl">
-                    <span className="text-xs uppercase font-mono tracking-wider font-bold text-orange-600 block">
+                    <span className="text-xs uppercase font-mono tracking-wider font-bold text-[#8b2fc9] block">
                       The Main Feature: 2027 Presidential Pre-Election Poll
                     </span>
-                    <h2 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight font-heading">
+                    <h2 className="text-2xl sm:text-3xl font-black text-[#1e1035] tracking-tight font-heading">
                       Back Your Candidate in Under 60 Seconds
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#6b5887] leading-relaxed">
                       Verify your citizen identity via OTP, back your candidate starting from ₦1,000, and receive a tamper-proof cryptographic receipt. National standings and victory are ranked strictly by total financial backing received.
                     </p>
                   </div>
@@ -138,16 +144,17 @@ export default function App() {
                   <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
                     <button
                       onClick={() => setIsVoteModalOpen(true)}
-                      className="w-full sm:w-auto px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-sm transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2 cursor-pointer font-heading uppercase"
+                      className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-extrabold rounded-full text-sm transition-all shadow-[0_8px_25px_rgba(162,56,245,0.35)] active:scale-95 flex items-center justify-center gap-2 cursor-pointer font-heading uppercase"
                     >
                       <span>CAST YOUR VOTE (FROM ₦1,000)</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <button
-                      onClick={() => setIsUserDashboardOpen(true)}
-                      className="w-full sm:w-auto px-5 py-4 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-xl text-xs border border-slate-200 transition-colors cursor-pointer"
+                      onClick={() => setIsLeaderPopupOpen(true)}
+                      className="w-full sm:w-auto px-6 py-4 bg-white hover:bg-[#faf5ff] text-[#8b2fc9] font-bold rounded-full text-xs border border-[#eadcfa] transition-colors cursor-pointer shadow-2xs flex items-center justify-center gap-1.5"
                     >
-                      Verify My Receipt
+                      <Crown className="w-3.5 h-3.5 text-[#f59e0b] fill-[#f59e0b]" />
+                      <span>View Current Leader</span>
                     </button>
                   </div>
                 </div>
@@ -164,7 +171,7 @@ export default function App() {
             />
 
             {/* Live Polling Results Preview */}
-            <div className="border-b border-slate-200">
+            <div className="border-b border-[#ebdffa]">
               <LiveResults
                 candidates={candidates}
                 states={states}
@@ -177,7 +184,7 @@ export default function App() {
             </div>
 
             {/* Verified Candidates Showcase */}
-            <div className="border-b border-slate-200">
+            <div className="border-b border-[#ebdffa]">
               <CandidatesDirectory
                 candidates={candidates}
                 onSelectCandidateToVote={(_candId) => {
@@ -187,7 +194,7 @@ export default function App() {
             </div>
 
             {/* State Polling Preview */}
-            <div className="border-b border-slate-200">
+            <div className="border-b border-[#ebdffa]">
               <StatePolls
                 states={states}
                 candidates={candidates}
@@ -213,18 +220,18 @@ export default function App() {
         {activeTab === 'poll' && (
           <div className="py-12 max-w-5xl mx-auto px-4 sm:px-6">
             <div className="text-center space-y-4 mb-10">
-              <span className="text-xs uppercase font-mono font-bold tracking-wider text-orange-600 block">
+              <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#8b2fc9] block">
                 Direct Citizen Pre-Election Participation
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-950 font-heading">
+              <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] font-heading">
                 Presidential Pre-Election Voting Experience
               </h2>
-              <p className="text-slate-600 text-sm max-w-xl mx-auto">
+              <p className="text-[#6b5887] text-sm max-w-xl mx-auto">
                 Join verified citizens nationwide ahead of the 2027 Nigerian presidential race. Your vote is deduplicated, cryptographic, and completely secret. Standings and victory are calculated based on contributed financial backing (minimum ₦1,000).
               </p>
               <button
                 onClick={() => setIsVoteModalOpen(true)}
-                className="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-all shadow-sm active:scale-95 cursor-pointer inline-flex items-center gap-2 font-heading uppercase"
+                className="px-8 py-3.5 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-extrabold rounded-full text-sm transition-all shadow-[0_8px_25px_rgba(162,56,245,0.35)] active:scale-95 cursor-pointer inline-flex items-center gap-2 font-heading uppercase"
               >
                 <span>Launch Polling Flow</span>
                 <ArrowRight className="w-4 h-4" />
@@ -280,34 +287,34 @@ export default function App() {
         {activeTab === 'about' && (
           <div className="py-14 max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
             <div className="space-y-3 text-center">
-              <span className="text-xs uppercase font-mono font-bold tracking-wider text-emerald-700">
+              <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#8b2fc9]">
                 Civic Research & Platform Integrity
               </span>
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 font-heading">
+              <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] font-heading">
                 About Nigeria Decides 2027
               </h2>
-              <p className="text-sm text-slate-600 max-w-xl mx-auto">
+              <p className="text-sm text-[#6b5887] max-w-xl mx-auto">
                 An independent, non-partisan public opinion platform created to elevate citizen voices and empirical policy debate ahead of Nigeria's 2027 elections.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
-                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 font-heading">
-                  <ShieldCheck className="w-5 h-5 text-emerald-700" />
+              <div className="p-6 rounded-[28px] bg-white border border-[#eadcfa] space-y-3 shadow-2xs">
+                <h3 className="text-base font-bold text-[#1e1035] flex items-center gap-2 font-heading">
+                  <ShieldCheck className="w-5 h-5 text-[#8b2fc9]" />
                   <span>Why Pre-Election Opinion Matters</span>
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-[#6b5887] leading-relaxed">
                   Pre-election polling provides an empirical, scientifically verified snapshot of what citizens genuinely care about across all 36 states and the Federal Capital Territory, shifting the conversation to real policy issues and governance priorities.
                 </p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
-                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 font-heading">
-                  <HeartHandshake className="w-5 h-5 text-orange-600" />
+              <div className="p-6 rounded-[28px] bg-white border border-[#eadcfa] space-y-3 shadow-2xs">
+                <h3 className="text-base font-bold text-[#1e1035] flex items-center gap-2 font-heading">
+                  <HeartHandshake className="w-5 h-5 text-[#8b2fc9]" />
                   <span>Social Impact Commitment</span>
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-[#6b5887] leading-relaxed">
                   Civic participation should foster tangible community benefit. 30% of all contributions generated through the platform directly support registered orphanages, motherless babies' homes, and youth empowerment initiatives across Nigeria.
                 </p>
               </div>
@@ -316,19 +323,19 @@ export default function App() {
             <div className="flex flex-wrap justify-center gap-3 pt-4">
               <button
                 onClick={() => handleOpenLegal('disclaimer')}
-                className="px-4 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800 cursor-pointer"
+                className="px-5 py-2.5 rounded-full bg-white hover:bg-[#faf5ff] border border-[#eadcfa] text-xs font-semibold text-[#1e1035] cursor-pointer shadow-2xs"
               >
                 Read INEC Independence Disclaimer
               </button>
               <button
                 onClick={() => handleOpenLegal('methodology')}
-                className="px-4 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800 cursor-pointer"
+                className="px-5 py-2.5 rounded-full bg-white hover:bg-[#faf5ff] border border-[#eadcfa] text-xs font-semibold text-[#1e1035] cursor-pointer shadow-2xs"
               >
                 View Polling Methodology
               </button>
               <button
                 onClick={() => handleOpenLegal('privacy')}
-                className="px-4 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800 cursor-pointer"
+                className="px-5 py-2.5 rounded-full bg-white hover:bg-[#faf5ff] border border-[#eadcfa] text-xs font-semibold text-[#1e1035] cursor-pointer shadow-2xs"
               >
                 NDPR Data Privacy Standards
               </button>
@@ -348,6 +355,20 @@ export default function App() {
         onOpenPrivacy={() => handleOpenLegal('privacy')}
         onOpenTerms={() => handleOpenLegal('terms')}
         onOpenAdminPortal={() => setIsAdminPortalOpen(true)}
+      />
+
+      {/* POPUP: Leader Pop-up showing who is leading on page load with a Close Button */}
+      <LeaderPopupModal
+        isOpen={isLeaderPopupOpen}
+        onClose={() => setIsLeaderPopupOpen(false)}
+        leader={pollLeader}
+        totalPoolAmountNgn={stats?.totalPoolAmountNgn || 225000000}
+        totalVerifiedParticipants={stats?.totalVerifiedParticipants || 149800}
+        onCastVote={() => setIsVoteModalOpen(true)}
+        onExploreResults={() => {
+          setActiveTab('results');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
       {/* Interactive Modals */}

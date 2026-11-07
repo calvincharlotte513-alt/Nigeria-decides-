@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, MapPin, Users, HeartHandshake, Building2 } from 'lucide-react';
+import { ArrowRight, MapPin, Users, HeartHandshake, Building2, ChevronRight } from 'lucide-react';
 
 interface CivicGalleryProps {
   onCastVote: () => void;
@@ -18,7 +18,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       image: '/src/assets/images/abuja_landmark_civic_1794058202166.jpg',
       stat: '36 States + FCT Connected',
       icon: Building2,
-      badgeColor: 'bg-emerald-700'
+      badgeGradient: 'from-[#8b2fc9] to-[#a238f5]'
     },
     {
       title: 'Civic Innovation & Real-Time Aggregation',
@@ -27,7 +27,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       image: '/src/assets/images/lagos_civic_hub_1794058203250.jpg',
       stat: '100% Cryptographic Audit',
       icon: Users,
-      badgeColor: 'bg-orange-600'
+      badgeGradient: 'from-[#a238f5] to-[#e040fb]'
     },
     {
       title: 'Youth & Citizen Mobilization Ahead of 2027',
@@ -36,7 +36,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       image: '/src/assets/images/civic_rally_nigeria_1794058202546.jpg',
       stat: '149,800+ Verified Citizens',
       icon: MapPin,
-      badgeColor: 'bg-amber-800'
+      badgeGradient: 'from-[#ec4899] to-[#8b2fc9]'
     },
     {
       title: 'Social Stewardship & Community Impact',
@@ -45,24 +45,26 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       image: '/src/assets/images/charity_outreach_1794058203228.jpg',
       stat: '₦18.45M Dedicated Fund',
       icon: HeartHandshake,
-      badgeColor: 'bg-slate-900'
+      badgeGradient: 'from-[#8b2fc9] to-[#ec4899]'
     }
   ];
 
   return (
-    <section className="py-16 bg-white border-b border-slate-200">
+    <section className="py-16 bg-[#faf7fd] border-b border-[#ebdffa]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#ebdffa]">
           <div className="space-y-2 max-w-2xl">
-            <span className="text-xs uppercase font-mono font-bold tracking-wider text-orange-600">
-              The Living Federation in Motion
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 font-heading tracking-tight">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-[#8b2fc9]">
+              <span>Snapshots of Support</span>
+              <ChevronRight className="w-3.5 h-3.5 opacity-60" />
+              <span className="text-[#6b5887]">Living Federation in Motion</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] font-heading tracking-tight">
               One Nation. 36 States. One Resolute Voice.
             </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-[#6b5887] leading-relaxed">
               Explore how citizens across diverse regions, tech hubs, and grassroots communities are shaping public discourse ahead of 2027.
             </p>
           </div>
@@ -70,13 +72,13 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={onExploreStates}
-              className="px-5 py-2.5 rounded-xl border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold transition-colors cursor-pointer shadow-xs"
+              className="px-5 py-2.5 rounded-full border border-[#eadcfa] hover:border-[#d9c4f7] bg-white hover:bg-[#faf5ff] text-[#1e1035] text-xs font-bold transition-colors cursor-pointer shadow-2xs"
             >
               Explore State Maps
             </button>
             <button
               onClick={onCastVote}
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs flex items-center gap-2"
+              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white text-xs font-bold transition-all cursor-pointer shadow-[0_4px_16px_rgba(162,56,245,0.3)] flex items-center gap-2"
             >
               <span>Back a Candidate</span>
               <ArrowRight className="w-4 h-4" />
@@ -91,23 +93,23 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
             return (
               <div
                 key={idx}
-                className="group rounded-3xl bg-slate-50 border border-slate-200 overflow-hidden hover:border-orange-500 hover:shadow-lg transition-all flex flex-col justify-between"
+                className="group rounded-[28px] bg-white border border-[#eadcfa] overflow-hidden hover:border-[#8b2fc9] hover:shadow-[0_12px_36px_rgba(162,56,245,0.15)] transition-all flex flex-col justify-between"
               >
                 {/* Photo container */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-200">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#faf5ff]">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1e1035]/70 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
-                    <span className="text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-sm">
+                    <span className="text-[11px] font-mono font-bold tracking-wider px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm">
                       {item.stat}
                     </span>
-                    <div className={`w-7 h-7 rounded-lg ${item.badgeColor} flex items-center justify-center shadow-sm`}>
-                      <Icon className="w-3.5 h-3.5 text-white" />
+                    <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${item.badgeGradient} flex items-center justify-center shadow-sm`}>
+                      <Icon className="w-4 h-4 text-white" />
                     </div>
                   </div>
                 </div>
@@ -115,13 +117,13 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
                 {/* Content */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                   <div className="space-y-1">
-                    <span className="text-[11px] font-bold text-orange-600 uppercase tracking-wider block">
+                    <span className="text-[11px] font-bold text-[#8b2fc9] uppercase tracking-wider block">
                       {item.subtitle}
                     </span>
-                    <h3 className="text-base font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors font-heading leading-snug">
+                    <h3 className="text-base font-extrabold text-[#1e1035] group-hover:text-[#8b2fc9] transition-colors font-heading leading-snug">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed pt-1">
+                    <p className="text-xs text-[#6b5887] leading-relaxed pt-1">
                       {item.description}
                     </p>
                   </div>

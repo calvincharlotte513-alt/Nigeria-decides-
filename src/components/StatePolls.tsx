@@ -4,9 +4,8 @@ import { NigeriaMap } from './NigeriaMap';
 import {
   Vote,
   ShieldCheck,
-  Building,
-  TrendingUp,
-  Users
+  ChevronRight,
+  ArrowRight
 } from 'lucide-react';
 
 interface StatePollsProps {
@@ -52,28 +51,27 @@ export const StatePolls: React.FC<StatePollsProps> = ({
   }).sort((a, b) => b.amountNgn - a.amountNgn) : [];
 
   return (
-    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 bg-white">
+    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 bg-[#faf7fd]">
       
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#ebdffa]">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-800 font-bold bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">
-              FEDERATION COVERAGE
-            </span>
-            <span className="text-xs text-slate-500">· 36 States & FCT Polling Registry</span>
+          <div className="flex items-center gap-1.5 text-xs font-bold text-[#8b2fc9] mb-1">
+            <span>Federation Coverage</span>
+            <ChevronRight className="w-3.5 h-3.5 opacity-60" />
+            <span className="text-[#6b5887]">36 States & FCT Registry</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-heading">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] tracking-tight font-heading">
             State-by-State Pre-Election Opinion
           </h2>
-          <p className="text-sm text-slate-600 mt-1">
+          <p className="text-sm text-[#6b5887] mt-1">
             Explore citizen participation, leading political leanings, and pressing civic issues in each state.
           </p>
         </div>
 
         <button
           onClick={() => onCastVoteForState(selectedStateCode)}
-          className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all shadow-xs flex items-center gap-2 cursor-pointer self-start md:self-auto font-heading"
+          className="px-6 py-3 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-extrabold rounded-full text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(162,56,245,0.3)] flex items-center gap-2 cursor-pointer self-start md:self-auto font-heading"
         >
           <Vote className="w-4 h-4" />
           <span>Back {selectedState?.stateName} State</span>
@@ -91,46 +89,46 @@ export const StatePolls: React.FC<StatePollsProps> = ({
             onSelectState={(code) => setSelectedStateCode(code)}
           />
 
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+          <div className="p-4 rounded-[22px] bg-white border border-[#eadcfa] text-xs text-[#6b5887] flex items-center justify-between shadow-2xs">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Ballots are encrypted; individual voter phone/email remains secret.</span>
+              <ShieldCheck className="w-4 h-4 text-[#8b2fc9]" />
+              <span>Ballots are encrypted; individual voter details remain strictly private.</span>
             </div>
-            <span className="font-mono text-[11px] text-slate-500">NDPR Compliant</span>
+            <span className="font-mono text-[11px] text-[#8c7da3]">NDPR Compliant</span>
           </div>
         </div>
 
         {/* Right Column: Selected State Deep-Dive Panel */}
-        <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-7 space-y-6">
+        <div className="lg:col-span-5 bg-white border border-[#eadcfa] rounded-[32px] p-6 sm:p-7 space-y-6 shadow-2xs">
           {selectedState ? (
             <>
-              <div className="flex items-start justify-between border-b border-slate-200 pb-4">
+              <div className="flex items-start justify-between border-b border-[#f0e4fc] pb-4">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-mono font-bold text-orange-700 bg-orange-50 px-2 py-0.5 rounded border border-orange-200">
+                    <span className="text-xs font-mono font-bold text-[#8b2fc9] bg-[#f5ecff] px-2.5 py-0.5 rounded-full border border-[#eadcfa]">
                       {selectedState.zone}
                     </span>
-                    <span className="text-xs text-slate-500">Code: {selectedState.stateCode}</span>
+                    <span className="text-xs text-[#8c7da3]">Code: {selectedState.stateCode}</span>
                   </div>
-                  <h3 className="text-2xl font-black text-slate-900 font-heading">
+                  <h3 className="text-2xl font-black text-[#1e1035] font-heading">
                     {selectedState.stateName} State
                   </h3>
                 </div>
 
                 <div className="text-right">
-                  <span className="text-[10px] text-slate-500 uppercase font-mono block">Financial Volume</span>
-                  <span className="text-lg font-mono font-black text-emerald-700">
+                  <span className="text-[10px] text-[#8c7da3] uppercase font-mono block">Financial Volume</span>
+                  <span className="text-lg font-mono font-black text-[#8b2fc9]">
                     ₦{(selectedState.totalAmountNgn / 1000000).toFixed(2)}M
                   </span>
                 </div>
               </div>
 
               {/* State Priority Civic Issue */}
-              <div className="p-4 rounded-2xl bg-white border border-slate-200 space-y-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-amber-800 font-bold block">
+              <div className="p-4 rounded-[20px] bg-[#faf8fe] border border-[#eadcfa] space-y-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#8b2fc9] font-bold block">
                   Top Citizen Policy Priority
                 </span>
-                <p className="text-xs font-semibold text-slate-800 leading-snug">
+                <p className="text-xs font-semibold text-[#1e1035] leading-snug">
                   {selectedState.topCivicIssue}
                 </p>
               </div>
@@ -138,10 +136,10 @@ export const StatePolls: React.FC<StatePollsProps> = ({
               {/* Candidate Breakdown in State (Ranked by Amount) */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-[#1e1035] uppercase tracking-wider">
                     Candidate Standings in {selectedState.stateName}
                   </h4>
-                  <span className="text-[11px] text-slate-500 font-mono">
+                  <span className="text-[11px] text-[#8c7da3] font-mono">
                     {selectedState.participants.toLocaleString()} verified voters
                   </span>
                 </div>
@@ -150,31 +148,31 @@ export const StatePolls: React.FC<StatePollsProps> = ({
                   {selectedStateCandidates.map((cand, idx) => (
                     <div
                       key={cand.id}
-                      className="p-3 bg-white rounded-xl border border-slate-200 space-y-1.5"
+                      className="p-3 bg-[#fdfbfe] rounded-[18px] border border-[#eadcfa] space-y-1.5"
                     >
                       <div className="flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2 min-w-0">
-                          <span className={`w-5 h-5 rounded-md flex items-center justify-center font-mono text-[10px] font-bold ${
-                            idx === 0 ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'
+                          <span className={`w-5 h-5 rounded-full flex items-center justify-center font-mono text-[10px] font-bold ${
+                            idx === 0 ? 'bg-[#8b2fc9] text-white' : 'bg-[#faf5ff] text-[#6b5887]'
                           }`}>
                             {idx + 1}
                           </span>
-                          <span className="font-bold text-slate-900 truncate">{cand.name}</span>
+                          <span className="font-bold text-[#1e1035] truncate">{cand.name}</span>
                           <span
-                            className="text-[10px] font-mono px-1 rounded font-bold"
+                            className="text-[10px] font-mono px-1.5 rounded-full font-bold"
                             style={{ backgroundColor: `${cand.partyColor}20`, color: cand.partyColor }}
                           >
                             {cand.partyAcronym}
                           </span>
                         </div>
                         <div className="text-right shrink-0">
-                          <span className="font-mono font-bold text-slate-900">₦{(cand.amountNgn / 1000000).toFixed(2)}M</span>
-                          <span className="text-[11px] font-mono font-semibold text-emerald-700 ml-1.5">({cand.percentage}%)</span>
+                          <span className="font-mono font-bold text-[#1e1035]">₦{(cand.amountNgn / 1000000).toFixed(2)}M</span>
+                          <span className="text-[11px] font-mono font-semibold text-[#8b2fc9] ml-1.5">({cand.percentage}%)</span>
                         </div>
                       </div>
 
-                      {/* Progress Bar */}
-                      <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                      {/* Progress Bar styled like screenshot */}
+                      <div className="w-full h-2 bg-[#eadcfa]/50 rounded-full overflow-hidden p-0.5">
                         <div
                           className="h-full rounded-full transition-all duration-500"
                           style={{
@@ -191,13 +189,13 @@ export const StatePolls: React.FC<StatePollsProps> = ({
               {/* Action Button */}
               <button
                 onClick={() => onCastVoteForState(selectedState.stateCode)}
-                className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all shadow-xs cursor-pointer text-center font-heading"
+                className="w-full py-3.5 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-extrabold rounded-full text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(162,56,245,0.3)] cursor-pointer text-center font-heading"
               >
                 Cast Ballot for {selectedState.stateName} State (From ₦1,000)
               </button>
             </>
           ) : (
-            <div className="text-center py-12 text-slate-400 text-xs">
+            <div className="text-center py-12 text-[#8c7da3] text-xs">
               Select a state on the map to view data.
             </div>
           )}
@@ -206,9 +204,9 @@ export const StatePolls: React.FC<StatePollsProps> = ({
       </div>
 
       {/* State List Directory Filter */}
-      <div className="pt-6 border-t border-slate-200 space-y-4">
+      <div className="pt-6 border-t border-[#ebdffa] space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <h3 className="text-lg font-bold text-slate-900 font-heading">
+          <h3 className="text-lg font-bold text-[#1e1035] font-heading">
             All 36 States & FCT Directory
           </h3>
 
@@ -218,12 +216,12 @@ export const StatePolls: React.FC<StatePollsProps> = ({
               placeholder="Filter state name..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400"
+              className="px-3.5 py-1.5 bg-white border border-[#eadcfa] rounded-full text-xs text-[#1e1035] placeholder-[#8c7da3]"
             />
             <select
               value={zoneFilter}
               onChange={(e) => setZoneFilter(e.target.value)}
-              className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-800"
+              className="px-3.5 py-1.5 bg-white border border-[#eadcfa] rounded-full text-xs font-semibold text-[#1e1035]"
             >
               {zones.map(z => (
                 <option key={z} value={z}>{z}</option>
@@ -240,17 +238,17 @@ export const StatePolls: React.FC<StatePollsProps> = ({
                 setSelectedStateCode(s.stateCode);
                 window.scrollTo({ top: 400, behavior: 'smooth' });
               }}
-              className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
+              className={`p-3.5 rounded-[20px] border text-left transition-all cursor-pointer ${
                 selectedStateCode === s.stateCode
-                  ? 'bg-emerald-50 border-emerald-600 text-emerald-950 shadow-xs'
-                  : 'bg-white border-slate-200 hover:border-slate-300 text-slate-700'
+                  ? 'bg-[#f5ecff] border-[#8b2fc9] text-[#8b2fc9] shadow-xs'
+                  : 'bg-white border-[#eadcfa] hover:border-[#8b2fc9] text-[#1e1035]'
               }`}
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="font-bold text-xs font-heading">{s.stateName}</span>
-                <span className="text-[10px] font-mono text-slate-400">{s.stateCode}</span>
+                <span className="text-[10px] font-mono text-[#8c7da3]">{s.stateCode}</span>
               </div>
-              <span className="font-mono font-bold text-xs text-emerald-700 block">
+              <span className="font-mono font-bold text-xs text-[#8b2fc9] block">
                 ₦{(s.totalAmountNgn / 1000000).toFixed(1)}M
               </span>
             </button>

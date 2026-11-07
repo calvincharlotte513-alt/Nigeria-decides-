@@ -84,13 +84,13 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
     const isHovered = hoveredState?.code === item.code;
 
     if (isSelected) {
-      return '#ea580c'; // Vibrant Orange selection
+      return '#8b2fc9'; // Deep Violet selection
     }
     if (isHovered) {
-      return '#059669'; // Emerald Hover
+      return '#a855f7'; // Purple hover
     }
 
-    if (!data) return '#e2e8f0';
+    if (!data) return '#f3e8ff';
 
     switch (data.leadingCandidateId) {
       case 'obi-peter':
@@ -109,43 +109,43 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
   };
 
   return (
-    <div className="relative w-full bg-slate-50 rounded-3xl p-5 sm:p-7 border border-slate-200 shadow-sm">
+    <div className="relative w-full bg-white rounded-[32px] p-5 sm:p-7 border border-[#eadcfa] shadow-2xs">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-orange-600 font-bold block mb-1">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#8b2fc9] font-bold block mb-1">
             GEOSPATIAL PUBLIC OPINION
           </span>
-          <h3 className="text-lg font-black text-slate-900 tracking-tight font-heading">
+          <h3 className="text-lg font-black text-[#1e1035] tracking-tight font-heading">
             Federation Polling Map (36 States + FCT)
           </h3>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-[#6b5887]">
             Click any state or the Federal Capital Territory to inspect financial support volume
           </p>
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-700 font-medium">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-[#6b5887] font-medium">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-emerald-500"></span>
+            <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
             <span>LP Lead</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-sky-600"></span>
+            <span className="w-3 h-3 rounded-full bg-sky-600"></span>
             <span>APC Lead</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-red-500"></span>
+            <span className="w-3 h-3 rounded-full bg-red-500"></span>
             <span>PDP Lead</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-orange-500"></span>
+            <span className="w-3 h-3 rounded-full bg-orange-500"></span>
             <span>NNPP Lead</span>
           </div>
         </div>
       </div>
 
       {/* SVG Interactive Map Canvas */}
-      <div className="relative w-full aspect-[4/3] max-h-[520px] bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+      <div className="relative w-full aspect-[4/3] max-h-[520px] bg-[#faf8fe] rounded-[24px] border border-[#eadcfa] overflow-hidden shadow-2xs">
         <svg
           viewBox="0 0 800 620"
           className="w-full h-full select-none"
@@ -153,7 +153,7 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
           {/* Subtle grid background */}
           <defs>
             <pattern id="lightGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#f1f5f9" strokeWidth="1" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#f1e6fc" strokeWidth="1" />
             </pattern>
           </defs>
           <rect width="800" height="620" fill="url(#lightGrid)" />
@@ -177,11 +177,11 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
                   y={item.y}
                   width={item.width}
                   height={item.height}
-                  rx="10"
+                  rx="12"
                   fill={fillColor}
-                  stroke={isSelected ? '#0f172a' : '#ffffff'}
+                  stroke={isSelected ? '#1e1035' : '#ffffff'}
                   strokeWidth={isSelected ? 3 : 1.5}
-                  className="transition-all duration-200 hover:brightness-110 drop-shadow-xs"
+                  className="transition-all duration-200 hover:brightness-110 drop-shadow-2xs"
                 />
 
                 {/* State Label */}
@@ -210,7 +210,7 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
                     fontSize="9"
                     fontWeight="600"
                     fontFamily="monospace"
-                    className="pointer-events-none drop-shadow-sm opacity-90"
+                    className="pointer-events-none drop-shadow-sm opacity-95"
                   >
                     ₦{(data.totalAmountNgn / 1000000).toFixed(1)}M
                   </text>
@@ -222,11 +222,11 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
 
         {/* Hover State Tooltip HUD */}
         {hoveredState && (
-          <div className="absolute top-4 left-4 p-3 rounded-xl bg-slate-900 text-white shadow-xl pointer-events-none text-xs space-y-1 z-20">
+          <div className="absolute top-4 left-4 p-3.5 rounded-[18px] bg-[#1e1035] text-white shadow-xl pointer-events-none text-xs space-y-1 z-20">
             <div className="font-extrabold text-sm">{hoveredState.name} State</div>
-            <div className="text-[11px] text-slate-300">{hoveredState.zone} Zone</div>
+            <div className="text-[11px] text-[#eadcfa]">{hoveredState.zone} Zone</div>
             {stateDataMap.get(hoveredState.code) && (
-              <div className="text-emerald-400 font-mono font-bold">
+              <div className="text-[#e040fb] font-mono font-bold">
                 ₦{(stateDataMap.get(hoveredState.code)!.totalAmountNgn).toLocaleString()} Backing
               </div>
             )}
@@ -234,7 +234,7 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
         )}
       </div>
 
-      <div className="flex items-center justify-between pt-3 text-xs text-slate-500">
+      <div className="flex items-center justify-between pt-3 text-xs text-[#8c7da3]">
         <span>Click on any regional tile to open detailed state voting telemetry.</span>
         <span className="font-mono text-[11px]">36 States + FCT Polled</span>
       </div>
