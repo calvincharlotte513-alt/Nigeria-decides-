@@ -69,7 +69,7 @@ export const UserDashboard: React.FC<UserDashboardProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1e1035]/60 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-xl bg-white border border-[#eadcfa] rounded-[32px] p-6 sm:p-8 shadow-[0_20px_70px_rgba(124,58,237,0.2)] space-y-6">
+      <div className="relative w-full max-w-xl bg-white border border-[#eadcfa] rounded-[28px] sm:rounded-[32px] p-5 sm:p-8 shadow-[0_20px_70px_rgba(124,58,237,0.2)] space-y-5 sm:space-y-6 max-h-[92vh] overflow-y-auto my-auto">
         
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-[#f0e4fc]">

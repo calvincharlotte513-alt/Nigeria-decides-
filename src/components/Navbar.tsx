@@ -61,31 +61,46 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 w-full transition-all">
       {/* Top Playful Independence & Charity Notice Bar */}
-      <div className="w-full bg-gradient-to-r from-[#1e1035] via-[#3b0764] to-[#1e1035] text-white text-[11px] py-1.5 px-3 sm:px-6 shadow-sm border-b border-purple-900/40">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
-          <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[10px] font-bold border border-emerald-500/30">
+      <div className="w-full bg-gradient-to-r from-[#1e1035] via-[#3b0764] to-[#1e1035] text-white py-1 px-3 sm:px-6 shadow-sm border-b border-purple-900/40">
+        <div className="max-w-7xl mx-auto">
+          {/* Mobile compact 1-line announcement */}
+          <div className="sm:hidden flex items-center justify-center gap-2 text-[10px] text-center">
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-              <span>INDEPENDENT CIVIC GAME</span>
+              <span>GAME</span>
             </span>
-            <span className="text-purple-200 text-xs">
-              <strong>Not owned by Nigerian Government or INEC</strong> · Just a fun, simple game to help Nigerians decide their leader before 2027! 🇳🇬
+            <span className="text-purple-200 font-semibold truncate">
+              Not Govt / Not INEC · Just a Game!
             </span>
+            <span className="text-amber-300 font-bold shrink-0">100% Charity ❤️</span>
           </div>
 
-          <div className="flex items-center gap-2 text-amber-300 font-bold text-[10px] sm:text-[11px]">
-            <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400 shrink-0" />
-            <span>100% of proceeds go directly to Charities & NGOs!</span>
+          {/* Desktop full banner */}
+          <div className="hidden sm:flex items-center justify-between gap-1 text-[11px] text-left">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[10px] font-bold border border-emerald-500/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span>INDEPENDENT CIVIC GAME</span>
+              </span>
+              <span className="text-purple-200 text-xs">
+                <strong>Not owned by Nigerian Government or INEC</strong> · Just a fun, simple game to help Nigerians decide their leader before 2027! 🇳🇬
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 text-amber-300 font-bold text-[11px] shrink-0">
+              <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400 shrink-0" />
+              <span>100% of proceeds go directly to Charities & NGOs!</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main Frosted Nav Container */}
       <div className="w-full bg-white/85 backdrop-blur-md border-b border-[#ebdffa]/80 shadow-xs">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 h-20">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-6 lg:px-8 h-16 sm:h-20">
           
           {/* Brand Logo with World-Class SVG */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
             <button
               onClick={() => onNavigate('home')}
               className="text-left group focus:outline-none cursor-pointer"
@@ -117,25 +132,25 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Action Cluster */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             
-            {/* Poll Leader Quick Trigger Pill */}
+            {/* Poll Leader Quick Trigger Pill (Tablet / Desktop only) */}
             {onOpenLeaderPopup && (
               <button
                 onClick={onOpenLeaderPopup}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80 text-xs font-bold transition-all cursor-pointer shadow-2xs group"
+                className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80 text-xs font-bold transition-all cursor-pointer shadow-2xs group"
               >
                 <Crown className="w-3.5 h-3.5 text-amber-500 fill-amber-500 group-hover:rotate-12 transition-transform" />
-                <span className="hidden sm:inline">Current Leader</span>
+                <span>Current Leader</span>
               </button>
             )}
 
             {/* Language Switcher */}
-            <div className="relative hidden md:block">
+            <div className="relative hidden sm:block">
               <button
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                 aria-label="Select Language"
-                className="flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold text-[#6b5887] hover:text-[#1e1035] bg-white/90 border border-[#eadcfa] hover:border-[#d9c4f7] transition-all cursor-pointer shadow-2xs"
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs font-semibold text-[#6b5887] hover:text-[#1e1035] bg-white/90 border border-[#eadcfa] hover:border-[#d9c4f7] transition-all cursor-pointer shadow-2xs"
               >
                 <Globe className="w-3.5 h-3.5 text-[#8b2fc9]" />
                 <span className="uppercase font-mono text-[11px] font-bold">{currentLang}</span>
@@ -177,16 +192,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Primary CTA: Play & Vote Gradient Pill */}
             <button
               onClick={onOpenVoteModal}
-              className="px-4.5 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-black text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(162,56,245,0.35)] active:scale-95 flex items-center gap-2 cursor-pointer font-heading"
+              className="px-3 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-black text-[11px] sm:text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(162,56,245,0.35)] active:scale-95 flex items-center gap-1.5 cursor-pointer font-heading"
             >
               <Gamepad2 className="w-3.5 h-3.5" />
-              <span>Play & Vote</span>
+              <span className="hidden xs:inline sm:inline">Play & Vote</span>
+              <span className="xs:hidden sm:hidden">Vote</span>
               <ArrowRight className="w-3.5 h-3.5 hidden sm:inline" />
             </button>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle navigation menu"
               className="xl:hidden p-2 rounded-full bg-white/90 text-[#6b5887] hover:bg-slate-50 border border-[#eadcfa] cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

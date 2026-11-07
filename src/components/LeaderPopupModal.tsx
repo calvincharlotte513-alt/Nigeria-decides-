@@ -41,7 +41,7 @@ export const LeaderPopupModal: React.FC<LeaderPopupModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#1a0b2e]/60 backdrop-blur-md overflow-y-auto animate-in fade-in duration-300">
       
       {/* Modal Dialog with World-Class Aesthetics */}
-      <div className="relative w-full max-w-lg bg-white/95 backdrop-blur-xl border border-[#eadcfa] rounded-[32px] shadow-[0_24px_80px_rgba(139,47,201,0.28)] overflow-hidden my-6">
+      <div className="relative w-full max-w-lg bg-white/95 backdrop-blur-xl border border-[#eadcfa] rounded-[28px] sm:rounded-[32px] shadow-[0_24px_80px_rgba(139,47,201,0.28)] overflow-y-auto max-h-[92vh] my-auto">
         
         {/* Playful Cheerful Header Banner */}
         <div className="relative bg-gradient-to-br from-amber-50 via-purple-50 to-pink-50 px-6 sm:px-8 pt-7 pb-6 border-b border-[#f0e4fc]">

@@ -20,6 +20,7 @@ import { AdminPortal } from './components/AdminPortal';
 import { LegalNoticeModal } from './components/LegalNoticeModal';
 import { Footer } from './components/Footer';
 import { LiveTicker } from './components/LiveTicker';
+import { INITIAL_CANDIDATES, INITIAL_STATS, INITIAL_STATES, INITIAL_CHARITIES } from './data/initialData';
 import {
   ArrowRight,
   ShieldCheck,
@@ -46,12 +47,12 @@ export default function App() {
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState<'disclaimer' | 'methodology' | 'privacy' | 'terms'>('disclaimer');
 
-  // Core Data
-  const [stats, setStats] = useState<PollStats | null>(null);
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [states, setStates] = useState<StatePollData[]>([]);
-  const [charities, setCharities] = useState<CharityBeneficiary[]>([]);
-  const [_isLoadingInitial, setIsLoadingInitial] = useState(true);
+  // Core Data - initialized with rich fallback data so it displays immediately without waiting for API
+  const [stats, setStats] = useState<PollStats | null>(INITIAL_STATS);
+  const [candidates, setCandidates] = useState<Candidate[]>(INITIAL_CANDIDATES);
+  const [states, setStates] = useState<StatePollData[]>(INITIAL_STATES);
+  const [charities, setCharities] = useState<CharityBeneficiary[]>(INITIAL_CHARITIES);
+  const [_isLoadingInitial, setIsLoadingInitial] = useState(false);
 
   useEffect(() => {
     fetchCoreData();
@@ -160,9 +161,9 @@ export default function App() {
             />
 
             {/* Playful Callout Banner: Civic Decision Game & 100% Charity */}
-            <section className="py-10 border-b border-[#ebdffa]/80">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="rounded-[32px] bg-gradient-to-br from-white/95 via-[#faf5ff]/90 to-amber-50/70 border border-[#eadcfa] p-8 sm:p-10 shadow-[0_16px_40px_rgba(162,56,245,0.09)] backdrop-blur-md flex flex-col lg:flex-row items-center justify-between gap-8">
+            <section className="py-6 sm:py-10 border-b border-[#ebdffa]/80">
+              <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+                <div className="rounded-2xl sm:rounded-[32px] bg-gradient-to-br from-white/95 via-[#faf5ff]/90 to-amber-50/70 border border-[#eadcfa] p-5 sm:p-10 shadow-[0_16px_40px_rgba(162,56,245,0.09)] backdrop-blur-md flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
                   <div className="space-y-3 text-center lg:text-left max-w-2xl">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] font-mono font-bold text-emerald-800 tracking-wider uppercase">
                       <Sparkles className="w-3.5 h-3.5 text-emerald-600" />

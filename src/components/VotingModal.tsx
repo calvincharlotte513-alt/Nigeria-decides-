@@ -241,7 +241,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#1e1035]/60 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-3xl bg-white border border-[#eadcfa] rounded-[32px] shadow-[0_20px_70px_rgba(124,58,237,0.2)] overflow-hidden my-6">
+      <div className="relative w-full max-w-3xl bg-white border border-[#eadcfa] rounded-[28px] sm:rounded-[32px] shadow-[0_20px_70px_rgba(124,58,237,0.2)] overflow-y-auto max-h-[94vh] my-auto">
         
         {/* Top Header Bar */}
         <div className="flex items-center justify-between px-6 py-4.5 border-b border-[#f0e4fc] bg-gradient-to-r from-[#faf4ff] to-white">

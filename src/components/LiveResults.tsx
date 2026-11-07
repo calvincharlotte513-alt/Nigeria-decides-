@@ -102,7 +102,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
           <div className="flex items-center gap-1.5 text-xs text-[#6b5887] bg-white border border-[#eadcfa] px-3.5 py-2 rounded-full shadow-2xs">
             <Clock className="w-3.5 h-3.5 text-[#8b2fc9]" />
             <span className="font-mono">Updated: Just Now</span>
@@ -118,7 +118,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
       </div>
 
       {/* Segmented View Control (Pill-styled) */}
-      <div className="flex items-center gap-1.5 p-1 bg-white rounded-full border border-[#eadcfa] w-fit text-xs font-semibold shadow-2xs">
+      <div className="flex items-center gap-1 sm:gap-1.5 p-1 bg-white rounded-full border border-[#eadcfa] max-w-full overflow-x-auto text-[11px] sm:text-xs font-semibold shadow-2xs">
         <button
           onClick={() => setActiveTab('overview')}
           className={`px-4 py-2 rounded-full transition-all cursor-pointer ${

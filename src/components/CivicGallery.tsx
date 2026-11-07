@@ -70,7 +70,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5 sm:gap-3 shrink-0">
             <button
               onClick={onExploreStates}
               className="px-5 py-2.5 rounded-full border border-[#eadcfa] hover:border-[#8b2fc9] bg-white/90 hover:bg-white text-[#1e1035] text-xs font-bold transition-colors cursor-pointer shadow-2xs"
