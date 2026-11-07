@@ -52,7 +52,7 @@ export const CharityImpact: React.FC<CharityImpactProps> = ({
         {/* Left: High-Impact Photography of Community Center & Children Outreach */}
         <div className="lg:col-span-5 relative rounded-[32px] overflow-hidden bg-white border border-[#eadcfa] shadow-[0_12px_36px_rgba(162,56,245,0.12)] group">
           <img
-            src="/src/assets/images/charity_outreach_1794058203228.jpg"
+            src="/images/charity_outreach_1794058203228.jpg"
             alt="Compassionate Nigerian caregivers and children in a sunlit community learning center"
             className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700 min-h-[300px]"
             referrerPolicy="no-referrer"

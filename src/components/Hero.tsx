@@ -178,7 +178,7 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="relative rounded-[32px] overflow-hidden bg-white/90 border border-[#eadcfa] shadow-[0_16px_40px_rgba(162,56,245,0.14)] group">
               <div className="aspect-[16/10] w-full overflow-hidden">
                 <img
-                  src="/src/assets/images/hero_civic_tech_1794056620627.jpg"
+                  src="/images/hero_civic_tech_1794056620627.jpg"
                   alt="Lagos civic tech hub analyzing Nigerian election public opinion data"
                   className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-700"
                   referrerPolicy="no-referrer"

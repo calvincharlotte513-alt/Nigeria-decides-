@@ -93,7 +93,7 @@ const CANDIDATES: Candidate[] = [
     partyColor: '#0ea5e9', // Sky blue
     age: 74,
     runningMate: 'Kashim Shettima',
-    photoUrl: '/src/assets/images/candidate_tinubu_1794056620399.jpg',
+    photoUrl: '/images/candidate_tinubu_1794056620399.jpg',
     biography: 'Current President of the Federal Republic of Nigeria and former two-term Governor of Lagos State (1999–2007). Longtime advocate of the progressive political coalition and democratic restoration.',
     experience: [
       'President of the Federal Republic of Nigeria (2023–Present)',
@@ -119,7 +119,7 @@ const CANDIDATES: Candidate[] = [
     partyColor: '#10b981', // Emerald green
     age: 65,
     runningMate: 'Datti Baba-Ahmed',
-    photoUrl: '/src/assets/images/candidate_obi_1794056621634.jpg',
+    photoUrl: '/images/candidate_obi_1794056621634.jpg',
     biography: 'Former two-term Governor of Anambra State (2006–2014) and 2023 Presidential Candidate. Known for fiscal prudence, grassroots youth movement leadership, and education funding reforms.',
     experience: [
       'Executive Governor of Anambra State (2006–2014)',
@@ -145,7 +145,7 @@ const CANDIDATES: Candidate[] = [
     partyColor: '#ef4444', // Red
     age: 80,
     runningMate: 'Ifeanyi Okowa',
-    photoUrl: '/src/assets/images/candidate_atiku_1794056621636.jpg',
+    photoUrl: '/images/candidate_atiku_1794056621636.jpg',
     biography: 'Former Vice President of the Federal Republic of Nigeria (1999–2007) and veteran industrialist. Philanthropist and founder of the American University of Nigeria, Yola.',
     experience: [
       'Vice President of Nigeria (1999–2007)',
@@ -171,7 +171,7 @@ const CANDIDATES: Candidate[] = [
     partyColor: '#f97316', // Orange
     age: 70,
     runningMate: 'Isaac Idahosa',
-    photoUrl: '/src/assets/images/candidate_kwankwaso_1794056621503.jpg',
+    photoUrl: '/images/candidate_kwankwaso_1794056621503.jpg',
     biography: 'Former Governor of Kano State (1999–2003, 2011–2015), former Minister of Defence (2003–2007), and Senator representing Kano Central. Leader of the Kwankwasiyya political movement.',
     experience: [
       'Executive Governor of Kano State (1999–2003, 2011–2015)',
@@ -197,7 +197,7 @@ const CANDIDATES: Candidate[] = [
     partyColor: '#8b5cf6', // Violet
     age: 55,
     runningMate: 'Haruna Garba Magashi',
-    photoUrl: '/src/assets/images/candidate_sowore_1794057491616.jpg',
+    photoUrl: '/images/candidate_sowore_1794057491616.jpg',
     biography: 'Human rights activist, investigative journalist, and founder of Sahara Reporters. Leader of the #RevolutionNow movement advocating for radical systemic transformation in Nigerian governance.',
     experience: [
       'Founder and Publisher, Sahara Reporters',
@@ -223,7 +223,7 @@ const CANDIDATES: Candidate[] = [
     partyColor: '#eab308', // Amber
     age: 44,
     runningMate: 'Balarabe Rufai',
-    photoUrl: '/src/assets/images/candidate_reform_1794057719896.jpg',
+    photoUrl: '/images/candidate_reform_1794057719896.jpg',
     biography: 'Academic, industrial tech entrepreneur, and youth empowerment advocate. Representing independent progressive reform, educational tech digitization, and technocratic public administration.',
     experience: [
       'Civic Society Representation',

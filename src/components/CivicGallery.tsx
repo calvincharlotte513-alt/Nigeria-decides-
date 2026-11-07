@@ -15,7 +15,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       title: 'Federal Capital Territory & National Sovereignty',
       subtitle: 'Abuja & North Central',
       description: 'From the foot of Aso Rock to regional grassroots councils, see what citizens across the Nigerian federation are thinking before 2027.',
-      image: '/src/assets/images/abuja_landmark_civic_1794058202166.jpg',
+      image: '/images/abuja_landmark_civic_1794058202166.jpg',
       stat: '36 States + FCT Connected',
       icon: Building2,
       badgeGradient: 'from-[#8b2fc9] to-[#a238f5]'
@@ -24,7 +24,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       title: 'Civic Game Analytics & Real-Time Aggregation',
       subtitle: 'Lagos Tech & Financial Hub',
       description: 'Modern data visualization and verified citizen deduplication power a joyful, live, tamper-proof national sentiment board.',
-      image: '/src/assets/images/lagos_civic_hub_1794058203250.jpg',
+      image: '/images/lagos_civic_hub_1794058203250.jpg',
       stat: 'Live Crowd Standings',
       icon: Users,
       badgeGradient: 'from-[#a238f5] to-[#e040fb]'
@@ -33,7 +33,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       title: 'Youth & Citizen Mobilization Ahead of 2027',
       subtitle: 'Nationwide Grassroots Excitement',
       description: 'Young Nigerians, students, professionals, and community builders joining a fun civic game to decide their champion before election day.',
-      image: '/src/assets/images/civic_rally_nigeria_1794058202546.jpg',
+      image: '/images/civic_rally_nigeria_1794058202546.jpg',
       stat: '149,800+ Verified Citizens',
       icon: MapPin,
       badgeGradient: 'from-[#ec4899] to-[#8b2fc9]'
@@ -42,7 +42,7 @@ export const CivicGallery: React.FC<CivicGalleryProps> = ({
       title: '100% Charity Stewardship & Children Impact',
       subtitle: 'Verified Nigerian Children Homes',
       description: '100% of all contributions are donated to CAC-registered orphanages, motherless babies homes, and youth empowerment NGOs.',
-      image: '/src/assets/images/charity_outreach_1794058203228.jpg',
+      image: '/images/charity_outreach_1794058203228.jpg',
       stat: '100% Proceeds to Charity ❤️',
       icon: Heart,
       badgeGradient: 'from-[#8b2fc9] to-[#ec4899]'
