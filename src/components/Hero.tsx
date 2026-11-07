@@ -68,21 +68,19 @@ export const Hero: React.FC<HeroProps> = ({
   const leader = stats?.currentPollLeader || candidates[0];
 
   return (
-    <section className="relative overflow-hidden pt-6 pb-14 lg:pt-10 lg:pb-20">
+    <section className="relative overflow-hidden pt-4 pb-10 sm:pt-6 sm:pb-14 lg:pt-10 lg:pb-20">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Playful Pill Notice Ribbon: Not Govt / Not INEC / 100% Charity */}
-        <div className="mb-6 flex flex-wrap justify-center items-center gap-2">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#eadcfa] text-xs text-[#6b5887] shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+        <div className="mb-5 flex flex-wrap justify-center items-center gap-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#eadcfa] text-xs text-[#6b5887] shadow-sm flex-wrap justify-center text-center">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
             <span className="font-extrabold text-[#1e1035] font-heading flex items-center gap-1">
               <span>🎮</span>
               <span>THE 2027 CIVIC GAME</span>
             </span>
-            <ChevronRight className="w-3.5 h-3.5 text-[#8b2fc9]" />
-            <span className="text-[#8b2fc9] font-bold">Community Pre-Election Simulation</span>
-            <span className="text-[#d8c5f5]" aria-hidden="true">·</span>
+            <span className="text-[#8b2fc9] font-bold hidden sm:inline">· Community Pre-Election Simulation ·</span>
             <span className="text-emerald-600 font-bold flex items-center gap-1">
               <Heart className="w-3 h-3 fill-emerald-500" />
               <span>100% Proceeds to Charity</span>

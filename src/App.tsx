@@ -109,12 +109,12 @@ export default function App() {
         aria-hidden="true"
       >
         <img
-          src="/assets/unified-bg.svg"
+          src="/images/nigeria-bg.jpg"
           alt=""
-          className="w-full h-full object-cover object-top opacity-85"
+          className="w-full h-full object-cover object-center"
         />
-        {/* Soft atmospheric gradient sheen */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#faf7fd]/30 via-[#faf7fd]/50 to-[#faf7fd]/80 pointer-events-none" />
+        {/* Gradient overlay so text above is always readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/60 to-white/80 pointer-events-none" />
       </div>
 
       {/* Top Navigation Bar with World-Class Logo */}
@@ -137,8 +137,8 @@ export default function App() {
       {/* Live Ticker Strip — real-time updates beneath navbar */}
       <LiveTicker candidates={candidates} />
 
-      {/* Main View Container: pb-28 ensures bottom menu bar never covers buttons/content */}
-      <main className="relative z-10 flex-1 pb-28 sm:pb-24">
+      {/* Main View Container: pb ensures bottom nav never covers content */}
+      <main className="relative z-10 flex-1 pb-32 sm:pb-28">{/* pb-32 on mobile = ~8rem for 56px tab bar + safe area */}
         {activeTab === 'home' && (
           <>
             {/* Hero Section */}
