@@ -1,0 +1,7 @@
+{
+  "name": "Nigeria Decides 2027",
+  "description": "Independent pre-election public opinion and civic participation platform for the Nigerian 2027 elections with verified citizen financial backing, real-time analytics, state-by-state heatmaps, and transparent charity impact.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
