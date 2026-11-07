@@ -643,7 +643,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
                   <span>Win Calculated by Contribution Volume</span>
                 </div>
                 <p className="text-[#6b5887] text-xs leading-relaxed">
-                  The minimum participation contribution is <strong>₦1,000</strong>. You can choose any desired amount of ₦1,000 or greater. Standings on the national board and state leaderboards are ranked by total monetary backing received. 30% of all contributions support verified Nigerian orphanages and children's homes under public audit.
+                  The minimum participation contribution is <strong>₦1,000</strong>. You can choose any desired amount of ₦1,000 or greater. Standings on the national board and state leaderboards are ranked by total monetary backing received. 100% of all contributions support verified Nigerian orphanages and children's homes under public audit.
                 </p>
               </div>
 
@@ -715,8 +715,8 @@ export const VotingModal: React.FC<VotingModalProps> = ({
                 )}
                 {donationAmount >= 1000 && (
                   <div className="flex items-center justify-between text-xs text-[#6b5887] pt-1">
-                    <span>Candidate Backing: <strong>₦{(donationAmount * 0.7).toLocaleString()}</strong></span>
-                    <span className="text-[#8b2fc9]">Charity Allocation (30%): <strong>₦{(donationAmount * 0.3).toLocaleString()}</strong></span>
+                    <span>Candidate Score Boost: <strong>₦{donationAmount.toLocaleString()}</strong></span>
+                    <span className="text-[#8b2fc9]">Charity & NGO Fund (100%): <strong>₦{donationAmount.toLocaleString()} ❤️</strong></span>
                   </div>
                 )}
               </div>

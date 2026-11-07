@@ -1,7 +1,6 @@
 {
-  "name": "Nigeria Decides 2027",
-  "description": "Independent pre-election public opinion and civic participation platform for the Nigerian 2027 elections with verified citizen financial backing, real-time analytics, state-by-state heatmaps, and transparent charity impact.",
+  "name": "Nigeria Decides 2027 | The People's Choice Civic Decision Game",
+  "description": "A playful, independent pre-election community game helping Nigerians decide their preferred leader before the main election. Not owned by the Nigerian government or related to INEC. 100% of proceeds go directly to verified Nigerian charities and grassroots NGOs.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
-

@@ -3,17 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nigeria Decides 2027 | The Sovereign Pre-Election Public Opinion Platform</title>
-    <meta name="description" content="Independent pre-election public opinion platform for Nigeria's 2027 general elections. Verified citizen polling across 36 states and the FCT, real-time analytics, and transparent social impact." />
-    <meta property="og:title" content="Nigeria Decides 2027 | The Sovereign Pre-Election Public Opinion Platform" />
-    <meta property="og:description" content="Make your voice count ahead of 2027. Verified, tamper-proof civic polling across all 36 states and the Federal Capital Territory." />
+
+    <!-- Primary SEO -->
+    <title>Nigeria Decides 2027 | The People's Choice Civic Decision Game 🎮🇳🇬</title>
+    <meta name="description" content="A playful, independent pre-election game helping Nigerians decide their preferred leader before the 2027 election. NOT owned by the Nigerian government or related to INEC. 100% of all proceeds go directly to verified Nigerian charities and NGOs. Play from ₦1,000!" />
+    <meta name="keywords" content="Nigeria Decides, 2027 election game, Nigeria civic game, choose Nigeria leader, Nigerian charity game, INEC independent, Nigeria president 2027" />
+    <meta name="author" content="Nigeria Decides Community" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nigeria Decides 2027 | The People's Choice Civic Game 🎮🇳🇬" />
+    <meta property="og:description" content="A fun, playful community game to help Nigerians decide their leader before 2027! Back your candidate from ₦1,000. 100% of proceeds go to verified Nigerian charities & NGOs. NOT government, NOT INEC." />
+    <meta property="og:image" content="/assets/og-image.jpg" />
+    <meta property="og:url" content="https://nigeriadecides.ng" />
+    <meta property="og:site_name" content="Nigeria Decides 2027" />
+    <meta property="og:locale" content="en_NG" />
+
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="twitter:title" content="Nigeria Decides 2027 🎮🇳🇬 | The People's Choice Game" />
+    <meta name="twitter:description" content="Choose Nigeria's leader before the 2027 election! 100% of proceeds go to charity & NGOs. Play from ₦1,000. Fun, free, independent — not government, not INEC!" />
+    <meta name="twitter:image" content="/assets/og-image.jpg" />
+
+    <!-- PWA / Mobile -->
+    <meta name="theme-color" content="#8b2fc9" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Nigeria Decides" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Fonts: Preconnect first, then load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nigeriadecides.ng" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Nigeria Decides 2027",
+      "description": "A playful, independent civic decision game helping Nigerians decide their preferred leader before the 2027 general election. 100% of proceeds go to verified Nigerian charities and NGOs.",
+      "url": "https://nigeriadecides.ng",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web",
+      "isAccessibleForFree": false,
+      "offers": {
+        "@type": "Offer",
+        "price": "1000",
+        "priceCurrency": "NGN",
+        "description": "Back a candidate from ₦1,000. 100% goes to charity."
+      },
+      "disclaimer": "This is an independent community game. NOT owned by the Nigerian government or INEC. This is NOT an official election platform."
+    }
+    </script>
   </head>
-  <body class="bg-[#faf7fd] text-[#1e1035] antialiased selection:bg-[#a855f7]/20 selection:text-[#581c87] overflow-x-hidden font-sans">
+  <body class="bg-[#faf7fd] text-[#1e1035] antialiased selection:bg-purple-200/40 selection:text-purple-900 overflow-x-hidden font-sans">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

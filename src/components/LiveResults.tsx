@@ -84,7 +84,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
     : states.filter(s => s.zone === selectedZone);
 
   return (
-    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 bg-[#faf7fd]">
+    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
       
       {/* Title & Live Status Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#ebdffa]">
@@ -95,10 +95,10 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
             <span className="text-[#6b5887]">Live 2027 Analytics</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] tracking-tight font-heading">
-            Live National Presidential Standings
+            Live National Standings & Leaderboard 🏆
           </h2>
           <p className="text-sm text-[#6b5887] mt-1">
-            Real-time standings ranked by total financial backing (₦) contributed across all 36 states and the FCT.
+            Real-time standings ranked by total community financial backing (₦) contributed across all 36 states and the FCT. 100% of proceeds go directly to charity!
           </p>
         </div>
 

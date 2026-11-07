@@ -41,7 +41,7 @@ export const CandidatesDirectory: React.FC<CandidatesDirectoryProps> = ({
   const c2 = candidates.find(c => c.id === compareCand2);
 
   return (
-    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 bg-[#faf7fd]">
+    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
       
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#ebdffa]">
@@ -52,7 +52,7 @@ export const CandidatesDirectory: React.FC<CandidatesDirectoryProps> = ({
             <span className="text-[#6b5887]">Equal Exposure Constitution</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] tracking-tight font-heading">
-            Verified Presidential Candidates
+            Meet the 2027 Contenders 👥
           </h2>
           <p className="text-sm text-[#6b5887] mt-1">
             Equal public scrutiny, verifiable track records, and officially published 2027 policy manifestos.

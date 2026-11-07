@@ -1,0 +1,62 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1035"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b2fc9"/>
+      <stop offset="100%" stop-color="#e040fb"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded squircle background -->
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)"/>
+  <rect width="64" height="64" rx="16" fill="none" stroke="url(#purpleGrad)" stroke-width="2"/>
+
+  <!-- Nigerian flag ribbon stripes (wavy top) -->
+  <path d="M 4 16 Q 16 11, 32 14 T 60 12" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M 4 20 Q 16 15, 32 18 T 60 16" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 4 24 Q 16 19, 32 22 T 60 20" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Isometric ballot box -->
+  <g transform="translate(10, 24)">
+    <!-- Top face -->
+    <path d="M 10 10 L 22 4 L 34 10 L 22 16 Z" fill="#3b1b68" stroke="url(#purpleGrad)" stroke-width="1.2"/>
+    <!-- Left face -->
+    <path d="M 10 10 L 22 16 L 22 28 L 10 22 Z" fill="url(#purpleGrad)"/>
+    <!-- Right face -->
+    <path d="M 22 16 L 34 10 L 34 22 L 22 28 Z" fill="#6b21a8"/>
+    <!-- Slot on top -->
+    <ellipse cx="22" cy="10" rx="6" ry="2" fill="#130726"/>
+    <!-- Golden ballot card rising -->
+    <g transform="translate(14, -2) rotate(-8)">
+      <rect width="13" height="16" rx="3" fill="url(#goldGrad)" filter="url(#glow)"/>
+      <!-- Checkmark -->
+      <path d="M 3 8 L 5.5 10.5 L 10 5" stroke="#1e1035" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- Floating heart (charity symbol) -->
+  <path d="M 48 14 C 48 11, 50 10, 52 11.5 C 54 10, 56 11, 56 14 C 56 17.5, 52 20, 52 20 C 52 20, 48 17.5, 48 14 Z" fill="#e040fb" filter="url(#glow)"/>
+
+  <!-- Sparkle star bottom right -->
+  <path d="M 52 42 L 53.5 46 L 57.5 46.5 L 53.5 48 L 52 52 L 51 48 L 47 46.5 L 51 46 Z" fill="url(#goldGrad)"/>
+
+  <!-- Green dot accent top right -->
+  <circle cx="54" cy="12" r="4" fill="#10b981"/>
+  <circle cx="54" cy="12" r="2.5" fill="#ffffff"/>
+  <circle cx="54" cy="12" r="1.2" fill="#10b981"/>
+</svg>

@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Candidate, StatePollData, PollStats, CharityBeneficiary, SupportedLanguage } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { BottomMenuBar } from './components/BottomMenuBar';
 import { LeaderPopupModal } from './components/LeaderPopupModal';
 import { VotingModal } from './components/VotingModal';
 import { LiveResults } from './components/LiveResults';
@@ -18,14 +19,26 @@ import { UserDashboard } from './components/UserDashboard';
 import { AdminPortal } from './components/AdminPortal';
 import { LegalNoticeModal } from './components/LegalNoticeModal';
 import { Footer } from './components/Footer';
-import { ArrowRight, ShieldCheck, HeartHandshake, CheckCircle2, TrendingUp, Crown } from 'lucide-react';
+import { LiveTicker } from './components/LiveTicker';
+import {
+  ArrowRight,
+  ShieldCheck,
+  Heart,
+  Crown,
+  Gamepad2,
+  Sparkles,
+  Award,
+  Users,
+  Building2,
+  HelpCircle
+} from 'lucide-react';
 
 export default function App() {
   const [currentLang, setCurrentLang] = useState<SupportedLanguage>('en');
   const [activeTab, setActiveTab] = useState<string>('home');
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  // Popups & Modals: isLeaderPopupOpen starts as TRUE so it pops up immediately on open!
+  // Popups & Modals: isLeaderPopupOpen starts as TRUE so it pops up playfully on initial open!
   const [isLeaderPopupOpen, setIsLeaderPopupOpen] = useState(true);
   const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);
   const [isUserDashboardOpen, setIsUserDashboardOpen] = useState(false);
@@ -84,9 +97,27 @@ export default function App() {
   const pollLeader = stats?.currentPollLeader || candidates[0] || null;
 
   return (
-    <div className="min-h-screen bg-[#faf7fd] text-[#1e1035] flex flex-col font-sans selection:bg-[#a855f7]/20 selection:text-[#581c87]">
+    <div className="relative min-h-screen text-[#1e1035] flex flex-col font-sans selection:bg-[#a855f7]/20 selection:text-[#581c87]">
       
-      {/* Top Navigation Bar */}
+      {/* ============================================================
+          UNIFIED WORLD-CLASS BACKGROUND IMAGE THROUGHOUT APPLICATION
+          Fixed full-screen backdrop layer that stays unified as you scroll
+          or switch tabs, with subtle glassmorphic translucency above it.
+         ============================================================ */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
+        aria-hidden="true"
+      >
+        <img
+          src="/assets/unified-bg.svg"
+          alt=""
+          className="w-full h-full object-cover object-top opacity-85"
+        />
+        {/* Soft atmospheric gradient sheen */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#faf7fd]/30 via-[#faf7fd]/50 to-[#faf7fd]/80 pointer-events-none" />
+      </div>
+
+      {/* Top Navigation Bar with World-Class Logo */}
       <Navbar
         currentLang={currentLang}
         onSelectLang={(lang) => setCurrentLang(lang)}
@@ -103,8 +134,11 @@ export default function App() {
         onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
       />
 
-      {/* Main View Container */}
-      <main className="flex-1">
+      {/* Live Ticker Strip — real-time updates beneath navbar */}
+      <LiveTicker candidates={candidates} />
+
+      {/* Main View Container: pb-28 ensures bottom menu bar never covers buttons/content */}
+      <main className="relative z-10 flex-1 pb-28 sm:pb-24">
         {activeTab === 'home' && (
           <>
             {/* Hero Section */}
@@ -125,43 +159,48 @@ export default function App() {
               onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
             />
 
-            {/* Main Interactive Callout Banner */}
-            <section className="py-12 bg-white border-b border-[#ebdffa]">
+            {/* Playful Callout Banner: Civic Decision Game & 100% Charity */}
+            <section className="py-10 border-b border-[#ebdffa]/80">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="rounded-[32px] bg-gradient-to-br from-[#faf4ff] via-white to-[#fcf5ff] border border-[#eadcfa] p-8 sm:p-10 shadow-[0_12px_36px_rgba(162,56,245,0.08)] flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div className="rounded-[32px] bg-gradient-to-br from-white/95 via-[#faf5ff]/90 to-amber-50/70 border border-[#eadcfa] p-8 sm:p-10 shadow-[0_16px_40px_rgba(162,56,245,0.09)] backdrop-blur-md flex flex-col lg:flex-row items-center justify-between gap-8">
                   <div className="space-y-3 text-center lg:text-left max-w-2xl">
-                    <span className="text-xs uppercase font-mono tracking-wider font-bold text-[#8b2fc9] block">
-                      The Main Feature: 2027 Presidential Pre-Election Poll
-                    </span>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] font-mono font-bold text-emerald-800 tracking-wider uppercase">
+                      <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>THE PEOPLE'S CHOICE ARENA · 100% CHARITY PROCEEDS</span>
+                    </div>
+
                     <h2 className="text-2xl sm:text-3xl font-black text-[#1e1035] tracking-tight font-heading">
-                      Back Your Candidate in Under 60 Seconds
+                      Pick Your Leader in Under 60 Seconds 🎮
                     </h2>
-                    <p className="text-xs sm:text-sm text-[#6b5887] leading-relaxed">
-                      Verify your citizen identity via OTP, back your candidate starting from ₦1,000, and receive a tamper-proof cryptographic receipt. National standings and victory are ranked strictly by total financial backing received.
+
+                    <p className="text-xs sm:text-sm text-[#55456e] leading-relaxed">
+                      Verify quickly with your phone or email, boost your candidate on the board starting from ₦1,000, and receive your receipt. Remember: this is a community game not owned by the Nigerian government or INEC — and <strong>100% of all proceeds are donated to verified Nigerian orphanages and grassroots NGOs!</strong>
                     </p>
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
                     <button
                       onClick={() => setIsVoteModalOpen(true)}
-                      className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-extrabold rounded-full text-sm transition-all shadow-[0_8px_25px_rgba(162,56,245,0.35)] active:scale-95 flex items-center justify-center gap-2 cursor-pointer font-heading uppercase"
+                      className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-black rounded-full text-sm transition-all shadow-[0_8px_25px_rgba(162,56,245,0.35)] active:scale-95 flex items-center justify-center gap-2 cursor-pointer font-heading uppercase group"
                     >
-                      <span>CAST YOUR VOTE (FROM ₦1,000)</span>
+                      <Gamepad2 className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                      <span>PLAY & VOTE (FROM ₦1,000)</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
+
                     <button
                       onClick={() => setIsLeaderPopupOpen(true)}
-                      className="w-full sm:w-auto px-6 py-4 bg-white hover:bg-[#faf5ff] text-[#8b2fc9] font-bold rounded-full text-xs border border-[#eadcfa] transition-colors cursor-pointer shadow-2xs flex items-center justify-center gap-1.5"
+                      className="w-full sm:w-auto px-6 py-4 bg-white/90 hover:bg-white text-[#8b2fc9] font-bold rounded-full text-xs border border-[#eadcfa] transition-colors cursor-pointer shadow-2xs flex items-center justify-center gap-1.5"
                     >
                       <Crown className="w-3.5 h-3.5 text-[#f59e0b] fill-[#f59e0b]" />
-                      <span>View Current Leader</span>
+                      <span>Who's Winning?</span>
                     </button>
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* Civic Momentum & Plenty Images Gallery */}
+            {/* Civic Momentum Photo Gallery */}
             <CivicGallery
               onCastVote={() => setIsVoteModalOpen(true)}
               onExploreStates={() => {
@@ -171,7 +210,7 @@ export default function App() {
             />
 
             {/* Live Polling Results Preview */}
-            <div className="border-b border-[#ebdffa]">
+            <div className="border-b border-[#ebdffa]/80">
               <LiveResults
                 candidates={candidates}
                 states={states}
@@ -184,7 +223,7 @@ export default function App() {
             </div>
 
             {/* Verified Candidates Showcase */}
-            <div className="border-b border-[#ebdffa]">
+            <div className="border-b border-[#ebdffa]/80">
               <CandidatesDirectory
                 candidates={candidates}
                 onSelectCandidateToVote={(_candId) => {
@@ -194,7 +233,7 @@ export default function App() {
             </div>
 
             {/* State Polling Preview */}
-            <div className="border-b border-[#ebdffa]">
+            <div className="border-b border-[#ebdffa]/80">
               <StatePolls
                 states={states}
                 candidates={candidates}
@@ -204,11 +243,11 @@ export default function App() {
               />
             </div>
 
-            {/* Charity & Social Impact Secondary Section */}
+            {/* Charity & Social Impact (100% Proceeds) */}
             <div>
               <CharityImpact
                 charities={charities}
-                totalProceedsNgn={stats?.totalCharityProceedsNgn || 18450000}
+                totalProceedsNgn={stats?.totalPoolAmountNgn || 225000000}
                 totalDistributedNgn={stats?.totalCharityDistributedNgn || 14800000}
                 currentLang={currentLang}
               />
@@ -221,19 +260,20 @@ export default function App() {
           <div className="py-12 max-w-5xl mx-auto px-4 sm:px-6">
             <div className="text-center space-y-4 mb-10">
               <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#8b2fc9] block">
-                Direct Citizen Pre-Election Participation
+                🎮 COMMUNITY DECISION GAME · NOT GOVERNMENT / NOT INEC
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] font-heading">
-                Presidential Pre-Election Voting Experience
+                Who's Your Pick for Nigeria's 2027 Leader?
               </h2>
-              <p className="text-[#6b5887] text-sm max-w-xl mx-auto">
-                Join verified citizens nationwide ahead of the 2027 Nigerian presidential race. Your vote is deduplicated, cryptographic, and completely secret. Standings and victory are calculated based on contributed financial backing (minimum ₦1,000).
+              <p className="text-[#55456e] text-sm max-w-xl mx-auto leading-relaxed">
+                Join verified citizens nationwide before the main election! Vote for your champion (from ₦1,000), power up their ranking on the board, and feel good knowing that <strong>100% of all proceeds fund vetted Nigerian orphanages and community NGOs! ❤️</strong>
               </p>
               <button
                 onClick={() => setIsVoteModalOpen(true)}
-                className="px-8 py-3.5 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-extrabold rounded-full text-sm transition-all shadow-[0_8px_25px_rgba(162,56,245,0.35)] active:scale-95 cursor-pointer inline-flex items-center gap-2 font-heading uppercase"
+                className="px-8 py-4 bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-black rounded-full text-sm transition-all shadow-[0_8px_25px_rgba(162,56,245,0.35)] active:scale-95 cursor-pointer inline-flex items-center gap-2 font-heading uppercase"
               >
-                <span>Launch Polling Flow</span>
+                <Gamepad2 className="w-4 h-4" />
+                <span>Launch Polling Game</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -277,67 +317,92 @@ export default function App() {
         {activeTab === 'charity' && (
           <CharityImpact
             charities={charities}
-            totalProceedsNgn={stats?.totalCharityProceedsNgn || 18450000}
+            totalProceedsNgn={stats?.totalPoolAmountNgn || 225000000}
             totalDistributedNgn={stats?.totalCharityDistributedNgn || 14800000}
             currentLang={currentLang}
           />
         )}
 
-        {/* Dedicated Tab: About & Methodology */}
+        {/* Dedicated Tab: About, Game Rules & Non-INEC Disclaimer */}
         {activeTab === 'about' && (
           <div className="py-14 max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
             <div className="space-y-3 text-center">
               <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#8b2fc9]">
-                Civic Research & Platform Integrity
+                🎮 COMMUNITY CIVIC SIMULATION · 100% FOR CHARITY
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] font-heading">
-                About Nigeria Decides 2027
+                About Nigeria Decides 2027: The Decision Game
               </h2>
-              <p className="text-sm text-[#6b5887] max-w-xl mx-auto">
-                An independent, non-partisan public opinion platform created to elevate citizen voices and empirical policy debate ahead of Nigeria's 2027 elections.
+              <p className="text-sm text-[#55456e] max-w-xl mx-auto leading-relaxed">
+                A simple, beautiful, and playful community game designed to help Nigerians express their democratic preference and decide who they want to lead Nigeria ahead of the 2027 main election.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-[28px] bg-white border border-[#eadcfa] space-y-3 shadow-2xs">
-                <h3 className="text-base font-bold text-[#1e1035] flex items-center gap-2 font-heading">
-                  <ShieldCheck className="w-5 h-5 text-[#8b2fc9]" />
-                  <span>Why Pre-Election Opinion Matters</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border border-[#eadcfa] space-y-3 shadow-2xs">
+                <div className="w-10 h-10 rounded-2xl bg-amber-100 flex items-center justify-center text-lg">
+                  🎮
+                </div>
+                <h3 className="text-base font-extrabold text-[#1e1035] font-heading">
+                  1. A Playful Civic Game
                 </h3>
                 <p className="text-xs text-[#6b5887] leading-relaxed">
-                  Pre-election polling provides an empirical, scientifically verified snapshot of what citizens genuinely care about across all 36 states and the Federal Capital Territory, shifting the conversation to real policy issues and governance priorities.
+                  Voting should feel exciting, free, and empowering! This is a gamified simulation where citizens nationwide can back their favorite candidate, follow live state boards, and see the people's collective pulse.
                 </p>
               </div>
 
-              <div className="p-6 rounded-[28px] bg-white border border-[#eadcfa] space-y-3 shadow-2xs">
-                <h3 className="text-base font-bold text-[#1e1035] flex items-center gap-2 font-heading">
-                  <HeartHandshake className="w-5 h-5 text-[#8b2fc9]" />
-                  <span>Social Impact Commitment</span>
+              <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border border-[#eadcfa] space-y-3 shadow-2xs">
+                <div className="w-10 h-10 rounded-2xl bg-purple-100 flex items-center justify-center text-lg">
+                  🏛️
+                </div>
+                <h3 className="text-base font-extrabold text-[#1e1035] font-heading">
+                  2. Not Govt / Not INEC
                 </h3>
                 <p className="text-xs text-[#6b5887] leading-relaxed">
-                  Civic participation should foster tangible community benefit. 30% of all contributions generated through the platform directly support registered orphanages, motherless babies' homes, and youth empowerment initiatives across Nigeria.
+                  We are completely independent. This game is NOT owned by the Nigerian government and is NOT related to the Independent National Electoral Commission (INEC). Official election voting happens on election day via INEC.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-[28px] bg-white/90 backdrop-blur-md border border-[#eadcfa] space-y-3 shadow-2xs">
+                <div className="w-10 h-10 rounded-2xl bg-pink-100 flex items-center justify-center text-lg">
+                  ❤️
+                </div>
+                <h3 className="text-base font-extrabold text-[#1e1035] font-heading">
+                  3. 100% to Charity & NGOs
+                </h3>
+                <p className="text-xs text-[#6b5887] leading-relaxed">
+                  Every single Naira contributed to back a candidate goes directly to CAC-registered Nigerian orphanages, motherless babies' homes, and youth empowerment NGOs under public audit.
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-3 pt-4">
+            <div className="p-6 rounded-[28px] bg-gradient-to-r from-purple-50 via-pink-50 to-amber-50 border border-purple-200/80 space-y-3 shadow-2xs text-center">
+              <h3 className="text-base font-black text-[#1e1035] font-heading">
+                How Standings & Winners are Determined
+              </h3>
+              <p className="text-xs text-[#55456e] max-w-2xl mx-auto leading-relaxed">
+                Citizens participate by backing a candidate with a contribution of ₦1,000 or more. The board standings and national leader are calculated based on total cumulative financial backing received. All disbursements to charity partners are verified by independent assurance auditors.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-3 pt-2">
               <button
                 onClick={() => handleOpenLegal('disclaimer')}
                 className="px-5 py-2.5 rounded-full bg-white hover:bg-[#faf5ff] border border-[#eadcfa] text-xs font-semibold text-[#1e1035] cursor-pointer shadow-2xs"
               >
-                Read INEC Independence Disclaimer
+                Read INEC Non-Affiliation Disclaimer
               </button>
               <button
                 onClick={() => handleOpenLegal('methodology')}
                 className="px-5 py-2.5 rounded-full bg-white hover:bg-[#faf5ff] border border-[#eadcfa] text-xs font-semibold text-[#1e1035] cursor-pointer shadow-2xs"
               >
-                View Polling Methodology
+                How Board Standings are Ranked
               </button>
               <button
                 onClick={() => handleOpenLegal('privacy')}
                 className="px-5 py-2.5 rounded-full bg-white hover:bg-[#faf5ff] border border-[#eadcfa] text-xs font-semibold text-[#1e1035] cursor-pointer shadow-2xs"
               >
-                NDPR Data Privacy Standards
+                Voter Privacy & Anonymous Ballot
               </button>
             </div>
           </div>
@@ -355,6 +420,23 @@ export default function App() {
         onOpenPrivacy={() => handleOpenLegal('privacy')}
         onOpenTerms={() => handleOpenLegal('terms')}
         onOpenAdminPortal={() => setIsAdminPortalOpen(true)}
+      />
+
+      {/* ============================================================
+          WORLD-CLASS FLOATING BOTTOM MENU BAR
+          Contains all the most important menus, anchored cleanly with
+          instant access to Home, Standings, Play & Vote, Candidates,
+          36 States, 100% Charity, and Game Rules.
+         ============================================================ */}
+      <BottomMenuBar
+        activeTab={activeTab}
+        onNavigate={(tab) => {
+          setActiveTab(tab);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        onOpenVoteModal={() => setIsVoteModalOpen(true)}
+        onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
+        onOpenLegalNotice={() => handleOpenLegal('disclaimer')}
       />
 
       {/* POPUP: Leader Pop-up showing who is leading on page load with a Close Button */}

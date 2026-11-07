@@ -1,6 +1,7 @@
 import React from 'react';
 import { SupportedLanguage } from '../types';
-import { ShieldCheck, HeartHandshake } from 'lucide-react';
+import { Logo } from './Logo';
+import { Heart, ShieldCheck, Gamepad2, Sparkles, Building2, ExternalLink } from 'lucide-react';
 
 interface FooterProps {
   currentLang: SupportedLanguage;
@@ -20,67 +21,56 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenAdminPortal
 }) => {
   return (
-    <footer className="border-t border-[#ebdffa] bg-[#faf7fd] text-[#6b5887] text-xs">
-      {/* Top purple/magenta gradient line */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb]" />
+    <footer className="relative border-t border-[#ebdffa] bg-white/80 backdrop-blur-md text-[#6b5887] text-xs z-10">
+      {/* Top rainbow gradient line */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-[#10b981] via-[#8b2fc9] to-[#f59e0b]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-10">
         
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-[#8b2fc9] to-[#e040fb] p-[1.5px] shadow-xs">
-                <div className="w-full h-full bg-[#1e1035] rounded-[14px] flex items-center justify-center">
-                  <span className="font-black text-white text-sm">
-                    ND
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-xl font-black tracking-tight text-[#1e1035] font-heading">
-                  Nigeria Decides
-                </span>
-                <span className="text-sm font-mono font-bold text-[#8b2fc9]">2027</span>
-              </div>
-            </div>
+            <Logo variant="full" size="md" />
 
             <p className="text-xs text-[#6b5887] leading-relaxed max-w-sm">
-              The sovereign independent pre-election public opinion engine for the Federal Republic of Nigeria. Empowering citizens to express verified democratic choices ahead of the 2027 general elections. Standings and rankings are determined by verified citizen financial backing.
+              A playful, independent community game created to help Nigerians decide their preferred leader ahead of the 2027 general election. Completely independent, community-driven, and designed to spread democratic joy.
             </p>
 
-            <div className="p-4 rounded-[22px] bg-white border border-[#eadcfa] text-xs text-[#1e1035] space-y-1 shadow-2xs">
-              <span className="text-[#8b2fc9] font-bold block font-mono uppercase text-[10px] tracking-wider">
-                CIVIC CREED
+            {/* Playful Notice Box */}
+            <div className="p-4 rounded-[22px] bg-gradient-to-br from-purple-50/90 to-pink-50/90 border border-purple-200/60 text-xs text-[#1e1035] space-y-1 shadow-2xs">
+              <span className="text-[#8b2fc9] font-black block font-mono uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+                <Heart className="w-3.5 h-3.5 fill-pink-500 text-pink-500" />
+                <span>100% PROCEEDS TO CHARITY & NGOS</span>
               </span>
-              <p className="text-[#1e1035] font-semibold font-heading">
-                "YOUR VOICE. YOUR CHOICE. NIGERIA'S FUTURE."
+              <p className="text-[#55456e] text-[11px] leading-relaxed">
+                Every single Naira raised through this game directly supports vetted Nigerian orphanages, children's homes, and youth empowerment NGOs under public audit.
               </p>
             </div>
           </div>
 
-          {/* Polling Links */}
+          {/* Game Navigation */}
           <div className="space-y-3.5">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1e1035]">
-              Civic Polling
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1e1035] flex items-center gap-1">
+              <span>🎮</span>
+              <span>The Game</span>
             </h4>
             <ul className="space-y-2.5">
+              <li>
+                <button
+                  onClick={() => onNavigate('home')}
+                  className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
+                >
+                  Game Home & Highlights
+                </button>
+              </li>
               <li>
                 <button
                   onClick={() => onNavigate('poll')}
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
-                  Presidential Pre-Election Poll
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('candidates')}
-                  className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
-                >
-                  Verified Candidates Directory
+                  Play & Cast Your Ballot
                 </button>
               </li>
               <li>
@@ -88,7 +78,15 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => onNavigate('results')}
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
-                  Live National Standings
+                  Live Crowd Standings
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('candidates')}
+                  className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
+                >
+                  Meet the 2027 Contenders
                 </button>
               </li>
               <li>
@@ -96,16 +94,17 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => onNavigate('states')}
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
-                  36 States & FCT Directory
+                  36 States & FCT Map
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Social Impact */}
+          {/* Social Impact Column */}
           <div className="space-y-3.5">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1e1035]">
-              Social Impact
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1e1035] flex items-center gap-1">
+              <span>💝</span>
+              <span>100% Charity Fund</span>
             </h4>
             <ul className="space-y-2.5">
               <li>
@@ -129,24 +128,41 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => onNavigate('charity')}
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
-                  CAC Accreditation Portal
+                  Apply as a Nigerian NGO
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('charity')}
+                  className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
+                >
+                  Download Charity Audit (CSV)
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Legal & Governance */}
+          {/* Game Rules & Independence */}
           <div className="space-y-3.5">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1e1035]">
-              Governance & Integrity
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#1e1035] flex items-center gap-1">
+              <span>💡</span>
+              <span>Independence & Rules</span>
             </h4>
             <ul className="space-y-2.5">
+              <li>
+                <button
+                  onClick={onOpenTerms}
+                  className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
+                >
+                  Not Owned by Govt / INEC Notice
+                </button>
+              </li>
               <li>
                 <button
                   onClick={onOpenMethodology}
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
-                  Audit & Polling Methodology
+                  How Standings are Calculated
                 </button>
               </li>
               <li>
@@ -154,15 +170,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={onOpenPrivacy}
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
-                  NDPR Privacy Standards
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenTerms}
-                  className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
-                >
-                  Statutory INEC Disclaimer
+                  Privacy & Anonymous Ballot
                 </button>
               </li>
               <li>
@@ -170,7 +178,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={onOpenAdminPortal}
                   className="text-[#8c7da3] hover:text-[#1e1035] transition-colors cursor-pointer text-left"
                 >
-                  Trustee / Auditor Sign-In
+                  NGO & Trustee Portal
                 </button>
               </li>
             </ul>
@@ -178,32 +186,32 @@ export const Footer: React.FC<FooterProps> = ({
 
         </div>
 
-        {/* Independence Disclaimer Banner */}
-        <div className="pt-8 border-t border-[#ebdffa]">
-          <div className="p-4.5 rounded-[24px] bg-white border border-[#eadcfa] flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-2xs">
+        {/* Clear Independence Notice Callout Banner */}
+        <div className="pt-6 border-t border-[#ebdffa]">
+          <div className="p-4 rounded-[24px] bg-[#faf5ff] border border-purple-200/80 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-2xs">
             <div className="flex items-start gap-3">
-              <ShieldCheck className="w-5 h-5 text-[#8b2fc9] shrink-0 mt-0.5" />
-              <p className="text-[11px] text-[#6b5887] leading-relaxed max-w-4xl">
-                <strong>Statutory Notice:</strong> Nigeria Decides 2027 is an independent civic research and public opinion platform. It is NOT affiliated with the Independent National Electoral Commission (INEC) and does not conduct official election balloting. Standings and poll victory are determined by total citizen financial backing.
+              <span className="text-xl">⚠️</span>
+              <p className="text-[11px] text-[#55456e] leading-relaxed max-w-4xl">
+                <strong>Important Notice:</strong> Nigeria Decides 2027 is a completely independent community simulation game. <strong>It is not owned by the Nigerian government, not affiliated with INEC, and does not conduct official election balloting.</strong> Its purpose is to give Nigerians a fun, playful way to decide their preferred leader before the election, while directing 100% of all generated proceeds to vetted Nigerian charities and grassroots NGOs.
               </p>
             </div>
-            <span className="text-[11px] font-mono text-[#8c7da3] shrink-0">
-              CAC / IT Accreditation Registered
+            <span className="text-[11px] font-mono text-purple-700 font-bold shrink-0">
+              Community Powered · 100% Charity
             </span>
           </div>
         </div>
 
-        {/* Copyright Line */}
-        <div className="pt-6 border-t border-[#ebdffa] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#8c7da3]">
+        {/* Bottom Credits */}
+        <div className="pt-4 border-t border-[#ebdffa] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#8c7da3]">
           <div>
-            © {new Date().getFullYear()} Nigeria Decides 2027 Civic Foundation. All rights reserved.
+            © {new Date().getFullYear()} Nigeria Decides 2027: The People's Choice Game. Created with love for Nigeria 🇳🇬.
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={onOpenPrivacy} className="hover:text-[#1e1035]">Privacy Policy</button>
+            <button onClick={onOpenTerms} className="hover:text-[#1e1035]">INEC Disclaimer</button>
             <span>·</span>
-            <button onClick={onOpenTerms} className="hover:text-[#1e1035]">Terms of Participation</button>
+            <button onClick={onOpenPrivacy} className="hover:text-[#1e1035]">Privacy</button>
             <span>·</span>
-            <button onClick={onOpenMethodology} className="hover:text-[#1e1035]">Methodology</button>
+            <button onClick={onOpenMethodology} className="hover:text-[#1e1035]">Rules & Calculation</button>
           </div>
         </div>
 

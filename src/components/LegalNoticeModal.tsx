@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Scale, X, ShieldCheck, Lock, FileText, CheckCircle2 } from 'lucide-react';
+import { Scale, X, ShieldCheck, Heart, Gamepad2, CheckCircle2, Sparkles } from 'lucide-react';
 
 interface LegalNoticeModalProps {
   isOpen: boolean;
@@ -23,15 +23,15 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-[#f0e4fc]">
           <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-full bg-[#f5ecff] flex items-center justify-center text-[#8b2fc9]">
-              <Scale className="w-5 h-5 text-[#8b2fc9]" />
+            <div className="w-10 h-10 rounded-2xl bg-[#f5ecff] flex items-center justify-center text-[#8b2fc9] text-xl">
+              🎮
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#1e1035] font-heading">
-                Legal Framework, Trust & Methodology
+              <h3 className="text-lg font-bold text-[#1e1035] font-heading flex items-center gap-1.5">
+                <span>Nigeria Decides 2027 Game Rules & Notice</span>
               </h3>
               <p className="text-xs text-[#6b5887]">
-                Operating rules, independence declaration, and civic privacy standards
+                Independent community simulation · 100% of proceeds to Charity & NGOs
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
               activeTab === 'disclaimer' ? 'text-[#8b2fc9] border-b-2 border-[#8b2fc9]' : 'text-[#6b5887] hover:text-[#1e1035]'
             }`}
           >
-            INEC Independence Disclaimer
+            Not Govt / Not INEC Notice
           </button>
           <button
             onClick={() => setActiveTab('methodology')}
@@ -60,7 +60,7 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
               activeTab === 'methodology' ? 'text-[#8b2fc9] border-b-2 border-[#8b2fc9]' : 'text-[#6b5887] hover:text-[#1e1035]'
             }`}
           >
-            Audited Methodology
+            How the Game Works
           </button>
           <button
             onClick={() => setActiveTab('privacy')}
@@ -68,7 +68,7 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
               activeTab === 'privacy' ? 'text-[#8b2fc9] border-b-2 border-[#8b2fc9]' : 'text-[#6b5887] hover:text-[#1e1035]'
             }`}
           >
-            NDPR Privacy Standard
+            Voter Privacy & Hashing
           </button>
           <button
             onClick={() => setActiveTab('terms')}
@@ -76,7 +76,7 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
               activeTab === 'terms' ? 'text-[#8b2fc9] border-b-2 border-[#8b2fc9]' : 'text-[#6b5887] hover:text-[#1e1035]'
             }`}
           >
-            Terms of Participation
+            100% Charity Commitment
           </button>
         </div>
 
@@ -84,17 +84,22 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
         <div className="text-xs text-[#6b5887] leading-relaxed space-y-4">
           {activeTab === 'disclaimer' && (
             <div className="space-y-3">
-              <div className="p-4 rounded-2xl bg-[#faf5ff] border border-[#eadcfa] text-[#1e1035] font-semibold">
-                This platform is an independent public opinion research instrument and NOT an official election platform.
+              <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-amber-950 font-medium space-y-1">
+                <span className="font-extrabold text-[#1e1035] block text-sm">
+                  ⚠️ Clear Independence Declaration
+                </span>
+                <p>
+                  Nigeria Decides 2027 is <strong>NOT owned by the Nigerian government and is NOT related to or affiliated with the Independent National Electoral Commission (INEC)</strong>.
+                </p>
               </div>
               <p>
-                1. <strong>Statutory Independence:</strong> Nigeria Decides 2027 is operated independently by civic technologists and social research professionals. It is not owned, endorsed, supervised, or affiliated with the Independent National Electoral Commission (INEC) of Nigeria.
+                1. <strong>A Simple Civic Game:</strong> This platform is only a simple, fun community game to help Nigerians decide who they want to lead them before the main election takes place. It does not replace or conduct official constitutional election balloting.
               </p>
               <p>
-                2. <strong>Opinion vs. Official Elections:</strong> Ballots cast here constitute an expression of verified citizen sentiment and financial backing ahead of 2027. Under no circumstances do these results supersede or substitute constitutional ballots cast in INEC general elections.
+                2. <strong>Equal Candidacy:</strong> All registered presidential candidates are presented neutrally and equally. There is zero partisan affiliation or official government endorsement.
               </p>
               <p>
-                3. <strong>Strict Neutrality:</strong> All registered candidates appear with equal prominence, uniform presentation, and without algorithmic bias or political endorsements.
+                3. <strong>Charity First:</strong> 100% of all financial proceeds contributed through this game go directly to vetted, registered Nigerian orphanages, motherless babies' homes, and youth empowerment NGOs under public audit.
               </p>
             </div>
           )}
@@ -102,16 +107,13 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
           {activeTab === 'methodology' && (
             <div className="space-y-3">
               <p>
-                1. <strong>Financial-Backing Win Determination:</strong> In Nigeria Decides 2027, candidate standings and victory are calculated based on the cumulative financial volume (₦) contributed by verified citizens. The minimum contribution is ₦1,000 per ballot.
+                1. <strong>Backing & Board Standings:</strong> In this decision game, participants back their candidate starting from ₦1,000. Standings on the national board and state leaderboards are ranked by the total volume of financial backing contributed by citizens.
               </p>
               <p>
-                2. <strong>One Citizen, One Verified Ballot:</strong> Each citizen verifies their identity through SMS or Email OTP. Once verified, subsequent attempts to cast a duplicate ballot from that identifier are rejected by cryptographic hash.
+                2. <strong>One Verified Citizen, One Ballot:</strong> Participants authenticate via one-time SMS or Email OTP. Once verified, each contact is hashed with SHA-256 to ensure genuine deduplication without bots.
               </p>
               <p>
-                3. <strong>Tamper-Proof Receipt:</strong> Upon ballot completion, the participant receives a cryptographic reference code (e.g. NG27-LAG-8492-B7F1) enabling independent verification in the public ledger without disclosing their candidate choice.
-              </p>
-              <p>
-                4. <strong>30% Charitable Stewardship:</strong> 30% of all contribution proceeds are held in escrow and disbursed directly to CAC-registered orphanages, motherless babies homes, and youth organizations.
+                3. <strong>Anonymous Cryptographic Receipt:</strong> You receive an instant verification reference code (e.g. NG27-LAG-8492-B7F1). Your candidate choice remains secret while letting you verify your participation anytime in the dashboard.
               </p>
             </div>
           )}
@@ -119,27 +121,27 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
           {activeTab === 'privacy' && (
             <div className="space-y-3">
               <p>
-                1. <strong>Nigeria Data Protection Regulation (NDPR) Compliance:</strong> We adhere strictly to NDPR mandates. No personal identification data (phone, email) is stored in plaintext.
+                1. <strong>Strict Data Privacy:</strong> Your phone number or email is one-way hashed using SHA-256 with cryptographic salt. Plaintext contact data is never stored, sold, or shared with political candidates or third parties.
               </p>
               <p>
-                2. <strong>One-Way Hashing:</strong> Identifiers are hashed using SHA-256 with cryptographic salt. We do not sell, rent, or share voter data with political campaigns or third parties.
-              </p>
-              <p>
-                3. <strong>Data Minimization:</strong> We only collect information strictly required to prevent automated bot manipulation and enforce deduplication.
+                2. <strong>Ballot Secrecy:</strong> Your specific candidate choice is strictly confidential to protect your privacy and democratic freedom of expression.
               </p>
             </div>
           )}
 
           {activeTab === 'terms' && (
             <div className="space-y-3">
+              <div className="p-4 rounded-2xl bg-purple-50/80 border border-purple-200 text-[#1e1035] space-y-1">
+                <span className="font-extrabold text-[#8b2fc9] block flex items-center gap-1.5">
+                  <Heart className="w-4 h-4 fill-pink-500 text-pink-500" />
+                  <span>100% NGO & Charity Allocation Guarantee</span>
+                </span>
+                <p className="text-[#55456e]">
+                  Every single Naira raised through this game is channeled directly into verified Nigerian charitable organizations, orphanages, and grassroots youth NGOs.
+                </p>
+              </div>
               <p>
-                1. <strong>Eligibility:</strong> Open to Nigerian citizens of voting age (18 years and older).
-              </p>
-              <p>
-                2. <strong>Anti-Manipulation:</strong> The platform employs rate-limiting, IP deduplication, and anomaly detection. Automated scripts, bots, or fraudulent transactions are permanently purged from the tally.
-              </p>
-              <p>
-                3. <strong>Transparency:</strong> All charitable disbursements are publicly auditable and verified by Apex Africa Assurance LLP.
+                Disbursements are tracked with full public audit trails, CAC registration numbers, and downloadable CSV ledgers so every citizen can inspect the real-world impact.
               </p>
             </div>
           )}
@@ -148,9 +150,9 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
         <div className="pt-4 border-t border-[#f0e4fc] flex justify-end">
           <button
             onClick={onClose}
-            className="px-6 py-2.5 rounded-full bg-[#1e1035] hover:bg-slate-800 text-white text-xs font-semibold cursor-pointer"
+            className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white text-xs font-black uppercase tracking-wider cursor-pointer font-heading"
           >
-            Acknowledge & Close
+            Got it, Let's Play!
           </button>
         </div>
 

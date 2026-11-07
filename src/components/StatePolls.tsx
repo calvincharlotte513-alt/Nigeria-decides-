@@ -51,7 +51,7 @@ export const StatePolls: React.FC<StatePollsProps> = ({
   }).sort((a, b) => b.amountNgn - a.amountNgn) : [];
 
   return (
-    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 bg-[#faf7fd]">
+    <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
       
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#ebdffa]">
@@ -62,7 +62,7 @@ export const StatePolls: React.FC<StatePollsProps> = ({
             <span className="text-[#6b5887]">36 States & FCT Registry</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] tracking-tight font-heading">
-            State-by-State Pre-Election Opinion
+            36 States & FCT Civic Map 🗺️
           </h2>
           <p className="text-sm text-[#6b5887] mt-1">
             Explore citizen participation, leading political leanings, and pressing civic issues in each state.

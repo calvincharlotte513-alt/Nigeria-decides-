@@ -522,7 +522,7 @@ async function startServer() {
   app.get('/api/health', (req: Request, res: Response) => {
     res.json({
       status: 'operational',
-      platform: 'Nigeria Decides 2027 Sovereign Civic Opinion Engine',
+      platform: 'Nigeria Decides 2027: The People’s Choice Civic Decision Game',
       isOfficialElection: false,
       timestamp: new Date().toISOString()
     });
@@ -541,13 +541,13 @@ async function startServer() {
       totalCandidates: CANDIDATES.length,
       totalPoolAmountNgn,
       currentPollLeader: sortedCandidates[0],
-      totalCharityProceedsNgn: TOTAL_CHARITY_PROCEEDS_NGN,
+      totalCharityProceedsNgn: totalPoolAmountNgn, // 100% of proceeds go to charities & NGOs
       totalCharityDistributedNgn: TOTAL_CHARITY_DISTRIBUTED_NGN,
       undistributedFundsNgn: TOTAL_CHARITY_PROCEEDS_NGN - TOTAL_CHARITY_DISTRIBUTED_NGN,
       lastUpdated: new Date().toISOString(),
       electionTargetDate: '2027-02-27T08:00:00Z',
       isOfficialElection: false,
-      disclaimer: 'This is an independent pre-election public opinion platform. Candidate standings and victory are determined by total financial support contributed (minimum ₦1,000 per ballot).'
+      disclaimer: 'Nigeria Decides 2027 is a 100% independent civic decision game. It is not owned by the Nigerian government and is not related to INEC. It is a playful community game to help Nigerians decide their leader before the main election, and 100% of proceeds go directly to charity and NGOs.'
     });
   });
 
@@ -838,7 +838,7 @@ async function startServer() {
     stateData.leadingCandidateId = topStateCand;
 
     // Allocate 30% of contribution to verified Nigerian charitable partners
-    TOTAL_CHARITY_PROCEEDS_NGN += Math.round(amountNum * 0.30);
+    TOTAL_CHARITY_PROCEEDS_NGN += amountNum; // 100% of proceeds go to charities and NGOs
 
     // Clean up OTP store
     OTP_STORE.delete(cleanIdentifier);
