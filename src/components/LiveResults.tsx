@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Candidate, StatePollData } from '../types';
+import { formatNgn } from '../utils/format';
 import {
   BarChart,
   Bar,
@@ -82,7 +83,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
     const totalZoneAmt = zoneStates.reduce((sum, s) => sum + (s.totalAmountNgn || 0), 0);
     const totalZoneVotes = zoneStates.reduce((sum, s) => sum + (s.participants || 0), 0);
     acc[zone] = {
-      totalAmount: totalZoneAmt > 0 ? `₦${(totalZoneAmt / 1_000_000).toFixed(1)}M` : '₦0.00',
+      totalAmount: formatNgn(totalZoneAmt),
       leader: totalZoneVotes > 0 ? 'Voting Active' : 'Awaiting First Ballot'
     };
     return acc;
@@ -181,7 +182,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
                 <div className="text-right">
                   <span className="text-[11px] text-[#8c7da3] uppercase font-mono block">National Pool</span>
                   <span className="text-sm font-mono font-black text-[#8b2fc9]">
-                    ₦{(totalPoolAmountNgn / 1000000).toFixed(1)}M
+                    {formatNgn(totalPoolAmountNgn)}
                   </span>
                 </div>
               </div>
@@ -406,7 +407,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
                     <span className="font-mono text-[10px] text-[#8c7da3]">{s.stateCode}</span>
                   </div>
                   <div className="text-sm font-extrabold text-[#8b2fc9] font-mono">
-                    ₦{(s.totalAmountNgn / 1000000).toFixed(2)}M
+                    {formatNgn(s.totalAmountNgn)}
                   </div>
                   <div className="text-[11px] text-[#6b5887] truncate">
                     {s.participants.toLocaleString()} voters

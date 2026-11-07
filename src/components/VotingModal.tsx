@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Candidate, SupportedLanguage } from '../types';
+import { formatNgn } from '../utils/format';
 import confetti from 'canvas-confetti';
 import {
   X,
@@ -587,7 +588,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
                         </p>
                         <div className="mt-1.5 flex items-center gap-1.5 text-[11px]">
                           <span className="font-semibold text-[#8b2fc9] font-mono">
-                            ₦{(cand.totalAmountNgn / 1000000).toFixed(1)}M Backed
+                            {formatNgn(cand.totalAmountNgn)} Backed
                           </span>
                           <span className="text-[#d8c5f5]">·</span>
                           <span className="text-[#8c7da3]">{cand.votes.toLocaleString()} voters</span>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PollStats, SupportedLanguage, Candidate } from '../types';
+import { formatNgn } from '../utils/format';
 import {
   ArrowRight,
   Clock,
@@ -266,7 +267,7 @@ export const Hero: React.FC<HeroProps> = ({
                         {leader.name}
                       </div>
                       <div className="text-[11px] font-mono font-bold text-[#8b2fc9]">
-                        ₦{(leader.totalAmountNgn / 1000000).toFixed(1)}M Backed
+                        {leader.totalAmountNgn > 0 ? `${formatNgn(leader.totalAmountNgn)} Backed` : '0 Votes Backed'}
                       </div>
                     </div>
                   </div>

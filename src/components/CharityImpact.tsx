@@ -85,8 +85,11 @@ export const CharityImpact: React.FC<CharityImpactProps> = ({
 
             <button
               onClick={() => {
-                const csvData = 'data:text/csv;charset=utf-8,Charity_Organisation,CAC_Reg_Number,State,Allocated_NGN,Disbursed_NGN,Audit_Date,Auditor\nLittle Saints Orphanage,CAC/IT/NO:8492,Lagos,4500000,4500000,2026-10-18,ApexAfrica\nCompassionate Orphanage Home,CAC/IT/NO:12480,Abuja/Lagos,3200000,3200000,2026-10-25,ApexAfrica\nCitadel Grace Foundation,CAC/IT/NO:9341,Rivers,2800000,2800000,2026-11-01,ApexAfrica\nHope Childrens Home,CAC/IT/NO:11029,Enugu,2100000,2100000,2026-10-30,ApexAfrica\nKano Youth Care Initiative,CAC/IT/NO:14755,Kano,2900000,2200000,2026-11-03,ApexAfrica';
-                const encodedUri = encodeURI(csvData);
+                const rows = [
+                  'Charity_Organisation,CAC_Reg_Number,State,Allocated_NGN,Disbursed_NGN,Status',
+                  ...charities.map(c => `"${c.name}","${c.cacNumber}","${c.state}",${c.allocatedAmountNgn},${c.disbursedAmountNgn},"${c.lastDisbursementDate}"`)
+                ].join('\n');
+                const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + rows);
                 const link = document.createElement('a');
                 link.setAttribute('href', encodedUri);
                 link.setAttribute('download', 'Nigeria_Decides_2027_Charity_Audit.csv');
@@ -123,7 +126,7 @@ export const CharityImpact: React.FC<CharityImpactProps> = ({
                 ₦{totalDistributedNgn.toLocaleString()}
               </span>
               <span className="text-[11px] text-[#6b5887] block mt-1">
-                80.2% Payout Ratio to Date
+                {totalProceedsNgn > 0 ? `${((totalDistributedNgn / totalProceedsNgn) * 100).toFixed(1)}% Payout Ratio` : '100% Escrow Reserve'}
               </span>
             </div>
 

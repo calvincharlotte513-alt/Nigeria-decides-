@@ -248,8 +248,8 @@ export default function App() {
             <div>
               <CharityImpact
                 charities={charities}
-                totalProceedsNgn={stats?.totalPoolAmountNgn || 225000000}
-                totalDistributedNgn={stats?.totalCharityDistributedNgn || 14800000}
+                totalProceedsNgn={stats?.totalPoolAmountNgn || 0}
+                totalDistributedNgn={stats?.totalCharityDistributedNgn || 0}
                 currentLang={currentLang}
               />
             </div>
@@ -318,8 +318,8 @@ export default function App() {
         {activeTab === 'charity' && (
           <CharityImpact
             charities={charities}
-            totalProceedsNgn={stats?.totalPoolAmountNgn || 225000000}
-            totalDistributedNgn={stats?.totalCharityDistributedNgn || 14800000}
+            totalProceedsNgn={stats?.totalPoolAmountNgn || 0}
+            totalDistributedNgn={stats?.totalCharityDistributedNgn || 0}
             currentLang={currentLang}
           />
         )}
@@ -445,8 +445,8 @@ export default function App() {
         isOpen={isLeaderPopupOpen}
         onClose={() => setIsLeaderPopupOpen(false)}
         leader={pollLeader}
-        totalPoolAmountNgn={stats?.totalPoolAmountNgn || 225000000}
-        totalVerifiedParticipants={stats?.totalVerifiedParticipants || 149800}
+        totalPoolAmountNgn={stats?.totalPoolAmountNgn || 0}
+        totalVerifiedParticipants={stats?.totalVerifiedParticipants || 0}
         onCastVote={() => setIsVoteModalOpen(true)}
         onExploreResults={() => {
           setActiveTab('results');

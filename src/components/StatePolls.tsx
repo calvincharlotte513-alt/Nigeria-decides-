@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StatePollData, Candidate } from '../types';
+import { formatNgn } from '../utils/format';
 import { NigeriaMap } from './NigeriaMap';
 import {
   Vote,
@@ -118,7 +119,7 @@ export const StatePolls: React.FC<StatePollsProps> = ({
                 <div className="text-right">
                   <span className="text-[10px] text-[#8c7da3] uppercase font-mono block">Financial Volume</span>
                   <span className="text-lg font-mono font-black text-[#8b2fc9]">
-                    ₦{(selectedState.totalAmountNgn / 1000000).toFixed(2)}M
+                    {formatNgn(selectedState.totalAmountNgn)}
                   </span>
                 </div>
               </div>
@@ -249,7 +250,7 @@ export const StatePolls: React.FC<StatePollsProps> = ({
                 <span className="text-[10px] font-mono text-[#8c7da3]">{s.stateCode}</span>
               </div>
               <span className="font-mono font-bold text-xs text-[#8b2fc9] block">
-                ₦{(s.totalAmountNgn / 1000000).toFixed(1)}M
+                {formatNgn(s.totalAmountNgn)}
               </span>
             </button>
           ))}

@@ -37,7 +37,7 @@ export interface PollStats {
   totalStatesParticipating: number;
   totalCandidates: number;
   totalPoolAmountNgn: number;
-  currentPollLeader?: Candidate;
+  currentPollLeader?: Candidate | null;
   totalCharityProceedsNgn: number;
   totalCharityDistributedNgn: number;
   undistributedFundsNgn: number;

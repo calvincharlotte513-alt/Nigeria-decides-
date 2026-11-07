@@ -4,13 +4,13 @@ export const INITIAL_CANDIDATES: Candidate[] = [
   {
     id: 'obi-peter',
     name: 'Peter Gregory Obi',
-    party: 'Nigeria Democratic Congress (NDC) / Opposition Coalition',
+    party: 'Nigeria Democratic Congress (NDC)',
     partyAcronym: 'NDC',
     partyColor: '#059669',
     age: 65,
-    runningMate: 'Rabiu Musa Kwankwaso (Coalition Partner)',
+    runningMate: 'Musa Mohammed Rabiu Kwankwaso',
     photoUrl: '/images/candidate_obi_1794056621634.jpg',
-    biography: 'Former two-term Governor of Anambra State (2006–2014) and 2023 presidential candidate. Having departed the Labour Party following leadership divisions, Obi stands as the 2027 presidential standard-bearer under the Nigeria Democratic Congress (NDC) within a broad opposition coalition framework.',
+    biography: 'Former two-term Governor of Anambra State (2006–2014) and 2023 presidential candidate. Having departed the Labour Party following leadership division, Obi is the official 2027 presidential standard-bearer of the Nigeria Democratic Congress (NDC) on a unified opposition coalition ticket with Rabiu Kwankwaso.',
     experience: [
       '2027 Presidential Flagbearer, Nigeria Democratic Congress (NDC)',
       'Executive Governor of Anambra State (2006–2014)',
@@ -18,9 +18,9 @@ export const INITIAL_CANDIDATES: Candidate[] = [
       'Member, Nigerian National Economic Management Team'
     ],
     manifestoPillars: [
-      { title: 'Production over Consumption Paradigm', description: 'Transforming northern agricultural belts into agro-industrial processing hubs and drastically curtailing the cost of federal governance.' },
-      { title: 'Fiscal Transparency & Accountability', description: 'Consolidating federal ministries, deploying digital open-ledger procurement, and ending deficit sovereign debt traps.' },
-      { title: 'Human Capital & Tech Digital Economy', description: 'Mandatory 15%+ budgetary investment in primary/tertiary education and STEM tech innovation hubs across all 774 LGAs.' }
+      { title: 'Production over Consumption Matrix', description: 'Transforming northern agricultural belts into agro-industrial processing hubs and drastically curtailing the cost of federal governance.' },
+      { title: 'Fiscal Transparency & Open Audit', description: 'Consolidating federal ministries, deploying digital open-ledger procurement, and ending deficit sovereign debt traps.' },
+      { title: 'Human Capital & Digital Economy Hubs', description: 'Mandatory 15%+ budgetary investment in primary/tertiary education and STEM tech innovation hubs across all 774 LGAs.' }
     ],
     officialWebsite: 'https://peterobi.org',
     verifiedStatus: true,
@@ -30,13 +30,13 @@ export const INITIAL_CANDIDATES: Candidate[] = [
   {
     id: 'tinubu-bola',
     name: 'Asiwaju Bola Ahmed Tinubu',
-    party: 'All Progressives Congress',
+    party: 'All Progressives Congress (APC)',
     partyAcronym: 'APC',
     partyColor: '#0284c7',
     age: 74,
     runningMate: 'Kashim Shettima',
     photoUrl: '/images/candidate_tinubu_1794056620399.jpg',
-    biography: 'Current President of the Federal Republic of Nigeria and former two-term Governor of Lagos State (1999–2007). Longtime leader of the ruling progressive coalition seeking continuity of ongoing national fiscal and structural reforms.',
+    biography: 'Current President of the Federal Republic of Nigeria and former two-term Governor of Lagos State (1999–2007). Standard-bearer of the ruling All Progressives Congress (APC) seeking continuity of ongoing national fiscal, monetary, and structural reforms.',
     experience: [
       'President of the Federal Republic of Nigeria (2023–Present)',
       'Executive Governor of Lagos State (1999–2007)',
@@ -44,7 +44,7 @@ export const INITIAL_CANDIDATES: Candidate[] = [
       'Senior Executive at Mobil Oil Nigeria'
     ],
     manifestoPillars: [
-      { title: 'Economic Modernisation & Tax Harmonisation', description: 'Consolidating national revenue services, establishing single-window port clearance, and expanding credit access to manufacturing MSMEs.' },
+      { title: 'Economic Modernisation & Tax Harmonisation', description: 'Consolidating national revenue services, single-window port clearance, and expanding credit access to manufacturing MSMEs.' },
       { title: 'Strategic Inter-State Infrastructure', description: 'Delivering the Lagos-Calabar Coastal Highway, Sokoto-Badagry expressway corridor, and revitalising the national power grid.' },
       { title: 'Defense Modernisation & Tactical Surveillance', description: 'Deploying intelligence-led aerial surveillance and tactical ground units to safeguard key agricultural belts and borders.' }
     ],
@@ -56,13 +56,13 @@ export const INITIAL_CANDIDATES: Candidate[] = [
   {
     id: 'atiku-abubakar',
     name: 'Alhaji Atiku Abubakar',
-    party: 'Peoples Democratic Party',
-    partyAcronym: 'PDP',
+    party: 'African Democratic Congress (ADC)',
+    partyAcronym: 'ADC',
     partyColor: '#dc2626',
     age: 80,
-    runningMate: 'Ifeanyi Okowa',
+    runningMate: 'Chibuike Rotimi Amaechi',
     photoUrl: '/images/candidate_atiku_1794056621636.jpg',
-    biography: 'Former Vice President of the Federal Republic of Nigeria (1999–2007) and veteran industrialist. Philanthropist and founder of the American University of Nigeria, Yola, championing constitutional restructuring and market deregulation.',
+    biography: 'Former Vice President of the Federal Republic of Nigeria (1999–2007) and veteran industrialist. Philanthropist and founder of the American University of Nigeria, Yola, contesting the 2027 presidency under the African Democratic Congress (ADC) alongside former Rivers Governor and Transport Minister Rotimi Amaechi.',
     experience: [
       'Vice President of Nigeria (1999–2007)',
       'Deputy Director, Nigerian Customs Service',
@@ -80,45 +80,19 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     totalAmountNgn: 0
   },
   {
-    id: 'kwankwaso-rabiu',
-    name: 'Engr. Rabiu Musa Kwankwaso',
-    party: 'New Nigeria Peoples Party (NNPP) / Coalition Partner',
-    partyAcronym: 'NNPP',
-    partyColor: '#ea580c',
-    age: 70,
-    runningMate: 'Isaac Idahosa',
-    photoUrl: '/images/candidate_kwankwaso_1794056621503.jpg',
-    biography: 'Former Governor of Kano State (1999–2003, 2011–2015), former Minister of Defence (2003–2007), and Senator representing Kano Central. Leader of the Kwankwasiyya movement known for mass educational scholarships and grassroots mobilizing.',
-    experience: [
-      'Executive Governor of Kano State (1999–2003, 2011–2015)',
-      'Minister of Defence, Federal Republic of Nigeria (2003–2007)',
-      'Senator for Kano Central Senatorial District (2015–2019)',
-      'Deputy Speaker, House of Representatives (1992–1993)'
-    ],
-    manifestoPillars: [
-      { title: 'Universal Free Education & Mass Scholarships', description: 'Scaling the tested Kano State educational model nationwide with fully funded overseas scholarships and STEM focus.' },
-      { title: 'Artisanal & Technical Youth Employment', description: 'Direct vocational academies and seed micro-capital grants for young graduates in industrial and vocational trades.' },
-      { title: 'Community Policing & Border Defense', description: 'Strengthening community-based defense frameworks and modernizing equipment for the Nigerian armed forces.' }
-    ],
-    officialWebsite: 'https://kwankwasiyya.org',
-    verifiedStatus: true,
-    votes: 0,
-    totalAmountNgn: 0
-  },
-  {
     id: 'sowore-omoyele',
     name: 'Omoyele Sowore',
-    party: 'African Action Congress',
+    party: 'African Action Congress (AAC)',
     partyAcronym: 'AAC',
     partyColor: '#7c3aed',
     age: 55,
     runningMate: 'Haruna Garba Magashi',
     photoUrl: '/images/candidate_sowore_1794057491616.jpg',
-    biography: 'Human rights activist, investigative journalist, and founder of Sahara Reporters. Leader of the #RevolutionNow movement advocating for working-class representation and radical systemic transformation in Nigerian governance.',
+    biography: 'Human rights activist, investigative journalist, and founder of Sahara Reporters. Leader of the #RevolutionNow movement advocating for working-class representation, living minimum wages, and radical systemic transformation in Nigerian governance.',
     experience: [
       'Founder and Publisher, Sahara Reporters',
       'President, University of Lagos Student Union Government (1992–1994)',
-      'Presidential Candidate, AAC (2019, 2023)',
+      'Presidential Candidate, AAC (2019, 2023, 2027)',
       'International Civic Rights Advocate'
     ],
     manifestoPillars: [
@@ -132,24 +106,125 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     totalAmountNgn: 0
   },
   {
-    id: 'undecided-reform',
-    name: 'Prof. Christopher Imumolen & Youth Coalition',
-    party: 'Accord / Independent Youth Reform Coalition',
-    partyAcronym: 'A/ADC',
-    partyColor: '#d97706',
-    age: 44,
-    runningMate: 'Balarabe Rufai',
+    id: 'makinde-seyi',
+    name: 'Engr. Oluseyi Abiodun Makinde',
+    party: 'Allied Peoples Movement (APM)',
+    partyAcronym: 'APM',
+    partyColor: '#ea580c',
+    age: 59,
+    runningMate: 'Musa Lawal Daura',
     photoUrl: '/images/candidate_reform_1794057719896.jpg',
-    biography: 'Academic, industrial tech entrepreneur, and youth empowerment advocate. Representing independent progressive reform, educational tech digitization, and technocratic public administration for the next generation.',
+    biography: 'Two-term Executive Governor of Oyo State, electrical engineer, and energy entrepreneur. Contesting the 2027 presidency on the Allied Peoples Movement (APM) ticket with northern running mate Musa Lawal Daura, championing sub-national autonomy and technocratic infrastructure delivery.',
     experience: [
-      'Civic Society Representation',
-      'Technocratic & Policy Think-Tank Consensus',
-      'Youth & Diaspora Innovation Coalition'
+      'Executive Governor of Oyo State (2019–Present)',
+      'Group Managing Director, Makon Group',
+      'Fellow, Nigerian Society of Engineers (FNSE)',
+      'Pioneer of Oyo Agribusiness Industrial Hubs'
     ],
     manifestoPillars: [
-      { title: 'Digital Governance & Electoral Integrity', description: 'Comprehensive digital public administration, real-time public accounting, and independent judicial funding.' },
-      { title: 'Decentralized Clean Solar Microgrids', description: 'Installing reliable clean power generation across 10,000 rural communities within 36 months.' },
-      { title: 'Open Public Data & Revenue Ledger', description: 'Mandatory real-time public access to all federal contract allocations, petroleum subsidies, and sovereign loans.' }
+      { title: 'Sub-National Power & Energy Autonomy', description: 'Enabling all 36 states to build independent power generation networks and energy distribution grids.' },
+      { title: 'Agribusiness Corridor Development', description: 'Replicating Oyo agro-industrial processing zones nationwide to feed the nation and boost non-oil export earnings.' },
+      { title: 'Technocratic Public Administration', description: 'Reforming civil service compensation and digitizing government procurement for maximum public value.' }
+    ],
+    verifiedStatus: true,
+    votes: 0,
+    totalAmountNgn: 0
+  },
+  {
+    id: 'adebayo-adewole',
+    name: 'Prince Adewole Ebenezer Adebayo',
+    party: 'Social Democratic Party (SDP)',
+    partyAcronym: 'SDP',
+    partyColor: '#2563eb',
+    age: 54,
+    runningMate: 'Dr. Usman Muhammed Bugaje',
+    photoUrl: '/images/candidate_kwankwaso_1794056621503.jpg',
+    biography: 'Constitutional lawyer, international arbitration counsel, and public intellectual. Standard-bearer of the Social Democratic Party (SDP) partnered with distinguished scholar Dr. Usman Bugaje on chapter-two constitutional enforcement and justice.',
+    experience: [
+      '2023 & 2027 Presidential Candidate, SDP',
+      'Principal Partner, Adebayo & Adewole Law Firm',
+      'Chairman, KAFTAN TV',
+      'Member of the Nigerian Bar and New York Bar'
+    ],
+    manifestoPillars: [
+      { title: 'Constitutional Social Justice & Rights', description: 'Strict enforcement of Chapter II Fundamental Objectives ensuring education, housing, and livelihood for every Nigerian.' },
+      { title: 'Judicial Independence & Integrity', description: 'Complete financial autonomy for the judiciary and fast-track anti-graft tribunals.' },
+      { title: 'Civic Peace Architecture', description: 'Addressing root socioeconomic grievances driving national insecurity through community equity.' }
+    ],
+    verifiedStatus: true,
+    votes: 0,
+    totalAmountNgn: 0
+  },
+  {
+    id: 'okereke-sunday',
+    name: 'Sunday Chibuzo Okereke',
+    party: 'Labour Party (LP)',
+    partyAcronym: 'LP',
+    partyColor: '#eab308',
+    age: 52,
+    runningMate: 'Hajja Bintu Konto',
+    photoUrl: '/images/candidate_reform_1794057719896.jpg',
+    biography: 'Official 2027 presidential standard-bearer of the Labour Party (LP) following post-2023 party restructuring, running with Borno-born social development advocate Hajja Bintu Konto on labor rights, social democracy, and industrial manufacturing.',
+    experience: [
+      '2027 Presidential Candidate, Labour Party (LP)',
+      'Organised Labour & Trade Union Representative',
+      'Civic Industrialisation Strategist',
+      'Youth & Workers Welfare Coordinator'
+    ],
+    manifestoPillars: [
+      { title: 'Workers Dignity & Social Security', description: 'Universal pensions, living wage protections, and comprehensive labor health insurance nationwide.' },
+      { title: 'Domestic Manufacturing & Import Substitution', description: 'Targeted zero-tariff incentives on industrial machinery for local textile, pharmaceutical, and automotive factories.' },
+      { title: 'Public Education Revitalisation', description: 'Modernising federal and state university funding to end strike actions and promote vocational research.' }
+    ],
+    verifiedStatus: true,
+    votes: 0,
+    totalAmountNgn: 0
+  },
+  {
+    id: 'onor-sandy',
+    name: 'Prof. Sandy Ojang Onor',
+    party: 'Peoples Democratic Party (PDP)',
+    partyAcronym: 'PDP',
+    partyColor: '#16a34a',
+    age: 61,
+    runningMate: 'Umaru Babangida',
+    photoUrl: '/images/candidate_atiku_1794056621636.jpg',
+    biography: 'Distinguished academic historian, former Senator representing Cross River Central, and former state commissioner. Official 2027 presidential standard-bearer of the Peoples Democratic Party (PDP) paired with Umaru Babangida.',
+    experience: [
+      'Senator of the Federal Republic of Nigeria (2019–2023)',
+      'Professor of History, University of Calabar',
+      'Chairman, Etung Local Government Council',
+      'Commissioner for Environment, Cross River State'
+    ],
+    manifestoPillars: [
+      { title: 'Federalist Governance & Regional Balance', description: 'Restoring authentic fiscal federalism and revitalising local council autonomy across all 36 states.' },
+      { title: 'Education & Academic Research Funding', description: 'Allocating dedicated resource funds to universities, colleges of education, and polytechnics.' },
+      { title: 'Environmental Conservation & Eco-Economy', description: 'Conserving forest reserves and establishing green carbon-credit revenue for frontline states.' }
+    ],
+    verifiedStatus: true,
+    votes: 0,
+    totalAmountNgn: 0
+  },
+  {
+    id: 'duke-donald',
+    name: 'Donald Duke',
+    party: "People's Redemption Party (PRP)",
+    partyAcronym: 'PRP',
+    partyColor: '#b91c1c',
+    age: 65,
+    runningMate: 'Kabiru Rabiu',
+    photoUrl: '/images/candidate_tinubu_1794056620399.jpg',
+    biography: 'Former Executive Governor of Cross River State (1999–2007), widely acclaimed for transforming Calabar into Nigeria’s premier clean tourism destination and pioneering the Tinapa Free Zone. Presidential flagbearer of the People’s Redemption Party (PRP).',
+    experience: [
+      'Executive Governor of Cross River State (1999–2007)',
+      'Pioneer Developer, Tinapa Business Resort & Calabar Carnival',
+      'Member, Federal Economic Advisory Council',
+      '2019 & 2027 Presidential Flagbearer'
+    ],
+    manifestoPillars: [
+      { title: 'Creative Economy & Global Tourism', description: 'Positioning Nigeria as Africa’s creative, hospitality, and cultural tourism capital to earn foreign exchange.' },
+      { title: 'Clean Green Cities & Modern Urban Planning', description: 'Transforming Nigerian municipal centers with sustainable waste management, parks, and light rail transit.' },
+      { title: 'Agricultural Value Addition & Cold-Chain Logistics', description: 'Eliminating 40% post-harvest loss through rural cold-storage networks and farmer price guarantees.' }
     ],
     verifiedStatus: true,
     votes: 0,
@@ -159,9 +234,17 @@ export const INITIAL_CANDIDATES: Candidate[] = [
 
 export const INITIAL_STATS: PollStats = {
   totalVerifiedParticipants: 0,
+  totalStatesParticipating: 37,
+  totalCandidates: 9,
   totalPoolAmountNgn: 0,
   currentPollLeader: null,
-  lastUpdatedTimestamp: new Date().toISOString()
+  totalCharityProceedsNgn: 0,
+  totalCharityDistributedNgn: 0,
+  undistributedFundsNgn: 0,
+  lastUpdated: new Date().toISOString(),
+  electionTargetDate: 'February 2027',
+  isOfficialElection: false,
+  disclaimer: 'Nigeria Decides 2027 is an independent civic game for public opinion and charity fundraising. Not affiliated with INEC or the Nigerian Government.'
 };
 
 export const INITIAL_CHARITIES: CharityBeneficiary[] = [

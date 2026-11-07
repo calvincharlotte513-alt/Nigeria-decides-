@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StatePollData } from '../types';
+import { formatNgn } from '../utils/format';
 
 interface NigeriaMapProps {
   states: StatePollData[];
@@ -212,7 +213,7 @@ export const NigeriaMap: React.FC<NigeriaMapProps> = ({
                     fontFamily="monospace"
                     className="pointer-events-none drop-shadow-sm opacity-95"
                   >
-                    ₦{(data.totalAmountNgn / 1000000).toFixed(1)}M
+                    {formatNgn(data.totalAmountNgn)}
                   </text>
                 )}
               </g>

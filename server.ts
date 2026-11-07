@@ -3,6 +3,7 @@ import { createServer as createViteServer } from 'vite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import crypto from 'crypto';
+import { INITIAL_CANDIDATES, INITIAL_STATES, INITIAL_CHARITIES } from './src/data/initialData';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -83,311 +84,28 @@ interface AuditLog {
   signature: string;
 }
 
-// Database In-Memory State
-const CANDIDATES: Candidate[] = [
-  {
-    id: 'tinubu-bola',
-    name: 'Asiwaju Bola Ahmed Tinubu',
-    party: 'All Progressives Congress',
-    partyAcronym: 'APC',
-    partyColor: '#0ea5e9', // Sky blue
-    age: 74,
-    runningMate: 'Kashim Shettima',
-    photoUrl: '/images/candidate_tinubu_1794056620399.jpg',
-    biography: 'Current President of the Federal Republic of Nigeria and former two-term Governor of Lagos State (1999–2007). Longtime advocate of the progressive political coalition and democratic restoration.',
-    experience: [
-      'President of the Federal Republic of Nigeria (2023–Present)',
-      'Executive Governor of Lagos State (1999–2007)',
-      'Senator for Lagos West Senatorial District (1992–1993)',
-      'Senior Executive at Mobil Oil Nigeria'
-    ],
-    manifestoPillars: [
-      { title: 'Economic Modernisation & Tax Reform', description: 'Streamlining national fiscal policy, enhancing non-oil revenue, and establishing single-window port clearance.' },
-      { title: 'National Infrastructure Expansion', description: 'Completing the Lagos-Calabar Coastal Highway, Sokoto-Badagry expressway, and national grid revitalization.' },
-      { title: 'Security Modernisation & Counter-Terrorism', description: 'Deploying high-tech aerial surveillance, expanding tactical troop readiness, and reinforcing regional stability.' }
-    ],
-    officialWebsite: 'https://statehouse.gov.ng',
-    verifiedStatus: true,
-    votes: 0,
-    totalAmountNgn: 0
-  },
-  {
-    id: 'obi-peter',
-    name: 'Peter Gregory Obi',
-    party: 'Nigeria Democratic Congress (NDC) / Opposition Coalition',
-    partyAcronym: 'NDC',
-    partyColor: '#059669', // Emerald / Teal
-    age: 65,
-    runningMate: 'Rabiu Musa Kwankwaso (Coalition Partner)',
-    photoUrl: '/images/candidate_obi_1794056621634.jpg',
-    biography: 'Former two-term Governor of Anambra State (2006–2014) and 2023 Presidential Candidate. Having exited the Labour Party following leadership divisions, Obi is the 2027 presidential standard-bearer of the Nigeria Democratic Congress (NDC) under a unified opposition coalition framework.',
-    experience: [
-      '2027 Presidential Candidate, Nigeria Democratic Congress (NDC)',
-      'Executive Governor of Anambra State (2006–2014)',
-      'Former Chairman of Fidelity Bank Plc',
-      'Member, Nigerian Economic Management Team',
-      'Chairman, South-East Governors Forum'
-    ],
-    manifestoPillars: [
-      { title: 'Consumption to Production Transition', description: 'Transforming Nigeria into an agro-industrial powerhouse with targeted investments in the agricultural belt.' },
-      { title: 'Fiscal Discipline & Anti-Corruption', description: 'Eliminating cost of governance, consolidating federal ministries, and introducing transparent digital budget tracking.' },
-      { title: 'Human Capital & Tech Education', description: 'Dedicating over 15% of national budget to primary/tertiary education and youth digital skill hubs across all 774 LGAs.' }
-    ],
-    officialWebsite: 'https://peterobi.org',
-    verifiedStatus: true,
-    votes: 0,
-    totalAmountNgn: 0
-  },
-  {
-    id: 'atiku-abubakar',
-    name: 'Alhaji Atiku Abubakar',
-    party: 'Peoples Democratic Party',
-    partyAcronym: 'PDP',
-    partyColor: '#ef4444', // Red
-    age: 80,
-    runningMate: 'Ifeanyi Okowa',
-    photoUrl: '/images/candidate_atiku_1794056621636.jpg',
-    biography: 'Former Vice President of the Federal Republic of Nigeria (1999–2007) and veteran industrialist. Philanthropist and founder of the American University of Nigeria, Yola.',
-    experience: [
-      'Vice President of Nigeria (1999–2007)',
-      'Deputy Director, Nigerian Customs Service',
-      'Elected Governor of Adamawa State (1998)',
-      'Founder, American University of Nigeria (AUN)'
-    ],
-    manifestoPillars: [
-      { title: 'Devolution of Powers & Restructuring', description: 'Reallocating constitutional responsibilities to state governments to unlock regional competitive advantages.' },
-      { title: 'Private-Sector Driven Industrial Growth', description: 'Unlocking $25B in annual diaspora and foreign direct investment through aggressive market deregulation.' },
-      { title: 'National Unity & Social Cohesion', description: 'Enforcing meritocratic civil service appointments and broad-based regional inclusivity across government boards.' }
-    ],
-    officialWebsite: 'https://atiku.org',
-    verifiedStatus: true,
-    votes: 0,
-    totalAmountNgn: 0
-  },
-  {
-    id: 'kwankwaso-rabiu',
-    name: 'Engr. Rabiu Musa Kwankwaso',
-    party: 'New Nigeria Peoples Party (NNPP) / Coalition Partner',
-    partyAcronym: 'NNPP',
-    partyColor: '#f97316', // Orange
-    age: 70,
-    runningMate: 'Isaac Idahosa',
-    photoUrl: '/images/candidate_kwankwaso_1794056621503.jpg',
-    biography: 'Former Governor of Kano State (1999–2003, 2011–2015), former Minister of Defence (2003–2007), and Senator representing Kano Central. Leader of the Kwankwasiyya political movement.',
-    experience: [
-      'Executive Governor of Kano State (1999–2003, 2011–2015)',
-      'Minister of Defence, Federal Republic of Nigeria (2003–2007)',
-      'Senator for Kano Central Senatorial District (2015–2019)',
-      'Deputy Speaker, House of Representatives (1992–1993)'
-    ],
-    manifestoPillars: [
-      { title: 'Free Universal Education & Scholarships', description: 'Replicating Kano state model nationwide with fully funded overseas scholarships and STEM focus.' },
-      { title: 'Civil Service & Youth Technical Employment', description: 'Direct vocational training academies and micro-capital grants for young graduates in artisanal industries.' },
-      { title: 'Defence Reorganization & Border Security', description: 'Strengthening community policing frameworks and modernizing equipment for the Nigerian armed forces.' }
-    ],
-    officialWebsite: 'https://kwankwasiyya.org',
-    verifiedStatus: true,
-    votes: 0,
-    totalAmountNgn: 0
-  },
-  {
-    id: 'sowore-omoyele',
-    name: 'Omoyele Sowore',
-    party: 'African Action Congress',
-    partyAcronym: 'AAC',
-    partyColor: '#8b5cf6', // Violet
-    age: 55,
-    runningMate: 'Haruna Garba Magashi',
-    photoUrl: '/images/candidate_sowore_1794057491616.jpg',
-    biography: 'Human rights activist, investigative journalist, and founder of Sahara Reporters. Leader of the #RevolutionNow movement advocating for radical systemic transformation in Nigerian governance.',
-    experience: [
-      'Founder and Publisher, Sahara Reporters',
-      'President, University of Lagos Student Union Government (1992–1994)',
-      'Presidential Candidate, AAC (2019, 2023)',
-      'International Civic Rights Advocate'
-    ],
-    manifestoPillars: [
-      { title: 'Radical Anti-Corruption & Wealth Recovery', description: 'Immediate repatriation of looted public funds, cancellation of sovereign debt conditionalities, and public sector salary equality.' },
-      { title: 'Living Minimum Wage (₦250k+)', description: 'Indexing national minimum wage to realistic cost-of-living metrics and inflation rates for working families.' },
-      { title: 'Universal Healthcare & Social Housing', description: 'Building state-funded housing blocks across all major industrial centres and free primary healthcare coverage.' }
-    ],
-    officialWebsite: 'https://aacparty.org',
-    verifiedStatus: true,
-    votes: 0,
-    totalAmountNgn: 0
-  },
-  {
-    id: 'undecided-reform',
-    name: 'Prof. Christopher Imumolen & Youth Coalition',
-    party: 'Accord / Independent Youth Reform',
-    partyAcronym: 'A/ADC',
-    partyColor: '#eab308', // Amber
-    age: 44,
-    runningMate: 'Balarabe Rufai',
-    photoUrl: '/images/candidate_reform_1794057719896.jpg',
-    biography: 'Academic, industrial tech entrepreneur, and youth empowerment advocate. Representing independent progressive reform, educational tech digitization, and technocratic public administration.',
-    experience: [
-      'Civic Society Representation',
-      'Technocratic & Policy Think-Tank Consensus',
-      'Youth & Diaspora Innovation Coalition'
-    ],
-    manifestoPillars: [
-      { title: 'Constitutional Modernisation', description: 'Digital governance adoption, electoral transparency reform, and independent judicial funding.' },
-      { title: 'Green Energy & Solar Microgrids', description: 'Decentralized clean power generation across 10,000 rural communities within 36 months.' },
-      { title: 'Open Public Data Access', description: 'Mandatory real-time public accounting of all government contract awards and oil revenues.' }
-    ],
-    verifiedStatus: true,
-    votes: 0,
-    totalAmountNgn: 0
-  }
-];
-
-// 36 States + FCT setup
-const NIGERIAN_STATES = [
-  { code: 'AB', name: 'Abia', zone: 'South East', issue: 'Commercial Infrastructure & Aba Road Corridors' },
-  { code: 'AD', name: 'Adamawa', zone: 'North East', issue: 'Border Trade & Agricultural Irrigation' },
-  { code: 'AK', name: 'Akwa Ibom', zone: 'South South', issue: 'Deep Sea Port & Industrial Employment' },
-  { code: 'AN', name: 'Anambra', zone: 'South East', issue: 'Industrial Parks & Security Normalisation' },
-  { code: 'BA', name: 'Bauchi', zone: 'North East', issue: 'Primary Healthcare & Pastoral Support' },
-  { code: 'BY', name: 'Bayelsa', zone: 'South South', issue: 'Environmental Remediation & Marine Economy' },
-  { code: 'BE', name: 'Benue', zone: 'North Central', issue: 'Food Basket Security & Agro-Processing' },
-  { code: 'BO', name: 'Borno', zone: 'North East', issue: 'Post-Conflict Reconstruction & Chad Basin Commerce' },
-  { code: 'CR', name: 'Cross River', zone: 'South South', issue: 'Eco-Tourism & Cross-Border Logistics' },
-  { code: 'DE', name: 'Delta', zone: 'South South', issue: 'Host Community Development & Gas Flaring Curb' },
-  { code: 'EB', name: 'Ebonyi', zone: 'South East', issue: 'Rice Milling & Mining Safety' },
-  { code: 'ED', name: 'Edo', zone: 'South South', issue: 'Tech Ecosystem & Vocational Apprenticeships' },
-  { code: 'EK', name: 'Ekiti', zone: 'South West', issue: 'Knowledge Economy & Agricultural Tech' },
-  { code: 'EN', name: 'Enugu', zone: 'South East', issue: 'Water Supply & Regional Aviation Hub' },
-  { code: 'GO', name: 'Gombe', zone: 'North East', issue: 'Logistics Center & Dry Port Development' },
-  { code: 'IM', name: 'Imo', zone: 'South East', issue: 'Digital Jobs & Youth Security Restitution' },
-  { code: 'JI', name: 'Jigawa', zone: 'North West', issue: 'Solar Irrigation & Sesame/Wheat Value Chain' },
-  { code: 'KD', name: 'Kaduna', zone: 'North West', issue: 'Railway Modernisation & Educational Hub' },
-  { code: 'KN', name: 'Kano', zone: 'North West', issue: 'Textile Industry Revival & Commercial Transit' },
-  { code: 'KT', name: 'Katsina', zone: 'North West', issue: 'Border Surveillance & Renewable Energy' },
-  { code: 'KE', name: 'Kebbi', zone: 'North West', issue: 'Anchor Borrowers Continuity & Cross-Border Rice Trade' },
-  { code: 'KO', name: 'Kogi', zone: 'North Central', issue: 'Ajaokuta Steel Activation & Confluence Tourism' },
-  { code: 'KW', name: 'Kwara', zone: 'North Central', issue: 'Agro-Allied Cargo Terminal & Light Manufacturing' },
-  { code: 'LA', name: 'Lagos', zone: 'South West', issue: 'Mass Transit Multimodal & Digital Creative Economy' },
-  { code: 'NA', name: 'Nasarawa', zone: 'North Central', issue: 'Solid Mineral Extraction & Abuja Corridor Living' },
-  { code: 'NI', name: 'Niger', zone: 'North Central', issue: 'Hydroelectric Host Compensation & Farmland Security' },
-  { code: 'OG', name: 'Ogun', zone: 'South West', issue: 'Industrial Zone Infrastructure & Road Interlinks' },
-  { code: 'ON', name: 'Ondo', zone: 'South West', issue: 'Bitumen Exploitation & Coastal Port Connectivity' },
-  { code: 'OS', name: 'Osun', zone: 'South West', issue: 'Mining Formalisation & Cultural Tourism' },
-  { code: 'OY', name: 'Oyo', zone: 'South West', issue: 'Agribusiness Hub & Ibadan Circular Belt' },
-  { code: 'PL', name: 'Plateau', zone: 'North Central', issue: 'Peace Architecture & Temperate Horticulture' },
-  { code: 'RI', name: 'Rivers', zone: 'South South', issue: 'Hydrocarbon Transition & Seaport Efficiency' },
-  { code: 'SO', name: 'Sokoto', zone: 'North West', issue: 'Desertification Buffer & Cement Manufacturing' },
-  { code: 'TA', name: 'Taraba', zone: 'North East', issue: 'Mambilla Hydro Project & Tea/Coffee Farming' },
-  { code: 'YO', name: 'Yobe', zone: 'North East', issue: 'Gum Arabic Processing & Nomadic Education' },
-  { code: 'ZA', name: 'Zamfara', zone: 'North West', issue: 'Artisanal Gold Regulation & Rural Peace Enforcement' },
-  { code: 'FC', name: 'Federal Capital Territory (Abuja)', zone: 'North Central', issue: 'Satellite Town Infrastructure & Civic Inclusivity' }
-] as const;
+// Database In-Memory State initialized from official 2027 verified candidate list
+const CANDIDATES: Candidate[] = JSON.parse(JSON.stringify(INITIAL_CANDIDATES));
 
 // Real dynamic in-memory state polling data initialized clean
 const STATE_POLL_MAP = new Map<string, StatePollData>();
 
-NIGERIAN_STATES.forEach((s) => {
-  STATE_POLL_MAP.set(s.code, {
-    stateCode: s.code,
-    stateName: s.name,
+INITIAL_STATES.forEach((s) => {
+  STATE_POLL_MAP.set(s.stateCode, {
+    stateCode: s.stateCode,
+    stateName: s.stateName,
     zone: s.zone,
     participants: 0,
     totalAmountNgn: 0,
     candidateVotes: {},
     candidateAmounts: {},
     leadingCandidateId: '',
-    topCivicIssue: s.issue
+    topCivicIssue: s.topCivicIssue
   });
 });
 
-// Verified Charities & Orphanages
-const CHARITIES: CharityBeneficiary[] = [
-  {
-    id: 'charity-1',
-    name: 'Little Saints Orphanage',
-    category: 'Orphanage',
-    location: 'Palmgrove, Lagos State',
-    state: 'Lagos',
-    cacNumber: 'CAC/IT/NO: 8492',
-    verifiedDate: '2025-01-15',
-    verificationBadge: true,
-    mission: 'Providing shelter, nutritional rehabilitation, university scholarships, and adoption services for orphaned and abandoned children across Southwestern Nigeria.',
-    currentProject: 'Expansion of Boys Haven STEM Computer Laboratory and Solar Backup System.',
-    beneficiariesCount: 185,
-    allocatedAmountNgn: 4500000,
-    disbursedAmountNgn: 4500000,
-    lastDisbursementDate: '2026-10-18',
-    proofDocumentUrl: 'https://littlesaintsorphanage.org/transparency'
-  },
-  {
-    id: 'charity-2',
-    name: 'Compassionate Orphanage Home',
-    category: 'Motherless Babies Home',
-    location: 'Alimosho, Lagos & Gwarinpa, Abuja',
-    state: 'FCT / Lagos',
-    cacNumber: 'CAC/IT/NO: 12480',
-    verifiedDate: '2025-03-22',
-    verificationBadge: true,
-    mission: 'Rescuing abandoned neonates, offering specialized infant medical care, and permanent family placement under vetted social welfare oversight.',
-    currentProject: 'Infant Neonatal Incubator units and certified pediatric nurse retainership.',
-    beneficiariesCount: 92,
-    allocatedAmountNgn: 3200000,
-    disbursedAmountNgn: 3200000,
-    lastDisbursementDate: '2026-10-25',
-    proofDocumentUrl: 'https://compassionatehome.org.ng/audit'
-  },
-  {
-    id: 'charity-3',
-    name: 'Citadel Grace Foundation & Motherless Babies',
-    category: 'Motherless Babies Home',
-    location: 'Port Harcourt, Rivers State',
-    state: 'Rivers',
-    cacNumber: 'CAC/IT/NO: 9341',
-    verifiedDate: '2025-05-10',
-    verificationBadge: true,
-    mission: 'Caring for motherless toddlers in the Niger Delta and funding vocational skills training for young underprivileged girls.',
-    currentProject: 'Clean Potable Water Borehole & Water Treatment Facility for 120 residential children.',
-    beneficiariesCount: 110,
-    allocatedAmountNgn: 2800000,
-    disbursedAmountNgn: 2800000,
-    lastDisbursementDate: '2026-11-01',
-    proofDocumentUrl: 'https://citadelgrace.org/reports'
-  },
-  {
-    id: 'charity-4',
-    name: 'Hope Children’s Home & Family Support',
-    category: 'Orphanage',
-    location: 'Independence Layout, Enugu',
-    state: 'Enugu',
-    cacNumber: 'CAC/IT/NO: 11029',
-    verifiedDate: '2025-06-18',
-    verificationBadge: true,
-    mission: 'Holistic rehabilitation, secondary education sponsorship, and nutritional care for vulnerable children across the South-East.',
-    currentProject: 'Secondary education scholarship fund and dormitory solar inverter installation.',
-    beneficiariesCount: 74,
-    allocatedAmountNgn: 2100000,
-    disbursedAmountNgn: 2100000,
-    lastDisbursementDate: '2026-10-30',
-    proofDocumentUrl: 'https://hopechildrenenugu.org/transparency'
-  },
-  {
-    id: 'charity-5',
-    name: 'Kano Youth Civic & Orphan Care Initiative',
-    category: 'Youth Empowerment',
-    location: 'Nasarawa GRA, Kano State',
-    state: 'Kano',
-    cacNumber: 'CAC/IT/NO: 14755',
-    verifiedDate: '2025-08-04',
-    verificationBadge: true,
-    mission: 'Providing remedial literacy, digital coding training, and vocational tailoring machinery to adolescent orphans.',
-    currentProject: 'Empowerment of 50 adolescent orphans with industrial sewing machines and tech literacy kits.',
-    beneficiariesCount: 140,
-    allocatedAmountNgn: 2900000,
-    disbursedAmountNgn: 2200000,
-    lastDisbursementDate: '2026-11-03',
-    proofDocumentUrl: 'https://kanoyouthcare.org/audit'
-  }
-];
+// Verified Charities & Orphanages initialized from verified registry
+const CHARITIES: CharityBeneficiary[] = JSON.parse(JSON.stringify(INITIAL_CHARITIES));
 
 // Audit logs
 const AUDIT_LOGS: AuditLog[] = [
@@ -396,26 +114,26 @@ const AUDIT_LOGS: AuditLog[] = [
     action: 'POLL_INITIALIZATION',
     actor: 'System Integrity Bot',
     role: 'System',
-    details: 'Pre-election public opinion platform initialized with Nigerian 36 states + FCT geo-boundaries.',
-    timestamp: '2026-10-01T08:00:00Z',
+    details: 'Pre-election public opinion game platform initialized with all 36 Nigerian states + FCT geo-boundaries.',
+    timestamp: '2026-11-01T08:00:00Z',
     signature: '7e8b91a249c...verified'
   },
   {
     id: 'log-2',
     action: 'CANDIDATE_RECORD_VERIFICATION',
-    actor: 'Dr. Amina Bello',
-    role: 'Lead Polling Auditor',
-    details: 'Verified public records and manifesto summaries for all 6 registered presidential candidate profiles.',
-    timestamp: '2026-10-05T11:30:00Z',
+    actor: 'Lead Integrity Auditor',
+    role: 'Audit Team',
+    details: 'Verified public records, running mates, and manifesto pillars for all 9 registered 2027 presidential candidates.',
+    timestamp: '2026-11-05T11:30:00Z',
     signature: '3f9011bc76e...verified'
   },
   {
     id: 'log-3',
-    action: 'CHARITY_ALLOCATION_DISBURSED',
-    actor: 'Chidiebere Okonkwo',
-    role: 'Charity Compliance Officer',
-    details: 'Disbursed ₦4,500,000 proceeds allocation to Little Saints Orphanage CAC/IT/NO: 8492.',
-    timestamp: '2026-10-18T14:20:00Z',
+    action: 'CHARITY_VAULT_OPENED',
+    actor: 'Charity Escrow Custodian',
+    role: 'Compliance',
+    details: 'Opened public charity escrow vault awaiting inaugural citizen participation rounds.',
+    timestamp: '2026-11-07T10:00:00Z',
     signature: '81a44e590fd...verified'
   },
   {
@@ -424,7 +142,7 @@ const AUDIT_LOGS: AuditLog[] = [
     actor: 'Security Daemon',
     role: 'Security',
     details: 'Enforced SHA-256 identifier salted hash check; zero duplicate submissions permitted per voter record.',
-    timestamp: '2026-11-06T09:15:00Z',
+    timestamp: '2026-11-07T11:15:00Z',
     signature: '50bc91ea280...verified'
   }
 ];
