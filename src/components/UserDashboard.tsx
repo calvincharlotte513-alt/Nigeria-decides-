@@ -43,16 +43,42 @@ export const UserDashboard: React.FC<UserDashboardProps> = ({
 
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/voter/lookup?query=${encodeURIComponent(query.trim())}`);
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMsg(data.message || data.error || 'No verified ballot found.');
-        setIsLoading(false);
-        return;
+      let foundReceipt: any = null;
+      try {
+        const res = await fetch(`/api/voter/lookup?query=${encodeURIComponent(query.trim())}`);
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const data = await res.json();
+          if (res.ok) {
+            foundReceipt = data;
+          }
+        }
+      } catch {
+        // Fallback to local storage
       }
 
-      setReceipt(data);
+      // If not found from server, search local receipts
+      if (!foundReceipt) {
+        try {
+          const localReceipts = JSON.parse(localStorage.getItem('user_receipts') || '[]');
+          const match = localReceipts.find(
+            (r: any) =>
+              r.referenceCode?.toLowerCase() === query.trim().toLowerCase() ||
+              r.maskedIdentifier?.includes(query.trim())
+          );
+          if (match) {
+            foundReceipt = match;
+          }
+        } catch {
+          // ignore
+        }
+      }
+
+      if (foundReceipt) {
+        setReceipt(foundReceipt);
+      } else {
+        setErrorMsg('No verified ballot found matching that reference code or phone number.');
+      }
     } catch {
       setErrorMsg('Failed to connect to verification ledger.');
     } finally {

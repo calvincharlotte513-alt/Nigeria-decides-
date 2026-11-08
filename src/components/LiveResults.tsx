@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Candidate, StatePollData } from '../types';
+import { INITIAL_CANDIDATES, INITIAL_STATES } from '../data/initialData';
 import {
   BarChart,
   Bar,
@@ -39,11 +40,14 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
   const [selectedZone, setSelectedZone] = useState<string>('All');
   const [activeTab, setActiveTab] = useState<'overview' | 'trends' | 'zones'>('overview');
 
-  const totalPoolAmountNgn = candidates.reduce((sum, c) => sum + (c.totalAmountNgn || 0), 0);
-  const totalVotes = candidates.reduce((sum, c) => sum + c.votes, 0);
+  const activeCandidates = candidates && candidates.length > 0 ? candidates : INITIAL_CANDIDATES;
+  const activeStates = states && states.length > 0 ? states : INITIAL_STATES;
+
+  const totalPoolAmountNgn = activeCandidates.reduce((sum, c) => sum + (c.totalAmountNgn || 0), 0);
+  const totalVotes = activeCandidates.reduce((sum, c) => sum + c.votes, 0);
 
   // Compute percentages by TOTAL AMOUNT (as win is calculated based on amount)
-  const chartData = [...candidates].map(c => {
+  const chartData = [...activeCandidates].map(c => {
     const amt = c.totalAmountNgn || 0;
     const pct = totalPoolAmountNgn > 0 ? Number(((amt / totalPoolAmountNgn) * 100).toFixed(1)) : 0;
     return {

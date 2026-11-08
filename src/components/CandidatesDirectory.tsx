@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Candidate } from '../types';
+import { INITIAL_CANDIDATES } from '../data/initialData';
 import { formatNgn } from '../utils/format';
 import {
   Search,
@@ -31,15 +32,18 @@ export const CandidatesDirectory: React.FC<CandidatesDirectoryProps> = ({
   const [compareCand1, setCompareCand1] = useState<string>('tinubu-bola');
   const [compareCand2, setCompareCand2] = useState<string>('obi-peter');
 
-  const filteredCandidates = candidates.filter(
+  // Fallback to INITIAL_CANDIDATES if empty
+  const activeCandidates = candidates && candidates.length > 0 ? candidates : INITIAL_CANDIDATES;
+
+  const filteredCandidates = activeCandidates.filter(
     (c) =>
       c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       c.party.toLowerCase().includes(searchTerm.toLowerCase()) ||
       c.partyAcronym.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const c1 = candidates.find(c => c.id === compareCand1) || candidates[0];
-  const c2 = candidates.find(c => c.id === compareCand2) || candidates[1] || candidates[0];
+  const c1 = activeCandidates.find(c => c.id === compareCand1) || activeCandidates[0];
+  const c2 = activeCandidates.find(c => c.id === compareCand2) || activeCandidates[1] || activeCandidates[0];
 
   return (
     <div className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">

@@ -34,6 +34,8 @@ import {
   HelpCircle
 } from 'lucide-react';
 
+import { INITIAL_CANDIDATES, INITIAL_STATS, INITIAL_STATES, INITIAL_CHARITIES } from './data/initialData';
+
 export default function App() {
   const [currentLang, setCurrentLang] = useState<SupportedLanguage>('en');
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -48,12 +50,24 @@ export default function App() {
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState<'disclaimer' | 'methodology' | 'privacy' | 'terms'>('disclaimer');
 
-  // Core Data
-  const [stats, setStats] = useState<PollStats | null>(null);
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [states, setStates] = useState<StatePollData[]>([]);
-  const [charities, setCharities] = useState<CharityBeneficiary[]>([]);
-  const [_isLoadingInitial, setIsLoadingInitial] = useState(true);
+  // Core Data: initialized immediately with all 18 candidates and baseline data
+  // Guarantees that Vercel static deployments and cold loads never show an empty screen
+  const [stats, setStats] = useState<PollStats | null>(INITIAL_STATS);
+  const [candidates, setCandidates] = useState<Candidate[]>(() => {
+    try {
+      const saved = localStorage.getItem('nd_voted_candidates');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch {
+      // safe fallback
+    }
+    return INITIAL_CANDIDATES;
+  });
+  const [states, setStates] = useState<StatePollData[]>(INITIAL_STATES);
+  const [charities, setCharities] = useState<CharityBeneficiary[]>(INITIAL_CHARITIES);
+  const [_isLoadingInitial, setIsLoadingInitial] = useState(false);
 
   useEffect(() => {
     fetchCoreData();
@@ -61,31 +75,59 @@ export default function App() {
 
   const fetchCoreData = async () => {
     try {
-      const [statsRes, candRes, statesRes, charityRes] = await Promise.all([
+      const [statsRes, candRes, statesRes, charityRes] = await Promise.allSettled([
         fetch('/api/poll/stats'),
         fetch('/api/candidates'),
         fetch('/api/poll/states'),
         fetch('/api/charity/transparency')
       ]);
 
-      if (statsRes.ok) {
-        const s = await statsRes.json();
-        setStats(s);
+      if (candRes.status === 'fulfilled' && candRes.value.ok) {
+        const contentType = candRes.value.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const c = await candRes.value.json();
+          if (Array.isArray(c) && c.length > 0) {
+            setCandidates(c);
+            try {
+              localStorage.setItem('nd_voted_candidates', JSON.stringify(c));
+            } catch {
+              // ignore
+            }
+          }
+        }
       }
-      if (candRes.ok) {
-        const c = await candRes.json();
-        setCandidates(c);
+
+      if (statsRes.status === 'fulfilled' && statsRes.value.ok) {
+        const contentType = statsRes.value.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const s = await statsRes.value.json();
+          if (s && s.totalVerifiedParticipants !== undefined) {
+            setStats(s);
+          }
+        }
       }
-      if (statesRes.ok) {
-        const st = await statesRes.json();
-        setStates(st);
+
+      if (statesRes.status === 'fulfilled' && statesRes.value.ok) {
+        const contentType = statesRes.value.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const st = await statesRes.value.json();
+          if (Array.isArray(st) && st.length > 0) {
+            setStates(st);
+          }
+        }
       }
-      if (charityRes.ok) {
-        const ch = await charityRes.json();
-        setCharities(ch.beneficiaries || []);
+
+      if (charityRes.status === 'fulfilled' && charityRes.value.ok) {
+        const contentType = charityRes.value.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const ch = await charityRes.value.json();
+          if (ch && Array.isArray(ch.beneficiaries)) {
+            setCharities(ch.beneficiaries);
+          }
+        }
       }
     } catch (err) {
-      console.error('Failed to load initial polling data:', err);
+      console.warn('Backend sync note (using baseline data):', err);
     } finally {
       setIsLoadingInitial(false);
     }

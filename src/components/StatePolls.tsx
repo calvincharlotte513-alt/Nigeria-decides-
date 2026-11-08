@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StatePollData, Candidate } from '../types';
+import { INITIAL_CANDIDATES, INITIAL_STATES } from '../data/initialData';
 import { formatNgn } from '../utils/format';
 import { NigeriaMap } from './NigeriaMap';
 import {
@@ -20,15 +21,18 @@ export const StatePolls: React.FC<StatePollsProps> = ({
   candidates,
   onCastVoteForState
 }) => {
+  const activeStates = states && states.length > 0 ? states : INITIAL_STATES;
+  const _activeCandidates = candidates && candidates.length > 0 ? candidates : INITIAL_CANDIDATES;
+
   const [selectedStateCode, setSelectedStateCode] = useState<string>('LA'); // Default to Lagos
   const [searchQuery, setSearchQuery] = useState('');
   const [zoneFilter, setZoneFilter] = useState('All');
 
-  const selectedState = states.find(s => s.stateCode === selectedStateCode) || states[0];
+  const selectedState = activeStates.find(s => s.stateCode === selectedStateCode) || activeStates[0];
 
   const zones = ['All', 'North Central', 'North East', 'North West', 'South East', 'South South', 'South West'];
 
-  const filteredStates = states.filter((s) => {
+  const filteredStates = activeStates.filter((s) => {
     const matchesSearch = s.stateName.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           s.stateCode.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesZone = zoneFilter === 'All' || s.zone === zoneFilter;

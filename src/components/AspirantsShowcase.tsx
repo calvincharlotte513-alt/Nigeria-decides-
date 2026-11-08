@@ -1,5 +1,6 @@
 import React from 'react';
 import { Candidate } from '../types';
+import { INITIAL_CANDIDATES } from '../data/initialData';
 import {
   Vote,
   ShieldCheck,
@@ -46,8 +47,11 @@ export const AspirantsShowcase: React.FC<AspirantsShowcaseProps> = ({
   totalPoolAmountNgn,
   onVoteCandidate
 }) => {
-  // Sort candidates so Asiwaju Bola Ahmed Tinubu is first, followed by Obi, Atiku, Kwankwaso, Sowore, Imumolen
-  const orderedCandidates = [...candidates].sort((a, b) => {
+  // Always ensure all 18 candidates are available even on Vercel static deployments
+  const activeCandidates = candidates && candidates.length > 0 ? candidates : INITIAL_CANDIDATES;
+
+  // Sort candidates so Asiwaju Bola Ahmed Tinubu is first, followed by all 18 aspirants
+  const orderedCandidates = [...activeCandidates].sort((a, b) => {
     const idxA = PRIORITY_ORDER.indexOf(a.id);
     const idxB = PRIORITY_ORDER.indexOf(b.id);
     if (idxA !== -1 && idxB !== -1) return idxA - idxB;
@@ -57,7 +61,7 @@ export const AspirantsShowcase: React.FC<AspirantsShowcaseProps> = ({
   });
 
   // Identify who currently leads nationwide based on total ₦ raised
-  const currentOverallLeader = [...candidates].sort((a, b) => b.totalAmountNgn - a.totalAmountNgn)[0];
+  const currentOverallLeader = [...activeCandidates].sort((a, b) => b.totalAmountNgn - a.totalAmountNgn)[0];
 
   return (
     <section className="relative py-16 sm:py-20 bg-gradient-to-b from-white/95 via-[#faf5ff]/80 to-white/90 border-b border-[#ebdffa]/90 backdrop-blur-md">
