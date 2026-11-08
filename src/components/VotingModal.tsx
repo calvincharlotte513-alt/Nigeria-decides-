@@ -941,7 +941,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
                     className="mt-0.5 w-4 h-4 rounded text-[#8b2fc9] focus:ring-[#8b2fc9]"
                   />
                   <span className="text-xs text-[#6b5887] leading-relaxed">
-                    I confirm that I am a Nigerian citizen of voting age. I acknowledge this is an independent pre-election public opinion poll and not an official INEC election. I understand that standings and winners are determined by total financial backing contributed.
+                    I confirm that I am a Nigerian citizen of voting age. I acknowledge this is an independent civic game not owned by federal government or INEC but owned by Democratic Nigerians, and not an official INEC election. I understand that standings and winners are determined by total financial backing contributed.
                   </span>
                 </label>
               </div>

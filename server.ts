@@ -808,7 +808,7 @@ async function startServer() {
       lastUpdated: new Date().toISOString(),
       electionTargetDate: '2027-02-27T08:00:00Z',
       isOfficialElection: false,
-      disclaimer: 'Nigeria Decides 2027 is a 100% independent civic decision game. It is not owned by the Nigerian government and is not related to INEC. It is a playful community game to help Nigerians decide their leader before the main election, and 100% of proceeds go directly to charity and NGOs.'
+      disclaimer: 'Nigeria Decides 2027 is a 100% independent civic decision game. Not owned by federal government or INEC but owned by Democratic Nigerians. It is a playful community game to help Nigerians decide their choice of candidate before the main election, and 100% of proceeds go directly to charity and NGOs.'
     });
   });
 

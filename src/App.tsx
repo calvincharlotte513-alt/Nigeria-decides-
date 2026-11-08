@@ -235,7 +235,7 @@ export default function App() {
                     </h2>
 
                     <p className="text-xs sm:text-sm text-[#55456e] leading-relaxed">
-                      Verify quickly with your phone or email, boost your candidate on the board starting from ₦1,000, and receive your receipt. Remember: this is a community game not owned by the Nigerian government or INEC — and <strong>100% of all proceeds are donated to verified Nigerian orphanages and grassroots NGOs!</strong>
+                      Verify quickly with your phone or email, boost your candidate on the board starting from ₦1,000, and receive your receipt. Remember: this is a community game not owned by federal government or INEC but owned by Democratic Nigerians — and <strong>100% of all proceeds are donated to verified Nigerian orphanages and grassroots NGOs!</strong>
                     </p>
                   </div>
 
@@ -319,7 +319,7 @@ export default function App() {
           <div className="py-12 max-w-5xl mx-auto px-4 sm:px-6">
             <div className="text-center space-y-4 mb-10">
               <span className="text-xs uppercase font-mono font-bold tracking-wider text-[#8b2fc9] block">
-                🎮 COMMUNITY DECISION GAME · NOT GOVERNMENT / NOT INEC
+                🎮 COMMUNITY DECISION GAME · NOT OWNED BY FEDERAL GOVERNMENT OR INEC BUT OWNED BY DEMOCRATIC NIGERIANS
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-[#1e1035] font-heading">
                 Who's Your Pick for Nigeria's 2027 Leader?
@@ -415,10 +415,10 @@ export default function App() {
                   🏛️
                 </div>
                 <h3 className="text-base font-extrabold text-[#1e1035] font-heading">
-                  2. Not Govt / Not INEC
+                  2. Owned by Democratic Nigerians
                 </h3>
                 <p className="text-xs text-[#6b5887] leading-relaxed">
-                  We are completely independent. This game is NOT owned by the Nigerian government and is NOT related to the Independent National Electoral Commission (INEC). Official election voting happens on election day via INEC.
+                  We are completely independent. This game is NOT owned by federal government or INEC but owned by Democratic Nigerians. Official election voting happens on election day via INEC.
                 </p>
               </div>
 

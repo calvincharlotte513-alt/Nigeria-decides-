@@ -224,7 +224,7 @@ export const LeaderPopupModal: React.FC<LeaderPopupModalProps> = ({
 
           {/* Disclaimer & Purpose Note */}
           <div className="p-3 rounded-2xl bg-amber-50/70 border border-amber-200/60 text-[11px] text-amber-900 leading-relaxed text-center">
-            <strong>Civic Note:</strong> This is a fun community decision game to help Nigerians decide before the main election. <strong>Not owned by Nigerian government or INEC.</strong> 100% of proceeds fund registered Nigerian charities and NGOs.
+            <strong>Civic Note:</strong> This is a fun community decision game to help Nigerians decide before the main election. <strong>Not owned by federal government or INEC but owned by Democratic Nigerians.</strong> 100% of proceeds fund registered Nigerian charities and NGOs.
           </div>
 
           {/* Actions */}

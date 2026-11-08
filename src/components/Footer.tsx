@@ -154,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={onOpenTerms}
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
-                  Not Owned by Govt / INEC Notice
+                  Not Owned by Govt or INEC Notice
                 </button>
               </li>
               <li>
@@ -192,7 +192,7 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-start gap-3">
               <span className="text-xl">⚠️</span>
               <p className="text-[11px] text-[#55456e] leading-relaxed max-w-4xl">
-                <strong>Important Notice:</strong> Nigeria Decides 2027 is a completely independent community simulation game. <strong>It is not owned by the Nigerian government, not affiliated with INEC, and does not conduct official election balloting.</strong> Its purpose is to give Nigerians a fun, playful way to decide their preferred leader before the election, while directing 100% of all generated proceeds to vetted Nigerian charities and grassroots NGOs.
+                <strong>Important Notice:</strong> Nigeria Decides 2027 is a completely independent community simulation game. <strong>Not owned by federal government or INEC but owned by Democratic Nigerians, and does not conduct official election balloting.</strong> Its purpose is to give Nigerians a fun, playful way to decide their choice of candidate before the election, while directing 100% of all generated proceeds to vetted Nigerian charities and grassroots NGOs.
               </p>
             </div>
             <span className="text-[11px] font-mono text-purple-700 font-bold shrink-0">

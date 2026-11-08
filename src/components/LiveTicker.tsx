@@ -10,7 +10,7 @@ export const LiveTicker: React.FC<LiveTickerProps> = ({ candidates = [] }) => {
     { text: '🏆 Peter Obi (NDC) leads with ₦64.8M in crowd backing', color: '#10b981' },
     { text: '❤️ 100% of all proceeds donated to verified Nigerian orphanages', color: '#e040fb' },
     { text: '🎮 149,800+ citizens have participated from all 36 states + FCT', color: '#f59e0b' },
-    { text: '⚡ NOT owned by Nigerian government · NOT INEC · Just a fun civic game!', color: '#8b2fc9' },
+    { text: '⚡ Not owned by federal government or INEC but owned by Democratic Nigerians · 100% Charity!', color: '#8b2fc9' },
     { text: '🇳🇬 Back your candidate from ₦1,000 · Every Naira funds children\u2019s homes', color: '#10b981' },
     { text: '📊 Live board updated in real-time — South East + Lagos showing surge!', color: '#f59e0b' },
     { text: '🌟 New: State-level standings now live for all 36 States & FCT!', color: '#e040fb' },

@@ -52,7 +52,7 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
               activeTab === 'disclaimer' ? 'text-[#8b2fc9] border-b-2 border-[#8b2fc9]' : 'text-[#6b5887] hover:text-[#1e1035]'
             }`}
           >
-            Not Govt / Not INEC Notice
+            Not Owned by Govt or INEC Notice
           </button>
           <button
             onClick={() => setActiveTab('methodology')}
@@ -89,11 +89,11 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
                   ⚠️ Clear Independence Declaration
                 </span>
                 <p>
-                  Nigeria Decides 2027 is <strong>NOT owned by the Nigerian government and is NOT related to or affiliated with the Independent National Electoral Commission (INEC)</strong>.
+                  Nigeria Decides 2027 is <strong>not owned by federal government or INEC but owned by Democratic Nigerians</strong>.
                 </p>
               </div>
               <p>
-                1. <strong>A Simple Civic Game:</strong> This platform is only a simple, fun community game to help Nigerians decide who they want to lead them before the main election takes place. It does not replace or conduct official constitutional election balloting.
+                1. <strong>A Simple Civic Game:</strong> This platform is only a simple, fun community game to help Nigerians express their choice of candidate before the main election takes place. It does not replace or conduct official constitutional election balloting.
               </p>
               <p>
                 2. <strong>Equal Candidacy:</strong> All registered presidential candidates are presented neutrally and equally. There is zero partisan affiliation or official government endorsement.

@@ -474,7 +474,7 @@ export const INITIAL_STATS: PollStats = {
   lastUpdated: new Date().toISOString(),
   electionTargetDate: 'February 2027',
   isOfficialElection: false,
-  disclaimer: 'Nigeria Decides 2027 is an independent civic game for public opinion and charity fundraising. Not affiliated with INEC or the Nigerian Government.'
+  disclaimer: 'Nigeria Decides 2027 is an independent civic game for public opinion and charity fundraising. Not owned by federal government or INEC but owned by Democratic Nigerians.'
 };
 
 export const INITIAL_CHARITIES: CharityBeneficiary[] = [

@@ -81,7 +81,7 @@ export const Hero: React.FC<HeroProps> = ({
               <span>🎮</span>
               <span>THE 2027 CIVIC GAME</span>
             </span>
-            <span className="text-[#8b2fc9] font-bold hidden sm:inline">· Community Pre-Election Simulation ·</span>
+            <span className="text-[#8b2fc9] font-bold hidden sm:inline">· Not owned by federal government or INEC but owned by Democratic Nigerians ·</span>
             <span className="text-emerald-600 font-bold flex items-center gap-1">
               <Heart className="w-3 h-3 fill-emerald-500" />
               <span>100% Proceeds to Charity</span>
@@ -102,9 +102,9 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
               
               <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-[#1e1035] tracking-tight leading-[1.1] sm:leading-[1.05] font-heading">
-                WHO WOULD YOU <br className="hidden sm:inline" />
+                WHO IS YOUR <br className="hidden sm:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] via-[#059669] to-[#047857]">
-                  CHOOSE TO LEAD?
+                  CHOICE OF CANDIDATE?
                 </span><br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb]">
                   PLAY & VOTE!
@@ -113,20 +113,20 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             <p className="text-sm sm:text-lg text-[#55456e] max-w-2xl leading-relaxed mx-auto lg:mx-0 font-medium">
-              A playful, independent community game to help Nigerians decide their leader before the 2027 election. Pick your candidate, power up their position on the board from ₦1,000, and make a massive difference — <strong className="text-[#1e1035] font-extrabold underline decoration-emerald-400 decoration-2">100% of all proceeds go straight to verified Nigerian orphanages and grassroots NGOs!</strong>
+              A playful, independent community game to help Nigerians decide their choice of candidate before the 2027 election. Pick your candidate, power up their position on the board from ₦1,000, and make a massive difference — <strong className="text-[#1e1035] font-extrabold underline decoration-emerald-400 decoration-2">100% of all proceeds go straight to verified Nigerian orphanages and grassroots NGOs!</strong>
             </p>
 
-            {/* Clear "Not Government / Not INEC" Transparency Card */}
+            {/* Clear "Not owned by federal government or INEC but owned by Democratic Nigerians" Transparency Card */}
             <div className="p-3.5 sm:p-4 rounded-2xl sm:rounded-[22px] bg-white/80 backdrop-blur-md border border-[#eadcfa] text-xs text-[#55456e] flex items-start gap-2.5 sm:gap-3 shadow-2xs">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-purple-100 flex items-center justify-center shrink-0 text-sm sm:text-base">
                 💡
               </div>
               <div className="text-left space-y-0.5 min-w-0">
                 <span className="font-extrabold text-[#1e1035] block text-xs sm:text-sm">
-                  100% Independent Citizen Game · Not INEC or Government Owned
+                  100% Independent Citizen Game · Not owned by federal government or INEC but owned by Democratic Nigerians
                 </span>
                 <p className="text-[10px] sm:text-[11px] text-[#6b5887] leading-relaxed">
-                  This platform is a private civic simulation and charity initiative. We are not affiliated with the Nigerian government or INEC. Standings are ranked by total community financial backing, and every single Naira raised is donated to vetted children's homes and community NGOs.
+                  This platform is a private civic simulation and charity initiative. Not owned by federal government or INEC but owned by Democratic Nigerians. Standings are ranked by total community financial backing, and every single Naira raised is donated to vetted children's homes and community NGOs.
                 </p>
               </div>
             </div>

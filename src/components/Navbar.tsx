@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>INDEPENDENT CIVIC GAME</span>
             </span>
             <span className="text-purple-100 text-[10px] sm:text-xs font-medium">
-              <strong className="text-white font-bold">Not owned by Nigerian Government or INEC</strong> · Just a fun, simple game to help Nigerians decide their leader before 2027! 🇳🇬
+              <strong className="text-white font-bold">Not owned by federal government or INEC but owned by Democratic Nigerians</strong> · Just a fun, simple game to help Nigerians decide their leader before 2027! 🇳🇬
             </span>
           </div>
 
