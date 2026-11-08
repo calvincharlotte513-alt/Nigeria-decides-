@@ -8,7 +8,7 @@ import {
   ArrowRight,
   Crown,
   Heart,
-  Gamepad2,
+  Vote,
   ShieldCheck,
   Search
 } from 'lucide-react';
@@ -57,37 +57,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-40 w-full transition-all">
-      {/* Top Playful Independence & Charity Notice Bar */}
-      <div className="w-full bg-gradient-to-r from-[#1e1035] via-[#3b0764] to-[#1e1035] text-white py-1 px-3 sm:px-6 shadow-sm border-b border-purple-900/40">
-        <div className="max-w-7xl mx-auto">
-          {/* Mobile compact 1-line announcement */}
-          <div className="sm:hidden flex items-center justify-center gap-2 text-[10px] text-center">
-            <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-bold">
+      {/* Top Playful Independence & Charity Notice Bar in Vibrant Purple */}
+      <div className="w-full bg-[#581c87] bg-gradient-to-r from-[#4c1d95] via-[#6b21a8] to-[#4c1d95] text-white py-1.5 px-3 sm:px-6 shadow-sm border-b border-purple-700/60">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-4 text-center sm:text-left">
+          {/* Main civic notice with pulse badge */}
+          <div className="flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 flex-wrap">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 font-mono text-[9px] sm:text-[10px] font-black border border-emerald-400/40 shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-              <span>GAME</span>
+              <span>INDEPENDENT CIVIC GAME</span>
             </span>
-            <span className="text-purple-200 font-semibold truncate">
-              Not Govt / Not INEC · Just a Game!
+            <span className="text-purple-100 text-[10px] sm:text-xs font-medium">
+              <strong className="text-white font-bold">Not owned by Nigerian Government or INEC</strong> · Just a fun, simple game to help Nigerians decide their leader before 2027! 🇳🇬
             </span>
-            <span className="text-amber-300 font-bold shrink-0">100% Charity ❤️</span>
           </div>
 
-          {/* Desktop full banner */}
-          <div className="hidden sm:flex items-center justify-between gap-1 text-[11px] text-left">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[10px] font-bold border border-emerald-500/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                <span>INDEPENDENT CIVIC GAME</span>
-              </span>
-              <span className="text-purple-200 text-xs">
-                <strong>Not owned by Nigerian Government or INEC</strong> · Just a fun, simple game to help Nigerians decide their leader before 2027! 🇳🇬
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 text-amber-300 font-bold text-[11px] shrink-0">
-              <Heart className="w-3.5 h-3.5 text-pink-400 fill-pink-400 shrink-0" />
-              <span>100% of proceeds go directly to Charities & NGOs!</span>
-            </div>
+          {/* Charity 100% notice */}
+          <div className="flex items-center justify-center gap-1.5 text-amber-300 font-bold text-[10px] sm:text-[11px] shrink-0">
+            <Heart className="w-3.5 h-3.5 text-pink-300 fill-pink-400 shrink-0" />
+            <span>100% of proceeds go directly to Charities &amp; NGOs!</span>
           </div>
         </div>
       </div>
@@ -186,13 +173,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Verify Receipt</span>
             </button>
 
-            {/* Primary CTA: Play & Vote Gradient Pill */}
+            {/* Primary CTA: Vote Gradient Pill */}
             <button
               onClick={onOpenVoteModal}
               className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-black text-xs uppercase tracking-wider transition-all shadow-[0_4px_16px_rgba(162,56,245,0.35)] active:scale-95 flex items-center gap-1.5 cursor-pointer font-heading shrink-0"
             >
-              <Gamepad2 className="w-3.5 h-3.5" />
-              <span>Play & Vote</span>
+              <Vote className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
+              <span>Vote</span>
               <ArrowRight className="w-3.5 h-3.5 hidden sm:inline" />
             </button>
           </div>

@@ -107,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({
                   CHOOSE TO LEAD?
                 </span><br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb]">
-                  PLAY & VOTE! 🇳🇬
+                  PLAY & VOTE!
                 </span>
               </h1>
             </div>
