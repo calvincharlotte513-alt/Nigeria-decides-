@@ -23,6 +23,7 @@ interface VotingModalProps {
   isOpen: boolean;
   onClose: () => void;
   candidates: Candidate[];
+  initialCandidateId?: string | null;
   onVoteCastSuccess: () => void;
   onNavigateToResults: () => void;
   currentLang: SupportedLanguage;
@@ -48,6 +49,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
   isOpen,
   onClose,
   candidates,
+  initialCandidateId,
   onVoteCastSuccess,
   onNavigateToResults,
   currentLang: _currentLang
@@ -63,7 +65,13 @@ export const VotingModal: React.FC<VotingModalProps> = ({
   const [otpCode, setOtpCode] = useState('');
   const [receivedTestCode, setReceivedTestCode] = useState<string | null>(null);
 
-  const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(null);
+  const [selectedCandidateId, setSelectedCandidateId] = useState<string | null>(initialCandidateId || null);
+
+  React.useEffect(() => {
+    if (initialCandidateId) {
+      setSelectedCandidateId(initialCandidateId);
+    }
+  }, [initialCandidateId, isOpen]);
   
   // Financial support amount (strictly minimum ₦1,000, no free votes)
   const [donationAmount, setDonationAmount] = useState<number>(1000);
@@ -139,7 +147,11 @@ export const VotingModal: React.FC<VotingModalProps> = ({
         return;
       }
 
-      setStep(3); // Candidate selection
+      if (selectedCandidateId) {
+        setStep(4); // Direct jump to financial contribution since candidate was already chosen!
+      } else {
+        setStep(3); // Candidate selection
+      }
     } catch {
       setErrorMessage('Verification server error. Please retry.');
     } finally {
@@ -533,21 +545,21 @@ export const VotingModal: React.FC<VotingModalProps> = ({
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-h-[420px] overflow-y-auto pr-1">
                 {candidates.map((cand) => {
                   const isSelected = selectedCandidateId === cand.id;
                   return (
                     <div
                       key={cand.id}
                       onClick={() => setSelectedCandidateId(cand.id)}
-                      className={`relative p-4 rounded-[24px] border transition-all cursor-pointer flex gap-4 ${
+                      className={`relative p-3.5 rounded-[22px] border transition-all cursor-pointer flex gap-3.5 ${
                         isSelected
                           ? 'bg-[#faf4ff] border-[#8b2fc9] ring-2 ring-[#8b2fc9]/20 shadow-md'
                           : 'bg-white border-[#eadcfa] hover:border-[#8b2fc9]/60 hover:bg-[#fcfaff]'
                       }`}
                     >
                       {/* Candidate Avatar */}
-                      <div className="relative w-18 h-18 rounded-[18px] overflow-hidden shrink-0 bg-[#faf5ff] border border-[#eadcfa]">
+                      <div className="relative w-16 h-16 rounded-[16px] overflow-hidden shrink-0 bg-[#faf5ff] border border-[#eadcfa]">
                         <img
                           src={cand.photoUrl}
                           alt={cand.name}
@@ -584,7 +596,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
                           {cand.name}
                         </h4>
                         <p className="text-[11px] text-[#6b5887] truncate">
-                          Running mate: {cand.runningMate}
+                          Vice President: {cand.runningMate}
                         </p>
                         <div className="mt-1.5 flex items-center gap-1.5 text-[11px]">
                           <span className="font-semibold text-[#8b2fc9] font-mono">

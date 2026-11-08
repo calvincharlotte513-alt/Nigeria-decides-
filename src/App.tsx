@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Candidate, StatePollData, PollStats, CharityBeneficiary, SupportedLanguage } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { AspirantsShowcase } from './components/AspirantsShowcase';
 import { BottomMenuBar } from './components/BottomMenuBar';
 import { LeaderPopupModal } from './components/LeaderPopupModal';
 import { VotingModal } from './components/VotingModal';
@@ -20,7 +21,6 @@ import { AdminPortal } from './components/AdminPortal';
 import { LegalNoticeModal } from './components/LegalNoticeModal';
 import { Footer } from './components/Footer';
 import { LiveTicker } from './components/LiveTicker';
-import { INITIAL_CANDIDATES, INITIAL_STATS, INITIAL_STATES, INITIAL_CHARITIES } from './data/initialData';
 import {
   ArrowRight,
   ShieldCheck,
@@ -39,20 +39,21 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  // Popups & Modals: starts as FALSE so it only opens when user explicitly clicks
+  // Popups & Modals: isLeaderPopupOpen starts as FALSE so no popup loads on entry!
   const [isLeaderPopupOpen, setIsLeaderPopupOpen] = useState(false);
   const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);
+  const [selectedVoteCandidateId, setSelectedVoteCandidateId] = useState<string | null>(null);
   const [isUserDashboardOpen, setIsUserDashboardOpen] = useState(false);
   const [isAdminPortalOpen, setIsAdminPortalOpen] = useState(false);
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState<'disclaimer' | 'methodology' | 'privacy' | 'terms'>('disclaimer');
 
-  // Core Data - initialized with rich fallback data so it displays immediately without waiting for API
-  const [stats, setStats] = useState<PollStats | null>(INITIAL_STATS);
-  const [candidates, setCandidates] = useState<Candidate[]>(INITIAL_CANDIDATES);
-  const [states, setStates] = useState<StatePollData[]>(INITIAL_STATES);
-  const [charities, setCharities] = useState<CharityBeneficiary[]>(INITIAL_CHARITIES);
-  const [_isLoadingInitial, setIsLoadingInitial] = useState(false);
+  // Core Data
+  const [stats, setStats] = useState<PollStats | null>(null);
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [states, setStates] = useState<StatePollData[]>([]);
+  const [charities, setCharities] = useState<CharityBeneficiary[]>([]);
+  const [_isLoadingInitial, setIsLoadingInitial] = useState(true);
 
   useEffect(() => {
     fetchCoreData();
@@ -95,6 +96,11 @@ export default function App() {
     setIsLegalModalOpen(true);
   };
 
+  const handleOpenVoteForCandidate = (candId?: string | null) => {
+    setSelectedVoteCandidateId(candId || null);
+    setIsVoteModalOpen(true);
+  };
+
   const pollLeader = stats?.currentPollLeader || candidates[0] || null;
 
   return (
@@ -129,7 +135,7 @@ export default function App() {
           setActiveTab(tab);
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        onOpenVoteModal={() => setIsVoteModalOpen(true)}
+        onOpenVoteModal={() => handleOpenVoteForCandidate(null)}
         onOpenUserDashboard={() => setIsUserDashboardOpen(true)}
         onOpenAdminPortal={() => setIsAdminPortalOpen(true)}
         onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
@@ -142,12 +148,12 @@ export default function App() {
       <main className="relative z-10 flex-1 pb-32 sm:pb-28">{/* pb-32 on mobile = ~8rem for 56px tab bar + safe area */}
         {activeTab === 'home' && (
           <>
-            {/* Hero Section */}
+            {/* Hero Section (Leader determined by total ₦) */}
             <Hero
               stats={stats}
               candidates={candidates}
               currentLang={currentLang}
-              onCastVote={() => setIsVoteModalOpen(true)}
+              onCastVote={() => handleOpenVoteForCandidate(null)}
               onExploreCandidates={() => {
                 setActiveTab('candidates');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -160,10 +166,22 @@ export default function App() {
               onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
             />
 
+            {/* ============================================================
+                DIRECTLY AFTER HERO: 2027 PRESIDENTIAL ASPIRANTS SHOWCASE
+                Features big images of all 2027 presidential aspirants starting
+                from Tinubu, with current party, current vice president, and
+                direct voting action underneath each candidate!
+               ============================================================ */}
+            <AspirantsShowcase
+              candidates={candidates}
+              totalPoolAmountNgn={stats?.totalPoolAmountNgn || 225000000}
+              onVoteCandidate={(candidateId) => handleOpenVoteForCandidate(candidateId)}
+            />
+
             {/* Playful Callout Banner: Civic Decision Game & 100% Charity */}
-            <section className="py-6 sm:py-10 border-b border-[#ebdffa]/80">
-              <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-                <div className="rounded-2xl sm:rounded-[32px] bg-gradient-to-br from-white/95 via-[#faf5ff]/90 to-amber-50/70 border border-[#eadcfa] p-5 sm:p-10 shadow-[0_16px_40px_rgba(162,56,245,0.09)] backdrop-blur-md flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
+            <section className="py-10 border-b border-[#ebdffa]/80">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="rounded-[32px] bg-gradient-to-br from-white/95 via-[#faf5ff]/90 to-amber-50/70 border border-[#eadcfa] p-8 sm:p-10 shadow-[0_16px_40px_rgba(162,56,245,0.09)] backdrop-blur-md flex flex-col lg:flex-row items-center justify-between gap-8">
                   <div className="space-y-3 text-center lg:text-left max-w-2xl">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] font-mono font-bold text-emerald-800 tracking-wider uppercase">
                       <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
@@ -227,9 +245,7 @@ export default function App() {
             <div className="border-b border-[#ebdffa]/80">
               <CandidatesDirectory
                 candidates={candidates}
-                onSelectCandidateToVote={(_candId) => {
-                  setIsVoteModalOpen(true);
-                }}
+                onSelectCandidateToVote={(candId) => handleOpenVoteForCandidate(candId)}
               />
             </div>
 
@@ -248,8 +264,8 @@ export default function App() {
             <div>
               <CharityImpact
                 charities={charities}
-                totalProceedsNgn={stats?.totalPoolAmountNgn || 0}
-                totalDistributedNgn={stats?.totalCharityDistributedNgn || 0}
+                totalProceedsNgn={stats?.totalPoolAmountNgn || 225000000}
+                totalDistributedNgn={stats?.totalCharityDistributedNgn || 14800000}
                 currentLang={currentLang}
               />
             </div>
@@ -282,7 +298,7 @@ export default function App() {
             {/* Quick Candidate Grid */}
             <CandidatesDirectory
               candidates={candidates}
-              onSelectCandidateToVote={() => setIsVoteModalOpen(true)}
+              onSelectCandidateToVote={(candId) => handleOpenVoteForCandidate(candId)}
             />
           </div>
         )}
@@ -291,7 +307,7 @@ export default function App() {
         {activeTab === 'candidates' && (
           <CandidatesDirectory
             candidates={candidates}
-            onSelectCandidateToVote={() => setIsVoteModalOpen(true)}
+            onSelectCandidateToVote={(candId) => handleOpenVoteForCandidate(candId)}
           />
         )}
 
@@ -318,8 +334,8 @@ export default function App() {
         {activeTab === 'charity' && (
           <CharityImpact
             charities={charities}
-            totalProceedsNgn={stats?.totalPoolAmountNgn || 0}
-            totalDistributedNgn={stats?.totalCharityDistributedNgn || 0}
+            totalProceedsNgn={stats?.totalPoolAmountNgn || 225000000}
+            totalDistributedNgn={stats?.totalCharityDistributedNgn || 14800000}
             currentLang={currentLang}
           />
         )}
@@ -445,8 +461,8 @@ export default function App() {
         isOpen={isLeaderPopupOpen}
         onClose={() => setIsLeaderPopupOpen(false)}
         leader={pollLeader}
-        totalPoolAmountNgn={stats?.totalPoolAmountNgn || 0}
-        totalVerifiedParticipants={stats?.totalVerifiedParticipants || 0}
+        totalPoolAmountNgn={stats?.totalPoolAmountNgn || 225000000}
+        totalVerifiedParticipants={stats?.totalVerifiedParticipants || 149800}
         onCastVote={() => setIsVoteModalOpen(true)}
         onExploreResults={() => {
           setActiveTab('results');
@@ -457,8 +473,12 @@ export default function App() {
       {/* Interactive Modals */}
       <VotingModal
         isOpen={isVoteModalOpen}
-        onClose={() => setIsVoteModalOpen(false)}
+        onClose={() => {
+          setIsVoteModalOpen(false);
+          setSelectedVoteCandidateId(null);
+        }}
         candidates={candidates}
+        initialCandidateId={selectedVoteCandidateId}
         currentLang={currentLang}
         onVoteCastSuccess={() => fetchCoreData()}
         onNavigateToResults={() => {

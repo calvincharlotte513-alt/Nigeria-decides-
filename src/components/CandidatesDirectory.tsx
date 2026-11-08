@@ -128,7 +128,7 @@ export const CandidatesDirectory: React.FC<CandidatesDirectoryProps> = ({
                   </h3>
 
                   <p className="text-xs text-[#6b5887] mt-1 truncate">
-                    Running Mate: <span className="text-[#1e1035] font-medium">{candidate.runningMate}</span>
+                    Vice President: <span className="text-[#1e1035] font-medium">{candidate.runningMate}</span>
                   </p>
                 </div>
               </div>
@@ -206,7 +206,7 @@ export const CandidatesDirectory: React.FC<CandidatesDirectoryProps> = ({
                     {selectedCandidateForModal.name}
                   </h3>
                   <p className="text-xs text-[#6b5887]">
-                    Running Mate: {selectedCandidateForModal.runningMate} · Age {selectedCandidateForModal.age}
+                    {selectedCandidateForModal.id === 'tinubu-bola' ? 'Current Vice President of Nigeria' : 'Vice President / Running Mate'}: <span className="text-[#1e1035] font-semibold">{selectedCandidateForModal.runningMate}</span> · Age {selectedCandidateForModal.age}
                   </p>
                 </div>
               </div>

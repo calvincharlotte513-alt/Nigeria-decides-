@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Candidate, StatePollData } from '../types';
-import { formatNgn } from '../utils/format';
 import {
   BarChart,
   Bar,
@@ -70,24 +69,15 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
     { day: 'Live Today', Obi: 29.7, Tinubu: 26.1, Atiku: 19.6, Kwankwaso: 12.4, Others: 12.2 }
   ];
 
-  // Geopolitical zones summary dynamically computed from actual state data
-  const zoneStats = [
-    'North Central',
-    'North East',
-    'North West',
-    'South East',
-    'South South',
-    'South West'
-  ].reduce((acc, zone) => {
-    const zoneStates = states.filter(s => s.zone === zone);
-    const totalZoneAmt = zoneStates.reduce((sum, s) => sum + (s.totalAmountNgn || 0), 0);
-    const totalZoneVotes = zoneStates.reduce((sum, s) => sum + (s.participants || 0), 0);
-    acc[zone] = {
-      totalAmount: formatNgn(totalZoneAmt),
-      leader: totalZoneVotes > 0 ? 'Voting Active' : 'Awaiting First Ballot'
-    };
-    return acc;
-  }, {} as Record<string, { totalAmount: string; leader: string }>);
+  // Geopolitical zones summary
+  const zoneStats: Record<string, { totalAmount: string; leader: string }> = {
+    'North Central': { totalAmount: '₦38.2M', leader: 'Peter Obi (NDC) / Bola Tinubu (APC)' },
+    'North East': { totalAmount: '₦29.4M', leader: 'Atiku Abubakar (ADC Lead)' },
+    'North West': { totalAmount: '₦58.1M', leader: 'Bola Tinubu (APC) / Atiku Abubakar (ADC)' },
+    'South East': { totalAmount: '₦41.5M', leader: 'Peter Obi (NDC) / Sunday Okereke (LP)' },
+    'South South': { totalAmount: '₦33.8M', leader: 'Donald Duke (PRP) / Sandy Onor (PDP)' },
+    'South West': { totalAmount: '₦51.9M', leader: 'Bola Tinubu (APC) / Seyi Makinde (APM)' }
+  };
 
   const filteredStates = selectedZone === 'All'
     ? states
@@ -112,7 +102,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+        <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 text-xs text-[#6b5887] bg-white border border-[#eadcfa] px-3.5 py-2 rounded-full shadow-2xs">
             <Clock className="w-3.5 h-3.5 text-[#8b2fc9]" />
             <span className="font-mono">Updated: Just Now</span>
@@ -128,7 +118,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
       </div>
 
       {/* Segmented View Control (Pill-styled) */}
-      <div className="flex items-center gap-1 sm:gap-1.5 p-1 bg-white rounded-full border border-[#eadcfa] max-w-full overflow-x-auto text-[11px] sm:text-xs font-semibold shadow-2xs">
+      <div className="flex items-center gap-1.5 p-1 bg-white rounded-full border border-[#eadcfa] w-fit text-xs font-semibold shadow-2xs">
         <button
           onClick={() => setActiveTab('overview')}
           className={`px-4 py-2 rounded-full transition-all cursor-pointer ${
@@ -182,7 +172,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
                 <div className="text-right">
                   <span className="text-[11px] text-[#8c7da3] uppercase font-mono block">National Pool</span>
                   <span className="text-sm font-mono font-black text-[#8b2fc9]">
-                    {formatNgn(totalPoolAmountNgn)}
+                    ₦{(totalPoolAmountNgn / 1000000).toFixed(1)}M
                   </span>
                 </div>
               </div>
@@ -291,7 +281,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
 
                     <div className="text-right shrink-0">
                       <div className="text-base font-black text-[#1e1035] font-mono">
-                        {cand.amountNgn >= 1000000 ? `₦${(cand.amountNgn / 1000000).toFixed(1)}M` : `₦${cand.amountNgn.toLocaleString()}`}
+                        ₦{(cand.amountNgn / 1000000).toFixed(1)}M
                       </div>
                       <div className="text-xs font-bold text-[#8b2fc9] font-mono">
                         {cand.percentage}%
@@ -340,7 +330,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
 
           <div className="flex flex-wrap items-center justify-center gap-6 pt-3 border-t border-[#f0e4fc] text-xs">
             <span className="flex items-center gap-1.5 font-semibold text-emerald-700">
-              <span className="w-3 h-3 rounded-full bg-emerald-600 inline-block" /> Peter Obi (NDC)
+              <span className="w-3 h-3 rounded-full bg-emerald-600 inline-block" /> Peter Obi (LP)
             </span>
             <span className="flex items-center gap-1.5 font-semibold text-sky-700">
               <span className="w-3 h-3 rounded-full bg-sky-600 inline-block" /> Bola Tinubu (APC)
@@ -407,7 +397,7 @@ export const LiveResults: React.FC<LiveResultsProps> = ({
                     <span className="font-mono text-[10px] text-[#8c7da3]">{s.stateCode}</span>
                   </div>
                   <div className="text-sm font-extrabold text-[#8b2fc9] font-mono">
-                    {formatNgn(s.totalAmountNgn)}
+                    ₦{(s.totalAmountNgn / 1000000).toFixed(2)}M
                   </div>
                   <div className="text-[11px] text-[#6b5887] truncate">
                     {s.participants.toLocaleString()} voters
