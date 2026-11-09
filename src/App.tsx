@@ -213,6 +213,20 @@ export default function App() {
 
   const pollLeader = stats?.currentPollLeader || candidates[0] || null;
 
+  // Dedicated Full-Page Admin Portal view (not a popup / modal)
+  if (isAdminPortalOpen) {
+    return (
+      <AdminPortal
+        candidates={candidates}
+        charities={charities}
+        onClose={handleCloseAdminPortal}
+        onDisburseCharitySuccess={() => {
+          // Firestore onSnapshot updates real-time automatically
+        }}
+      />
+    );
+  }
+
   return (
     <div className="relative min-h-screen text-[#1e1035] flex flex-col font-sans selection:bg-[#a855f7]/20 selection:text-[#581c87]">
       
@@ -617,16 +631,6 @@ export default function App() {
         onNavigateToResults={() => {
           setIsUserDashboardOpen(false);
           setActiveTab('results');
-        }}
-      />
-
-      <AdminPortal
-        isOpen={isAdminPortalOpen}
-        onClose={handleCloseAdminPortal}
-        candidates={candidates}
-        charities={charities}
-        onDisburseCharitySuccess={() => {
-          // Firestore onSnapshot updates real-time automatically
         }}
       />
 
