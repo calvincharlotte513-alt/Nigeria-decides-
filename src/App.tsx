@@ -427,10 +427,10 @@ export default function App() {
                   ❤️
                 </div>
                 <h3 className="text-base font-extrabold text-[#1e1035] font-heading">
-                  3. 100% to Charity & NGOs
+                  3. 100% to Charity (Sponsored by TAPAM)
                 </h3>
                 <p className="text-xs text-[#6b5887] leading-relaxed">
-                  Every single Naira contributed to back a candidate goes directly to CAC-registered Nigerian orphanages, motherless babies' homes, and youth empowerment NGOs under public audit.
+                  Every single Naira contributed to back a candidate goes directly to CAC-registered Nigerian orphanages, motherless babies' homes, and youth empowerment NGOs. The only NGO sponsoring this platform is <strong>TAPAM (www.tapam.org)</strong>.
                 </p>
               </div>
             </div>

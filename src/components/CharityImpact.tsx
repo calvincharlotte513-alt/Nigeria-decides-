@@ -7,7 +7,10 @@ import {
   Download,
   X,
   CheckCircle2,
-  ChevronRight
+  ChevronRight,
+  ExternalLink,
+  Globe,
+  Sparkles
 } from 'lucide-react';
 
 interface CharityImpactProps {
@@ -44,6 +47,120 @@ export const CharityImpact: React.FC<CharityImpactProps> = ({
         <p className="text-sm sm:text-base text-[#6b5887] leading-relaxed font-normal">
           Every single Naira contributed in Nigeria Decides 2027 (100% of all proceeds) directly funds registered Nigerian orphanages, motherless babies' homes, and youth empowerment NGOs across the federation!
         </p>
+      </div>
+
+      {/* OFFICIAL SPONSORING NGO: TAPAM (The Awaken Pan African Movement) */}
+      <div className="relative rounded-[36px] bg-gradient-to-br from-white via-[#faf5ff] to-[#f5ebff] border-2 border-[#8b2fc9]/40 p-6 sm:p-10 shadow-[0_16px_48px_rgba(139,47,201,0.12)] overflow-hidden">
+        {/* Decorative corner glows */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-[#8b2fc9]/20 to-[#f59e0b]/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-gradient-to-tr from-[#10b981]/20 to-[#8b2fc9]/20 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          
+          {/* Emboldened TAPAM Logo Container */}
+          <div className="flex flex-col items-center text-center shrink-0">
+            {/* Pill label directly above logo */}
+            <span className="px-3.5 py-1 mb-3 rounded-full bg-[#1e1035] text-white text-[11px] font-mono font-extrabold tracking-wider uppercase shadow-md flex items-center gap-1.5 border border-purple-300/40">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>OFFICIAL SPONSORING NGO LOGO</span>
+            </span>
+
+            {/* Emboldened Logo Box with Glowing Double Border */}
+            <a
+              href="https://www.tapam.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Visit Official TAPAM Website (tapam.org)"
+              className="group relative p-2.5 rounded-3xl bg-white border-4 border-[#8b2fc9] shadow-[0_12px_36px_rgba(139,47,201,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_16px_48px_rgba(139,47,201,0.5)] block cursor-pointer"
+            >
+              <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-white flex items-center justify-center p-2 border-2 border-amber-300/60 shadow-inner">
+                <img
+                  src="/images/tapam-logo.jpg"
+                  alt="TAPAM - The Awaken Pan African Movement Official Logo"
+                  className="w-full h-full object-contain filter drop-shadow-md group-hover:rotate-1 transition-transform"
+                />
+              </div>
+
+              {/* Verified NGO Watermark Badge */}
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-[10px] font-bold font-mono uppercase tracking-wider shadow-md whitespace-nowrap flex items-center gap-1 border border-white">
+                <ShieldCheck className="w-3 h-3 text-white" />
+                <span>SOLE CHARITY SPONSOR</span>
+              </div>
+            </a>
+
+            <div className="mt-5 text-center">
+              <p className="text-xs font-mono font-bold text-[#1e1035] uppercase tracking-wide">
+                The Awaken Pan African Movement
+              </p>
+              <a
+                href="https://www.tapam.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono font-extrabold text-[#8b2fc9] hover:text-[#e040fb] hover:underline inline-flex items-center gap-1 mt-0.5"
+              >
+                <span>www.tapam.org</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+
+          {/* Sponsoring NGO Official Notification Details */}
+          <div className="flex-1 space-y-4 text-left">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-mono uppercase tracking-wider text-[11px]">
+                THE ONLY NGO SPONSORING THIS WEBSITE · SOLE HUMANITARIAN PARTNER
+              </span>
+            </div>
+
+            <h3 className="text-2xl sm:text-3xl font-black text-[#1e1035] tracking-tight font-heading leading-tight">
+              Charity Initiative Exclusively Sponsored by TAPAM
+            </h3>
+
+            <div className="space-y-3 text-sm text-[#4c3b63] leading-relaxed">
+              <p className="font-medium bg-white/70 p-4 rounded-2xl border border-purple-100 shadow-2xs">
+                📢 <strong className="text-[#1e1035]">Official Sponsorship Notification:</strong> The only NGO sponsoring this platform's charity initiative is <strong className="text-[#8b2fc9]">TAPAM (The Awaken Pan African Movement)</strong>. In humanitarian alliance with the <strong className="text-[#1e1035]">Cultural Heritage and Youth Empowerment Foundation (CHYEF)</strong> — registered under Nigerian law — TAPAM proudly sponsors our charitable mission to ensure that 100% of all citizen contributions directly reach vulnerable children, motherless babies' homes, and registered orphanages across Nigeria.
+              </p>
+
+              <p className="text-xs text-[#6b5887]">
+                TAPAM is dedicated to pan-African civic enlightenment, youth empowerment, cultural heritage safeguarding, and direct grassroots poverty alleviation. Through this partnership, every single Naira raised through voter participation is directed to independently audited Nigerian orphanages with zero administrative deductions.
+              </p>
+            </div>
+
+            {/* Official Website Link & Verification Buttons */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <a
+                href="https://www.tapam.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#8b2fc9] via-[#a238f5] to-[#e040fb] hover:opacity-95 text-white font-bold text-xs uppercase tracking-wider shadow-[0_6px_20px_rgba(139,47,201,0.35)] transition-all cursor-pointer hover:scale-102"
+              >
+                <Globe className="w-4 h-4" />
+                <span>Visit Official TAPAM Website (tapam.org)</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://www.tapam.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-white hover:bg-[#faf5ff] border border-[#eadcfa] text-[#1e1035] font-semibold text-xs transition-colors shadow-2xs"
+              >
+                <span className="text-[#8b2fc9] font-mono font-bold">Official URL:</span>
+                <span className="font-mono text-[#8b2fc9] underline decoration-purple-300">https://www.tapam.org/</span>
+              </a>
+            </div>
+
+            {/* Sub-badge acknowledging governance */}
+            <div className="pt-2 text-[11px] text-[#7d6c96] flex items-center gap-2">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#8b2fc9]" />
+              <span>
+                Not owned by federal government or INEC but owned by Democratic Nigerians · Humanitarian wing registered under Nigerian law.
+              </span>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       {/* Feature Showcase Grid: Photo + Financial Ledger Dashboard */}

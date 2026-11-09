@@ -38,15 +38,29 @@ export const Footer: React.FC<FooterProps> = ({
               A playful, independent community game created to help Nigerians decide their preferred leader ahead of the 2027 general election. Completely independent, community-driven, and designed to spread democratic joy.
             </p>
 
-            {/* Playful Notice Box */}
-            <div className="p-4 rounded-[22px] bg-gradient-to-br from-purple-50/90 to-pink-50/90 border border-purple-200/60 text-xs text-[#1e1035] space-y-1 shadow-2xs">
-              <span className="text-[#8b2fc9] font-black block font-mono uppercase text-[10px] tracking-wider flex items-center gap-1.5">
-                <Heart className="w-3.5 h-3.5 fill-pink-500 text-pink-500" />
-                <span>100% PROCEEDS TO CHARITY & NGOS</span>
-              </span>
+            {/* Sponsoring NGO Notice Box */}
+            <div className="p-4 rounded-[22px] bg-gradient-to-br from-purple-50/90 to-pink-50/90 border border-purple-200/60 text-xs text-[#1e1035] space-y-2 shadow-2xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[#8b2fc9] font-black font-mono uppercase text-[10px] tracking-wider flex items-center gap-1.5">
+                  <Heart className="w-3.5 h-3.5 fill-pink-500 text-pink-500" />
+                  <span>100% PROCEEDS TO CHARITY</span>
+                </span>
+                <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                  SPONSORED BY TAPAM
+                </span>
+              </div>
               <p className="text-[#55456e] text-[11px] leading-relaxed">
-                Every single Naira raised through this game directly supports vetted Nigerian orphanages, children's homes, and youth empowerment NGOs under public audit.
+                The only NGO sponsoring this platform is <strong>TAPAM (The Awaken Pan African Movement)</strong>. 100% of all proceeds directly empower verified Nigerian orphanages and motherless babies' homes.
               </p>
+              <a
+                href="https://www.tapam.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[11px] font-bold text-[#8b2fc9] hover:underline"
+              >
+                <span>Visit TAPAM: www.tapam.org</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
             </div>
           </div>
 

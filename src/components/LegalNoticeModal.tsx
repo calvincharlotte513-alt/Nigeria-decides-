@@ -131,14 +131,22 @@ export const LegalNoticeModal: React.FC<LegalNoticeModalProps> = ({
 
           {activeTab === 'terms' && (
             <div className="space-y-3">
-              <div className="p-4 rounded-2xl bg-purple-50/80 border border-purple-200 text-[#1e1035] space-y-1">
+              <div className="p-4 rounded-2xl bg-purple-50/80 border border-purple-200 text-[#1e1035] space-y-2">
                 <span className="font-extrabold text-[#8b2fc9] block flex items-center gap-1.5">
                   <Heart className="w-4 h-4 fill-pink-500 text-pink-500" />
-                  <span>100% NGO & Charity Allocation Guarantee</span>
+                  <span>100% Charity Allocation · Exclusively Sponsored by TAPAM</span>
                 </span>
                 <p className="text-[#55456e]">
-                  Every single Naira raised through this game is channeled directly into verified Nigerian charitable organizations, orphanages, and grassroots youth NGOs.
+                  The only NGO sponsoring this platform is <strong>TAPAM (The Awaken Pan African Movement)</strong> in partnership with the Cultural Heritage and Youth Empowerment Foundation (CHYEF) registered under Nigerian law. 100% of all proceeds are channeled directly to vetted Nigerian orphanages and motherless babies' homes.
                 </p>
+                <a
+                  href="https://www.tapam.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-[11px] font-bold text-[#8b2fc9] hover:underline"
+                >
+                  Visit Official TAPAM Website: https://www.tapam.org/ ↗
+                </a>
               </div>
               <p>
                 Disbursements are tracked with full public audit trails, CAC registration numbers, and downloadable CSV ledgers so every citizen can inspect the real-world impact.
