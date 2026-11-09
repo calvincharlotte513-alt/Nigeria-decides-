@@ -142,12 +142,31 @@ export default function App() {
     };
   }, []);
 
-  // Handle direct URL navigation to /admin or hash #admin
+  // Handle direct URL navigation to /admin, /admin/, #admin, ?admin=true or static redirect
   useEffect(() => {
     const checkAdminRoute = () => {
       const pathname = window.location.pathname.toLowerCase();
+      const search = window.location.search.toLowerCase();
       const hash = window.location.hash.toLowerCase();
-      if (pathname === '/admin' || pathname.startsWith('/admin') || hash === '#admin') {
+      let sessionFlag = false;
+      try {
+        sessionFlag = sessionStorage.getItem('nd_open_admin') === 'true';
+      } catch {
+        // safe
+      }
+
+      if (
+        pathname === '/admin' ||
+        pathname.startsWith('/admin') ||
+        hash === '#admin' ||
+        search.includes('admin') ||
+        sessionFlag
+      ) {
+        try {
+          sessionStorage.removeItem('nd_open_admin');
+        } catch {
+          // safe
+        }
         setIsAdminPortalOpen(true);
       }
     };
@@ -164,8 +183,15 @@ export default function App() {
 
   const handleCloseAdminPortal = () => {
     setIsAdminPortalOpen(false);
+    try {
+      sessionStorage.removeItem('nd_open_admin');
+    } catch {
+      // safe
+    }
     if (window.location.pathname.toLowerCase().startsWith('/admin')) {
       window.history.pushState(null, '', '/');
+    } else if (window.location.search.toLowerCase().includes('admin')) {
+      window.history.pushState(null, '', window.location.pathname);
     } else if (window.location.hash.toLowerCase() === '#admin') {
       window.history.pushState(null, '', window.location.pathname);
     }
