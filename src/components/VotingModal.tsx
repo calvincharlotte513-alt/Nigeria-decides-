@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Candidate, SupportedLanguage } from '../types';
 import { formatNgn } from '../utils/format';
 import confetti from 'canvas-confetti';
+import { checkVoterDuplicate, submitRealVote } from '../services/firebase';
 import {
   X,
   Check,
   Phone,
   Mail,
+  User,
   ArrowRight,
   CreditCard,
   Copy,
@@ -16,7 +18,8 @@ import {
   TrendingUp,
   Banknote,
   Lock,
-  ChevronRight
+  ChevronRight,
+  ShieldCheck
 } from 'lucide-react';
 
 interface VotingModalProps {
@@ -58,6 +61,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5 | 6>(1);
 
   // Form states
+  const [fullName, setFullName] = useState('');
   const [identifierType, setIdentifierType] = useState<'phone' | 'email'>('phone');
   const [identifier, setIdentifier] = useState('');
   const [stateCode, setStateCode] = useState('LA');
@@ -88,17 +92,38 @@ export const VotingModal: React.FC<VotingModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Step 1 -> Request OTP
+  // Step 1 -> Request OTP & Check Duplicate
   const handleRequestOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
 
+    if (!fullName.trim() || fullName.trim().length < 3) {
+      setErrorMessage('Please enter your full legal name (e.g. Adebayo Chukwuemeka Danladi).');
+      return;
+    }
+
     if (!identifier.trim()) {
-      setErrorMessage('Please enter your Nigerian phone number or email address.');
+      setErrorMessage('Please enter your Nigerian phone number or personal email address.');
       return;
     }
 
     setIsLoading(true);
+
+    // 1. Strict Duplicate Check in Database (ensures one user with same name/contact cannot vote again)
+    try {
+      const dup = await checkVoterDuplicate(fullName.trim(), identifier.trim());
+      if (dup.hasVoted) {
+        setErrorMessage(
+          dup.reason ||
+            `A ballot has already been cast and completed under the name "${fullName}" or contact "${identifier}". Each citizen can only vote once.`
+        );
+        setIsLoading(false);
+        return;
+      }
+    } catch {
+      // safe fallback if offline
+    }
+
     try {
       let testCodeToUse: string | null = null;
       try {
@@ -209,42 +234,34 @@ export const VotingModal: React.FC<VotingModalProps> = ({
     setErrorMessage(null);
 
     try {
-      const payload = {
-        identifier: identifier.trim(),
-        otpCode: otpCode.trim(),
-        candidateId: selectedCandidateId,
-        stateCode,
-        ageGroup,
-        donationAmount,
-        paymentProvider,
-        paymentReference: `ND27-PAY-${Date.now()}`
-      };
+      // 1. Re-check duplicate in Firestore before payment submission
+      const dup = await checkVoterDuplicate(fullName.trim(), identifier.trim());
+      if (dup.hasVoted) {
+        setErrorMessage(
+          dup.reason ||
+            `A ballot has already been cast and completed under the name "${fullName}" or contact "${identifier}". Each citizen can only vote once.`
+        );
+        setIsLoading(false);
+        return;
+      }
 
-      let finalRef = `NGV-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
-      let finalMasked = identifier.includes('@')
+      const finalRef = `ND27-PAY-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      const finalMasked = identifier.includes('@')
         ? identifier.replace(/(.{2})(.*)(?=@)/, '$1***')
         : identifier.replace(/(\d{4})\d+(\d{3})/, '$1****$2');
 
-      try {
-        const res = await fetch('/api/poll/vote', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const contentType = res.headers.get('content-type') || '';
-        if (contentType.includes('application/json')) {
-          const data = await res.json();
-          if (!res.ok) {
-            setErrorMessage(data.error || 'Submission failed.');
-            setIsLoading(false);
-            return;
-          }
-          if (data.referenceCode) finalRef = data.referenceCode;
-          if (data.maskedIdentifier) finalMasked = data.maskedIdentifier;
-        }
-      } catch {
-        // Offline / static Vercel fallback
-      }
+      // 2. Submit real vote to Firestore database (creates vote + lock records)
+      await submitRealVote({
+        fullName: fullName.trim(),
+        contact: identifier.trim(),
+        candidateId: selectedCandidateId,
+        candidateName: selectedCandidate?.name || 'Candidate',
+        candidateParty: selectedCandidate?.partyAcronym || 'APC',
+        amountNgn: donationAmount,
+        state: selectedState?.name || 'Lagos',
+        paymentReference: finalRef,
+        paymentProvider: paymentProvider.toLowerCase() as 'paystack' | 'flutterwave'
+      });
 
       // Record ballot locally for persistence on Vercel
       try {
@@ -416,6 +433,28 @@ export const VotingModal: React.FC<VotingModalProps> = ({
                 </p>
               </div>
 
+              {/* Full Legal Name (Required for Anti-Duplicate Uniqueness) */}
+              <div>
+                <label className="block text-xs font-semibold text-[#1e1035] mb-1.5 flex items-center justify-between">
+                  <span>Citizen Full Legal Name</span>
+                  <span className="text-[10px] text-purple-700 font-mono font-bold">Required · 1 Vote Per Citizen</span>
+                </label>
+                <div className="relative">
+                  <User className="w-4 h-4 text-[#8c7da3] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    placeholder="e.g. Adebayo Chukwuemeka Danladi"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 bg-[#faf8fe] border border-[#eadcfa] rounded-2xl text-sm text-[#1e1035] focus:outline-none focus:border-[#8b2fc9] focus:bg-white font-medium"
+                    required
+                  />
+                </div>
+                <span className="text-[10px] text-[#8c7da3] mt-1 block">
+                  Enforces strict one-citizen, one-ballot integrity across Nigeria. Duplicate votes with the same full name or contact will be rejected.
+                </span>
+              </div>
+
               {/* State & Age Selection */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -456,7 +495,7 @@ export const VotingModal: React.FC<VotingModalProps> = ({
               {/* Verification Channel Toggle */}
               <div>
                 <label className="block text-xs font-semibold text-[#1e1035] mb-2">
-                  Verification Method
+                  Verification Contact (Phone or Email)
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <button

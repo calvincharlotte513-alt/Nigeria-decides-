@@ -24,8 +24,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://statehouse.gov.ng',
     verifiedStatus: true,
-    votes: 38420,
-    totalAmountNgn: 59200000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'atiku-abubakar',
@@ -50,8 +50,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://atiku.org',
     verifiedStatus: true,
-    votes: 34120,
-    totalAmountNgn: 51200000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'obi-peter',
@@ -76,8 +76,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://peterobi.org',
     verifiedStatus: true,
-    votes: 42150,
-    totalAmountNgn: 64800000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'okereke-sunday',
@@ -101,8 +101,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://labourparty.com.ng',
     verifiedStatus: true,
-    votes: 21450,
-    totalAmountNgn: 32600000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'onor-sandy',
@@ -127,8 +127,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://sandyonor.ng',
     verifiedStatus: true,
-    votes: 27800,
-    totalAmountNgn: 41200000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'omoaje-rufai',
@@ -152,8 +152,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://actionalliance.org.ng',
     verifiedStatus: true,
-    votes: 14850,
-    totalAmountNgn: 21900000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'aliyu-abbas',
@@ -177,8 +177,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://adp.ng',
     verifiedStatus: true,
-    votes: 16200,
-    totalAmountNgn: 24300000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'kabiru-yusuf',
@@ -202,8 +202,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://appnigeria.org',
     verifiedStatus: true,
-    votes: 15300,
-    totalAmountNgn: 22800000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'sowore-omoyele',
@@ -228,8 +228,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://aacparty.org',
     verifiedStatus: true,
-    votes: 18400,
-    totalAmountNgn: 27500000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'makinde-seyi',
@@ -254,8 +254,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://seyimakinde.com',
     verifiedStatus: true,
-    votes: 36900,
-    totalAmountNgn: 56400000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'adenuga-sunday',
@@ -279,8 +279,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://bootparty.ng',
     verifiedStatus: true,
-    votes: 11400,
-    totalAmountNgn: 17100000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'adebisi-moses',
@@ -304,8 +304,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://dla.org.ng',
     verifiedStatus: true,
-    votes: 10800,
-    totalAmountNgn: 16200000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'okwori-ada',
@@ -329,8 +329,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://ndp.org.ng',
     verifiedStatus: true,
-    votes: 14200,
-    totalAmountNgn: 21300000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'okereke-nkem',
@@ -354,8 +354,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://nrm.org.ng',
     verifiedStatus: true,
-    votes: 13900,
-    totalAmountNgn: 20850000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'duke-donald',
@@ -380,8 +380,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://donaldduke.ng',
     verifiedStatus: true,
-    votes: 31200,
-    totalAmountNgn: 47800000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'adebayo-adewole',
@@ -406,8 +406,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://adewoleadebayo.com',
     verifiedStatus: true,
-    votes: 24600,
-    totalAmountNgn: 36900000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'agada-peter',
@@ -431,8 +431,8 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://ypp.ng',
     verifiedStatus: true,
-    votes: 19800,
-    totalAmountNgn: 29700000
+    votes: 0,
+    totalAmountNgn: 0
   },
   {
     id: 'nwanyanwu-daniel',
@@ -457,20 +457,20 @@ export const INITIAL_CANDIDATES: Candidate[] = [
     ],
     officialWebsite: 'https://zlp.org.ng',
     verifiedStatus: true,
-    votes: 21900,
-    totalAmountNgn: 33200000
+    votes: 0,
+    totalAmountNgn: 0
   }
 ];
 
 export const INITIAL_STATS: PollStats = {
-  totalVerifiedParticipants: 387490,
-  totalStatesParticipating: 37,
+  totalVerifiedParticipants: 0,
+  totalStatesParticipating: 0,
   totalCandidates: 18,
-  totalPoolAmountNgn: 587450000,
-  currentPollLeader: INITIAL_CANDIDATES[2], // Peter Obi
-  totalCharityProceedsNgn: 587450000,
-  totalCharityDistributedNgn: 42000000,
-  undistributedFundsNgn: 545450000,
+  totalPoolAmountNgn: 0,
+  currentPollLeader: INITIAL_CANDIDATES[0],
+  totalCharityProceedsNgn: 0,
+  totalCharityDistributedNgn: 0,
+  undistributedFundsNgn: 0,
   lastUpdated: new Date().toISOString(),
   electionTargetDate: 'February 2027',
   isOfficialElection: false,
@@ -490,8 +490,8 @@ export const INITIAL_CHARITIES: CharityBeneficiary[] = [
     mission: 'Providing emergency shelter, high-quality primary and secondary education, and spiritual rehabilitation for abandoned children across Lagos and Ogun states.',
     currentProject: 'Expansion of digital literacy classroom and vocational workshop facility in Ogudu.',
     beneficiariesCount: 168,
-    allocatedAmountNgn: 14000000,
-    disbursedAmountNgn: 14000000,
+    allocatedAmountNgn: 0,
+    disbursedAmountNgn: 0,
     lastDisbursementDate: '2025-03-01',
     proofDocumentUrl: 'https://littlesaintsorphanage.org/audit'
   },
@@ -507,8 +507,8 @@ export const INITIAL_CHARITIES: CharityBeneficiary[] = [
     mission: 'Care and nutritional sustenance for orphaned infants, emergency infant medical incubators, and pediatric nurse care.',
     currentProject: 'Provision of therapeutic infant nutrition formula and clean solar borehole water system.',
     beneficiariesCount: 92,
-    allocatedAmountNgn: 10500000,
-    disbursedAmountNgn: 10500000,
+    allocatedAmountNgn: 0,
+    disbursedAmountNgn: 0,
     lastDisbursementDate: '2025-03-05',
     proofDocumentUrl: 'https://abujababieshome.org.ng/transparency'
   },
@@ -524,8 +524,8 @@ export const INITIAL_CHARITIES: CharityBeneficiary[] = [
     mission: 'Translating civic rights and voter registration education into 12 indigenous Nigerian languages in rural markets and farming settlements.',
     currentProject: 'Town hall town-crier outreach and civic pocket guides distributed across 45 rural local councils.',
     beneficiariesCount: 24500,
-    allocatedAmountNgn: 6500000,
-    disbursedAmountNgn: 6500000,
+    allocatedAmountNgn: 0,
+    disbursedAmountNgn: 0,
     lastDisbursementDate: '2025-03-10',
     proofDocumentUrl: 'https://civicdemocracynet.ng/reports'
   },
@@ -541,8 +541,8 @@ export const INITIAL_CHARITIES: CharityBeneficiary[] = [
     mission: 'Holistic rehabilitation, secondary education sponsorship, and nutritional care for vulnerable children across the South-East.',
     currentProject: 'Secondary education scholarship fund and dormitory solar inverter installation.',
     beneficiariesCount: 74,
-    allocatedAmountNgn: 5800000,
-    disbursedAmountNgn: 5800000,
+    allocatedAmountNgn: 0,
+    disbursedAmountNgn: 0,
     lastDisbursementDate: '2025-03-12',
     proofDocumentUrl: 'https://hopechildrenenugu.org/transparency'
   },
@@ -558,49 +558,49 @@ export const INITIAL_CHARITIES: CharityBeneficiary[] = [
     mission: 'Providing remedial literacy, digital coding training, and vocational tailoring machinery to adolescent orphans.',
     currentProject: 'Empowerment of 50 adolescent orphans with industrial sewing machines and tech literacy kits.',
     beneficiariesCount: 140,
-    allocatedAmountNgn: 5200000,
-    disbursedAmountNgn: 5200000,
+    allocatedAmountNgn: 0,
+    disbursedAmountNgn: 0,
     lastDisbursementDate: '2025-03-15',
     proofDocumentUrl: 'https://kanoyouthcare.org/audit'
   }
 ];
 
 export const INITIAL_STATES: StatePollData[] = [
-  { stateCode: 'AB', stateName: 'Abia', zone: 'South East', participants: 12450, totalAmountNgn: 18700000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Commercial Infrastructure & Aba Road Corridors' },
-  { stateCode: 'AD', stateName: 'Adamawa', zone: 'North East', participants: 9800, totalAmountNgn: 14600000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Border Trade & Agricultural Irrigation' },
-  { stateCode: 'AK', stateName: 'Akwa Ibom', zone: 'South South', participants: 11200, totalAmountNgn: 16900000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'onor-sandy', topCivicIssue: 'Deep Sea Port & Industrial Employment' },
-  { stateCode: 'AN', stateName: 'Anambra', zone: 'South East', participants: 19800, totalAmountNgn: 31200000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Industrial Parks & Security Normalisation' },
-  { stateCode: 'BA', stateName: 'Bauchi', zone: 'North East', participants: 8400, totalAmountNgn: 12500000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Primary Healthcare & Pastoral Support' },
-  { stateCode: 'BY', stateName: 'Bayelsa', zone: 'South South', participants: 7200, totalAmountNgn: 10800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'duke-donald', topCivicIssue: 'Environmental Remediation & Marine Economy' },
-  { stateCode: 'BE', stateName: 'Benue', zone: 'North Central', participants: 10400, totalAmountNgn: 15600000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'okwori-ada', topCivicIssue: 'Food Basket Security & Agro-Processing' },
-  { stateCode: 'BO', stateName: 'Borno', zone: 'North East', participants: 9100, totalAmountNgn: 13800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Post-Conflict Reconstruction & Chad Basin Commerce' },
-  { stateCode: 'CR', stateName: 'Cross River', zone: 'South South', participants: 14500, totalAmountNgn: 22400000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'duke-donald', topCivicIssue: 'Eco-Tourism & Cross-Border Logistics' },
-  { stateCode: 'DE', stateName: 'Delta', zone: 'South South', participants: 13200, totalAmountNgn: 19800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Host Community Development & Gas Flaring Curb' },
-  { stateCode: 'EB', stateName: 'Ebonyi', zone: 'South East', participants: 8900, totalAmountNgn: 13400000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Rice Milling & Mining Safety' },
-  { stateCode: 'ED', stateName: 'Edo', zone: 'South South', participants: 12800, totalAmountNgn: 19200000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Tech Ecosystem & Vocational Apprenticeships' },
-  { stateCode: 'EK', stateName: 'Ekiti', zone: 'South West', participants: 7600, totalAmountNgn: 11400000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Knowledge Economy & Agricultural Tech' },
-  { stateCode: 'EN', stateName: 'Enugu', zone: 'South East', participants: 16700, totalAmountNgn: 25800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Water Supply & Regional Aviation Hub' },
-  { stateCode: 'FC', stateName: 'Federal Capital Territory (Abuja)', zone: 'North Central', participants: 22400, totalAmountNgn: 36500000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Satellite Town Infrastructure & Civic Inclusivity' },
-  { stateCode: 'GO', stateName: 'Gombe', zone: 'North East', participants: 6800, totalAmountNgn: 10200000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Logistics Center & Dry Port Development' },
-  { stateCode: 'IM', stateName: 'Imo', zone: 'South East', participants: 15300, totalAmountNgn: 23500000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Digital Jobs & Youth Security Restitution' },
-  { stateCode: 'JI', stateName: 'Jigawa', zone: 'North West', participants: 8100, totalAmountNgn: 12100000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Solar Irrigation & Sesame/Wheat Value Chain' },
-  { stateCode: 'KD', stateName: 'Kaduna', zone: 'North West', participants: 16400, totalAmountNgn: 24800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Railway Modernisation & Educational Hub' },
-  { stateCode: 'KN', stateName: 'Kano', zone: 'North West', participants: 24800, totalAmountNgn: 38200000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Textile Industry Revival & Commercial Transit' },
-  { stateCode: 'KT', stateName: 'Katsina', zone: 'North West', participants: 9900, totalAmountNgn: 14800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Border Surveillance & Renewable Energy' },
-  { stateCode: 'KE', stateName: 'Kebbi', zone: 'North West', participants: 7400, totalAmountNgn: 11100000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Anchor Borrowers Continuity & Cross-Border Rice Trade' },
-  { stateCode: 'KO', stateName: 'Kogi', zone: 'North Central', participants: 8900, totalAmountNgn: 13350000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Ajaokuta Steel Activation & Confluence Tourism' },
-  { stateCode: 'KW', stateName: 'Kwara', zone: 'North Central', participants: 9200, totalAmountNgn: 13800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Agro-Allied Cargo Terminal & Light Manufacturing' },
-  { stateCode: 'LA', stateName: 'Lagos', zone: 'South West', participants: 34500, totalAmountNgn: 54200000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Mass Transit Multimodal & Digital Creative Economy' },
-  { stateCode: 'NA', stateName: 'Nasarawa', zone: 'North Central', participants: 7800, totalAmountNgn: 11700000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Solid Mineral Extraction & Abuja Corridor Living' },
-  { stateCode: 'NI', stateName: 'Niger', zone: 'North Central', participants: 8600, totalAmountNgn: 12900000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Hydroelectric Host Compensation & Farmland Security' },
-  { stateCode: 'OG', stateName: 'Ogun', zone: 'South West', participants: 12900, totalAmountNgn: 19500000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Industrial Zone Infrastructure & Road Interlinks' },
-  { stateCode: 'ON', stateName: 'Ondo', zone: 'South West', participants: 9800, totalAmountNgn: 14700000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Bitumen Exploitation & Coastal Port Connectivity' },
-  { stateCode: 'OS', stateName: 'Osun', zone: 'South West', participants: 10200, totalAmountNgn: 15300000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'makinde-seyi', topCivicIssue: 'Mining Formalisation & Cultural Tourism' },
-  { stateCode: 'OY', stateName: 'Oyo', zone: 'South West', participants: 18900, totalAmountNgn: 29800000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'makinde-seyi', topCivicIssue: 'Agribusiness Hub & Ibadan Circular Belt' },
-  { stateCode: 'PL', stateName: 'Plateau', zone: 'North Central', participants: 11400, totalAmountNgn: 17100000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Peace Architecture & Temperate Horticulture' },
-  { stateCode: 'RI', stateName: 'Rivers', zone: 'South South', participants: 19500, totalAmountNgn: 30500000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Hydrocarbon Transition & Seaport Efficiency' },
-  { stateCode: 'SO', stateName: 'Sokoto', zone: 'North West', participants: 8200, totalAmountNgn: 12300000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Desertification Buffer & Cement Manufacturing' },
-  { stateCode: 'TA', stateName: 'Taraba', zone: 'North East', participants: 7100, totalAmountNgn: 10650000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Mambilla Hydro Project & Tea/Coffee Farming' },
-  { stateCode: 'YO', stateName: 'Yobe', zone: 'North East', participants: 6900, totalAmountNgn: 10350000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Gum Arabic Processing & Nomadic Education' },
-  { stateCode: 'ZA', stateName: 'Zamfara', zone: 'North West', participants: 7700, totalAmountNgn: 11550000, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Artisanal Gold Regulation & Rural Peace Enforcement' }
+  { stateCode: 'AB', stateName: 'Abia', zone: 'South East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Commercial Infrastructure & Aba Road Corridors' },
+  { stateCode: 'AD', stateName: 'Adamawa', zone: 'North East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Border Trade & Agricultural Irrigation' },
+  { stateCode: 'AK', stateName: 'Akwa Ibom', zone: 'South South', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'onor-sandy', topCivicIssue: 'Deep Sea Port & Industrial Employment' },
+  { stateCode: 'AN', stateName: 'Anambra', zone: 'South East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Industrial Parks & Security Normalisation' },
+  { stateCode: 'BA', stateName: 'Bauchi', zone: 'North East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Primary Healthcare & Pastoral Support' },
+  { stateCode: 'BY', stateName: 'Bayelsa', zone: 'South South', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'duke-donald', topCivicIssue: 'Environmental Remediation & Marine Economy' },
+  { stateCode: 'BE', stateName: 'Benue', zone: 'North Central', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'okwori-ada', topCivicIssue: 'Food Basket Security & Agro-Processing' },
+  { stateCode: 'BO', stateName: 'Borno', zone: 'North East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Post-Conflict Reconstruction & Chad Basin Commerce' },
+  { stateCode: 'CR', stateName: 'Cross River', zone: 'South South', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'duke-donald', topCivicIssue: 'Eco-Tourism & Cross-Border Logistics' },
+  { stateCode: 'DE', stateName: 'Delta', zone: 'South South', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Host Community Development & Gas Flaring Curb' },
+  { stateCode: 'EB', stateName: 'Ebonyi', zone: 'South East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Rice Milling & Mining Safety' },
+  { stateCode: 'ED', stateName: 'Edo', zone: 'South South', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Tech Ecosystem & Vocational Apprenticeships' },
+  { stateCode: 'EK', stateName: 'Ekiti', zone: 'South West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Knowledge Economy & Agricultural Tech' },
+  { stateCode: 'EN', stateName: 'Enugu', zone: 'South East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Water Supply & Regional Aviation Hub' },
+  { stateCode: 'FC', stateName: 'Federal Capital Territory (Abuja)', zone: 'North Central', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Satellite Town Infrastructure & Civic Inclusivity' },
+  { stateCode: 'GO', stateName: 'Gombe', zone: 'North East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Logistics Center & Dry Port Development' },
+  { stateCode: 'IM', stateName: 'Imo', zone: 'South East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Digital Jobs & Youth Security Restitution' },
+  { stateCode: 'JI', stateName: 'Jigawa', zone: 'North West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Solar Irrigation & Sesame/Wheat Value Chain' },
+  { stateCode: 'KD', stateName: 'Kaduna', zone: 'North West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Railway Modernisation & Educational Hub' },
+  { stateCode: 'KN', stateName: 'Kano', zone: 'North West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Textile Industry Revival & Commercial Transit' },
+  { stateCode: 'KT', stateName: 'Katsina', zone: 'North West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Border Surveillance & Renewable Energy' },
+  { stateCode: 'KE', stateName: 'Kebbi', zone: 'North West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Anchor Borrowers Continuity & Cross-Border Rice Trade' },
+  { stateCode: 'KO', stateName: 'Kogi', zone: 'North Central', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Ajaokuta Steel Activation & Confluence Tourism' },
+  { stateCode: 'KW', stateName: 'Kwara', zone: 'North Central', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Agro-Allied Cargo Terminal & Light Manufacturing' },
+  { stateCode: 'LA', stateName: 'Lagos', zone: 'South West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Mass Transit Multimodal & Digital Creative Economy' },
+  { stateCode: 'NA', stateName: 'Nasarawa', zone: 'North Central', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Solid Mineral Extraction & Abuja Corridor Living' },
+  { stateCode: 'NI', stateName: 'Niger', zone: 'North Central', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Hydroelectric Host Compensation & Farmland Security' },
+  { stateCode: 'OG', stateName: 'Ogun', zone: 'South West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Industrial Zone Infrastructure & Road Interlinks' },
+  { stateCode: 'ON', stateName: 'Ondo', zone: 'South West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Bitumen Exploitation & Coastal Port Connectivity' },
+  { stateCode: 'OS', stateName: 'Osun', zone: 'South West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'makinde-seyi', topCivicIssue: 'Mining Formalisation & Cultural Tourism' },
+  { stateCode: 'OY', stateName: 'Oyo', zone: 'South West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'makinde-seyi', topCivicIssue: 'Agribusiness Hub & Ibadan Circular Belt' },
+  { stateCode: 'PL', stateName: 'Plateau', zone: 'North Central', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'obi-peter', topCivicIssue: 'Peace Architecture & Temperate Horticulture' },
+  { stateCode: 'RI', stateName: 'Rivers', zone: 'South South', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Hydrocarbon Transition & Seaport Efficiency' },
+  { stateCode: 'SO', stateName: 'Sokoto', zone: 'North West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Desertification Buffer & Cement Manufacturing' },
+  { stateCode: 'TA', stateName: 'Taraba', zone: 'North East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Mambilla Hydro Project & Tea/Coffee Farming' },
+  { stateCode: 'YO', stateName: 'Yobe', zone: 'North East', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'tinubu-bola', topCivicIssue: 'Gum Arabic Processing & Nomadic Education' },
+  { stateCode: 'ZA', stateName: 'Zamfara', zone: 'North West', participants: 0, totalAmountNgn: 0, candidateVotes: {}, candidateAmounts: {}, leadingCandidateId: 'atiku-abubakar', topCivicIssue: 'Artisanal Gold Regulation & Rural Peace Enforcement' }
 ];

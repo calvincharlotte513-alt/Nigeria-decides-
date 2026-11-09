@@ -1,0 +1,85 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net: Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Security Primitives
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-\\.:@]+$');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isBootstrappedAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'jhulk738@gmail.com'
+      );
+    }
+
+    function isAdmin() {
+      return isBootstrappedAdmin() || (
+        isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // Validation Helpers
+    function isValidVote(data) {
+      return data.keys().hasAll(['fullName', 'contact', 'candidateId', 'amountNgn', 'state', 'paymentReference', 'paymentStatus'])
+        && data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 120
+        && data.contact is string && data.contact.size() >= 5 && data.contact.size() <= 120
+        && data.candidateId is string && data.candidateId.size() <= 64
+        && data.amountNgn is number && data.amountNgn >= 1000 && data.amountNgn <= 50000000
+        && data.state is string && data.state.size() <= 64
+        && data.paymentReference is string && data.paymentReference.size() <= 128
+        && (data.paymentStatus == 'completed' || data.paymentStatus == 'verified');
+    }
+
+    function isValidVoterLock(data) {
+      return data.keys().hasAll(['id', 'fullName', 'contact', 'voteId', 'hasVoted'])
+        && data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 120
+        && data.contact is string && data.contact.size() >= 5 && data.contact.size() <= 120
+        && data.voteId is string && data.voteId.size() <= 128
+        && data.hasVoted == true;
+    }
+
+    // Public Vote Audit Ledger
+    match /votes/{voteId} {
+      allow read: if true;
+      allow create: if isValidId(voteId) && isValidVote(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+
+    // Deterministic Voter Locks (Enforces One Vote Per Full Name + Contact)
+    match /voters/{voterKey} {
+      allow read: if true;
+      // Cannot overwrite existing voter lock unless admin
+      allow create: if isValidId(voterKey)
+        && !exists(/databases/$(database)/documents/voters/$(voterKey))
+        && isValidVoterLock(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+
+    // Platform Settings (Admin Control Center)
+    match /platform_settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Administrators Directory
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Test connection doc
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+  }
+}

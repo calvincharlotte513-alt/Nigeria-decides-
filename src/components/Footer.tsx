@@ -9,7 +9,6 @@ interface FooterProps {
   onOpenMethodology: () => void;
   onOpenPrivacy: () => void;
   onOpenTerms: () => void;
-  onOpenAdminPortal: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -17,8 +16,7 @@ export const Footer: React.FC<FooterProps> = ({
   onNavigate,
   onOpenMethodology,
   onOpenPrivacy,
-  onOpenTerms,
-  onOpenAdminPortal
+  onOpenTerms
 }) => {
   return (
     <footer className="relative border-t border-[#ebdffa] bg-white/80 backdrop-blur-md text-[#6b5887] text-xs z-10">
@@ -185,14 +183,6 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#8b2fc9] transition-colors cursor-pointer text-left"
                 >
                   Privacy & Anonymous Ballot
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenAdminPortal}
-                  className="text-[#8c7da3] hover:text-[#1e1035] transition-colors cursor-pointer text-left"
-                >
-                  NGO & Trustee Portal
                 </button>
               </li>
             </ul>

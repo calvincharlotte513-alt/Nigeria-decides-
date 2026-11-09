@@ -22,7 +22,6 @@ interface NavbarProps {
   onNavigate: (tabId: string) => void;
   onOpenVoteModal: () => void;
   onOpenUserDashboard: () => void;
-  onOpenAdminPortal: () => void;
   onOpenLeaderPopup?: () => void;
 }
 
@@ -33,7 +32,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   onOpenVoteModal,
   onOpenUserDashboard,
-  onOpenAdminPortal,
   onOpenLeaderPopup
 }) => {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);

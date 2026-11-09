@@ -34,6 +34,14 @@ import {
   HelpCircle
 } from 'lucide-react';
 
+import {
+  subscribeToVotes,
+  subscribeToPlatformSettings,
+  testConnection,
+  StoredVote,
+  PlatformSettings
+} from './services/firebase';
+
 import { INITIAL_CANDIDATES, INITIAL_STATS, INITIAL_STATES, INITIAL_CHARITIES } from './data/initialData';
 
 export default function App() {
@@ -50,86 +58,116 @@ export default function App() {
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState<'disclaimer' | 'methodology' | 'privacy' | 'terms'>('disclaimer');
 
-  // Core Data: initialized immediately with all 18 candidates and baseline data
-  // Guarantees that Vercel static deployments and cold loads never show an empty screen
-  const [stats, setStats] = useState<PollStats | null>(INITIAL_STATS);
-  const [candidates, setCandidates] = useState<Candidate[]>(() => {
-    try {
-      const saved = localStorage.getItem('nd_voted_candidates');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-      }
-    } catch {
-      // safe fallback
-    }
-    return INITIAL_CANDIDATES;
+  // Platform Master Settings (Controlled by Admin in real time)
+  const [platformSettings, setPlatformSettings] = useState<PlatformSettings>({
+    votingActive: true,
+    minVoteAmountNgn: 1000,
+    adminBroadcast: 'Democratic Balloting is LIVE. Verified by Independent Auditors.',
+    updatedAt: new Date().toISOString()
   });
+
+  // Core Data: initialized with baseline candidate directory, 0 votes, 0 money
+  const [stats, setStats] = useState<PollStats | null>(INITIAL_STATS);
+  const [candidates, setCandidates] = useState<Candidate[]>(INITIAL_CANDIDATES);
   const [states, setStates] = useState<StatePollData[]>(INITIAL_STATES);
   const [charities, setCharities] = useState<CharityBeneficiary[]>(INITIAL_CHARITIES);
   const [_isLoadingInitial, setIsLoadingInitial] = useState(false);
 
+  // Real-time Firestore sync: 0 dummy data, updates only when paid votes are confirmed
   useEffect(() => {
-    fetchCoreData();
+    testConnection();
+
+    // 1. Subscribe to real citizen votes
+    const unsubVotes = subscribeToVotes((liveVotes: StoredVote[]) => {
+      const totalVotes = liveVotes.length;
+      const totalAmount = liveVotes.reduce((sum, v) => sum + (v.amountNgn || 0), 0);
+
+      // Aggregate candidate votes and Naira backing from real DB records only
+      const updatedCandidates = INITIAL_CANDIDATES.map((c) => {
+        const cVotes = liveVotes.filter((v) => v.candidateId === c.id);
+        const cAmount = cVotes.reduce((sum, v) => sum + (v.amountNgn || 0), 0);
+        return {
+          ...c,
+          votes: cVotes.length,
+          totalAmountNgn: cAmount
+        };
+      });
+
+      // Overall leader (by total Naira backing)
+      const sortedByAmount = [...updatedCandidates].sort((a, b) => b.totalAmountNgn - a.totalAmountNgn);
+      const leader = sortedByAmount[0] || INITIAL_CANDIDATES[0];
+
+      setCandidates(updatedCandidates);
+
+      // Aggregate real state votes
+      const updatedStates = INITIAL_STATES.map((st) => {
+        const stVotes = liveVotes.filter((v) => v.state.toLowerCase().includes(st.stateName.toLowerCase()));
+        const stAmount = stVotes.reduce((sum, v) => sum + (v.amountNgn || 0), 0);
+        return {
+          ...st,
+          participants: stVotes.length,
+          totalAmountNgn: stAmount
+        };
+      });
+      setStates(updatedStates);
+
+      const uniqueStatesCount = new Set(liveVotes.map((v) => v.state)).size;
+
+      // Update real platform statistics
+      setStats({
+        totalVerifiedParticipants: totalVotes,
+        totalStatesParticipating: uniqueStatesCount,
+        totalCandidates: INITIAL_CANDIDATES.length,
+        totalPoolAmountNgn: totalAmount,
+        currentPollLeader: leader,
+        totalCharityProceedsNgn: totalAmount, // 100% of real proceeds go to charity
+        totalCharityDistributedNgn: 0,
+        undistributedFundsNgn: totalAmount,
+        lastUpdated: new Date().toISOString(),
+        electionTargetDate: 'February 2027',
+        isOfficialElection: false,
+        disclaimer: 'Nigeria Decides 2027 is an independent civic game for public opinion and charity fundraising. Not owned by federal government or INEC but owned by Democratic Nigerians.'
+      });
+      setIsLoadingInitial(false);
+    });
+
+    // 2. Subscribe to admin controls (voting active/paused, broadcast message)
+    const unsubSettings = subscribeToPlatformSettings((settings: PlatformSettings) => {
+      setPlatformSettings(settings);
+    });
+
+    return () => {
+      unsubVotes();
+      unsubSettings();
+    };
   }, []);
 
-  const fetchCoreData = async () => {
-    try {
-      const [statsRes, candRes, statesRes, charityRes] = await Promise.allSettled([
-        fetch('/api/poll/stats'),
-        fetch('/api/candidates'),
-        fetch('/api/poll/states'),
-        fetch('/api/charity/transparency')
-      ]);
-
-      if (candRes.status === 'fulfilled' && candRes.value.ok) {
-        const contentType = candRes.value.headers.get('content-type') || '';
-        if (contentType.includes('application/json')) {
-          const c = await candRes.value.json();
-          if (Array.isArray(c) && c.length > 0) {
-            setCandidates(c);
-            try {
-              localStorage.setItem('nd_voted_candidates', JSON.stringify(c));
-            } catch {
-              // ignore
-            }
-          }
-        }
+  // Handle direct URL navigation to /admin or hash #admin
+  useEffect(() => {
+    const checkAdminRoute = () => {
+      const pathname = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      if (pathname === '/admin' || pathname.startsWith('/admin') || hash === '#admin') {
+        setIsAdminPortalOpen(true);
       }
+    };
 
-      if (statsRes.status === 'fulfilled' && statsRes.value.ok) {
-        const contentType = statsRes.value.headers.get('content-type') || '';
-        if (contentType.includes('application/json')) {
-          const s = await statsRes.value.json();
-          if (s && s.totalVerifiedParticipants !== undefined) {
-            setStats(s);
-          }
-        }
-      }
+    checkAdminRoute();
+    window.addEventListener('popstate', checkAdminRoute);
+    window.addEventListener('hashchange', checkAdminRoute);
 
-      if (statesRes.status === 'fulfilled' && statesRes.value.ok) {
-        const contentType = statesRes.value.headers.get('content-type') || '';
-        if (contentType.includes('application/json')) {
-          const st = await statesRes.value.json();
-          if (Array.isArray(st) && st.length > 0) {
-            setStates(st);
-          }
-        }
-      }
+    return () => {
+      window.removeEventListener('popstate', checkAdminRoute);
+      window.removeEventListener('hashchange', checkAdminRoute);
+    };
+  }, []);
 
-      if (charityRes.status === 'fulfilled' && charityRes.value.ok) {
-        const contentType = charityRes.value.headers.get('content-type') || '';
-        if (contentType.includes('application/json')) {
-          const ch = await charityRes.value.json();
-          if (ch && Array.isArray(ch.beneficiaries)) {
-            setCharities(ch.beneficiaries);
-          }
-        }
-      }
-    } catch (err) {
-      console.warn('Backend sync note (using baseline data):', err);
-    } finally {
-      setIsLoadingInitial(false);
+  const handleCloseAdminPortal = () => {
+    setIsAdminPortalOpen(false);
+    if (window.location.pathname.toLowerCase().startsWith('/admin')) {
+      window.history.pushState(null, '', '/');
+    } else if (window.location.hash.toLowerCase() === '#admin') {
+      window.history.pushState(null, '', window.location.pathname);
     }
   };
 
@@ -139,6 +177,10 @@ export default function App() {
   };
 
   const handleOpenVoteForCandidate = (candId?: string | null) => {
+    if (platformSettings && !platformSettings.votingActive) {
+      alert('⚠️ Balloting is temporarily paused by platform administrators. You can explore verified candidates and live audited standings.');
+      return;
+    }
     setSelectedVoteCandidateId(candId || null);
     setIsVoteModalOpen(true);
   };
@@ -179,12 +221,25 @@ export default function App() {
         }}
         onOpenVoteModal={() => handleOpenVoteForCandidate(null)}
         onOpenUserDashboard={() => setIsUserDashboardOpen(true)}
-        onOpenAdminPortal={() => setIsAdminPortalOpen(true)}
         onOpenLeaderPopup={() => setIsLeaderPopupOpen(true)}
       />
 
       {/* Live Ticker Strip — real-time updates beneath navbar */}
       <LiveTicker candidates={candidates} />
+
+      {/* Admin Live Notice or Paused Banner */}
+      {!platformSettings.votingActive ? (
+        <div className="bg-amber-600 text-white text-xs font-bold py-2.5 px-4 text-center sticky top-16 z-30 shadow-md flex items-center justify-center gap-2">
+          <span>⏸</span>
+          <span>Notice: Balloting is temporarily paused by platform administrators for verification. Candidates and audited results remain viewable.</span>
+        </div>
+      ) : platformSettings.adminBroadcast ? (
+        <div className="bg-gradient-to-r from-[#1e1035] via-[#2c1452] to-[#1e1035] text-white text-[11px] font-mono py-1.5 px-4 text-center sticky top-16 z-30 shadow-xs flex items-center justify-center gap-2 border-b border-purple-500/20">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <span className="font-bold text-amber-300 uppercase tracking-wider">ADMIN BROADCAST:</span>
+          <span className="truncate">{platformSettings.adminBroadcast}</span>
+        </div>
+      ) : null}
 
       {/* Main View Container: pb ensures bottom nav never covers content */}
       <main className="relative z-10 flex-1 pb-32 sm:pb-28">{/* pb-32 on mobile = ~8rem for 56px tab bar + safe area */}
@@ -478,7 +533,6 @@ export default function App() {
         onOpenMethodology={() => handleOpenLegal('methodology')}
         onOpenPrivacy={() => handleOpenLegal('privacy')}
         onOpenTerms={() => handleOpenLegal('terms')}
-        onOpenAdminPortal={() => setIsAdminPortalOpen(true)}
       />
 
       {/* ============================================================
@@ -522,7 +576,9 @@ export default function App() {
         candidates={candidates}
         initialCandidateId={selectedVoteCandidateId}
         currentLang={currentLang}
-        onVoteCastSuccess={() => fetchCoreData()}
+        onVoteCastSuccess={() => {
+          // Firestore onSnapshot updates real-time automatically
+        }}
         onNavigateToResults={() => {
           setActiveTab('results');
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -540,10 +596,12 @@ export default function App() {
 
       <AdminPortal
         isOpen={isAdminPortalOpen}
-        onClose={() => setIsAdminPortalOpen(false)}
+        onClose={handleCloseAdminPortal}
         candidates={candidates}
         charities={charities}
-        onDisburseCharitySuccess={() => fetchCoreData()}
+        onDisburseCharitySuccess={() => {
+          // Firestore onSnapshot updates real-time automatically
+        }}
       />
 
       <LegalNoticeModal

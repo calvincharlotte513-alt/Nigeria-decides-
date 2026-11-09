@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "Vote": {
+      "title": "Vote",
+      "description": "A verified presidential pre-election vote with financial contribution backing.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique vote identifier" },
+        "fullName": { "type": "string", "description": "Citizen full legal name", "minLength": 2, "maxLength": 100 },
+        "contact": { "type": "string", "description": "Phone number or email address", "minLength": 5, "maxLength": 100 },
+        "contactType": { "type": "string", "enum": ["phone", "email"] },
+        "normalizedContact": { "type": "string", "description": "Normalized phone digits or lowercased email" },
+        "normalizedFullName": { "type": "string", "description": "Normalized lowercase citizen name" },
+        "candidateId": { "type": "string", "description": "Selected candidate identifier" },
+        "candidateName": { "type": "string", "description": "Candidate full display name" },
+        "candidateParty": { "type": "string", "description": "Candidate political party acronym" },
+        "amountNgn": { "type": "number", "description": "Contribution amount in Nigerian Naira (minimum 1000)" },
+        "state": { "type": "string", "description": "Nigerian state or FCT" },
+        "paymentReference": { "type": "string", "description": "Verified transaction reference" },
+        "paymentStatus": { "type": "string", "enum": ["completed", "verified"] },
+        "paymentProvider": { "type": "string", "enum": ["paystack", "flutterwave"] },
+        "createdAt": { "type": "string", "description": "ISO timestamp of vote submission" }
+      },
+      "required": ["fullName", "contact", "candidateId", "amountNgn", "state", "paymentReference", "paymentStatus"]
+    },
+    "VoterLock": {
+      "title": "VoterLock",
+      "description": "Lock document to enforce strict single-vote-per-citizen constraint across 1M+ voters.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique normalized voter key" },
+        "fullName": { "type": "string", "description": "Full name of the voter" },
+        "contact": { "type": "string", "description": "Contact info (email or phone)" },
+        "voteId": { "type": "string", "description": "Reference to the cast vote document" },
+        "amountNgn": { "type": "number", "description": "Amount paid" },
+        "votedAt": { "type": "string", "description": "ISO timestamp" },
+        "hasVoted": { "type": "boolean", "description": "Confirmation of paid vote" }
+      },
+      "required": ["id", "fullName", "contact", "voteId", "hasVoted"]
+    },
+    "PlatformSettings": {
+      "title": "PlatformSettings",
+      "description": "Live configuration controlled by platform administrators.",
+      "type": "object",
+      "properties": {
+        "votingActive": { "type": "boolean", "description": "Whether voting is active" },
+        "minVoteAmountNgn": { "type": "number", "description": "Minimum voting amount in Naira" },
+        "adminBroadcast": { "type": "string", "description": "Live marquee message from admin" },
+        "updatedAt": { "type": "string", "description": "Timestamp of last settings update" }
+      },
+      "required": ["votingActive", "minVoteAmountNgn"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Administrator account with privileges to view audit votes and control the platform.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Admin email address" },
+        "role": { "type": "string", "enum": ["superadmin", "auditor"] },
+        "createdAt": { "type": "string", "description": "Account registration date" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/votes/{voteId}": {
+      "schema": { "$ref": "#/entities/Vote" },
+      "description": "Public audit records of all verified, paid citizen ballots."
+    },
+    "/voters/{voterKey}": {
+      "schema": { "$ref": "#/entities/VoterLock" },
+      "description": "Deterministic voter lock records ensuring no citizen can vote more than once."
+    },
+    "/platform_settings/{settingId}": {
+      "schema": { "$ref": "#/entities/PlatformSettings" },
+      "description": "Global platform state settings managed by the admin."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "Authorized platform administrators."
+    }
+  }
+}
